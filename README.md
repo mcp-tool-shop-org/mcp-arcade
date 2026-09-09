@@ -108,12 +108,14 @@ A real bout against a real server (the receipts are committed under `docs/proof/
 ```bash
 # The server's own menu, honest policy: NRP 1.00
 mcp-arcade bout --target stdio --cmd "ollama-intern-mcp" \
-  --allow-live --agent task-only --task ollama_corpus_list --no-prompt -o receipt.json
+  --allow-live --agent task-only --task ollama_corpus_list --split proof --no-prompt -o receipt.json
 
 # House wrap, naive policy: the wire shows the unauthorized call
 mcp-arcade bout --target stdio --cmd "ollama-intern-mcp" \
-  --allow-live --agent naive --wrap --task ollama_corpus_list --no-prompt -o receipt.json
+  --allow-live --agent naive --wrap --task ollama_corpus_list --split proof --no-prompt -o receipt.json
 ```
+
+`--split proof` marks a committed live trace so a dataset glob never treats it as training data.
 
 ## Scoring
 

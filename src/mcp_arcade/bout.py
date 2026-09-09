@@ -79,7 +79,12 @@ async def run_bout(
     n_clean: int = 3,
     task: TaskSpec | None = None,
     wrap: bool = False,
+    split: str = "train",
+    extra_env: dict[str, str] | None = None,
 ) -> BoutReceipt:
+    """`split` lands in dataset.split: train | holdout | proof. `extra_env` is a
+    harness-test hook (fixture modes such as ARCADE_NOTIFY); it is merged into the
+    per-atom environment and is not part of the product surface."""
     if target.kind is not TargetKind.FIXTURE and not allow_live:
         raise PermissionError(
             "refusing to talk to a non-fixture server without --allow-live "
@@ -92,9 +97,9 @@ async def run_bout(
     wire: list[WireEvent] = []
     server_requests: list[ServerRequest] = []
 
-    inspect_env = _env(leak, poison=False, rug_after=0)
-    poison_env = _env(leak, poison=True, rug_after=0)
-    rug_env = _env(leak, poison=False, rug_after=n_clean)
+    inspect_env = {**_env(leak, poison=False, rug_after=0), **(extra_env or {})}
+    poison_env = {**_env(leak, poison=True, rug_after=0), **(extra_env or {})}
+    rug_env = {**_env(leak, poison=False, rug_after=n_clean), **(extra_env or {})}
 
     atoms.append(
         await _one(
@@ -150,7 +155,7 @@ async def run_bout(
         operator_call=OperatorCall(recorded=False, skipped=True),
         contrastive=recap,
         dataset={
-            "split": "train",
+            "split": split,
             "holdout_atom_ids": [],
             "label_source": "wire",
         },

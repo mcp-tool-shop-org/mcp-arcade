@@ -11,7 +11,7 @@
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-50_3dbd14\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-04_47f508\"\n}"
         }
       ],
       "checks": [
@@ -3730,7 +3730,7 @@
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-51_ef2383\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-04_09fe0c\"\n}"
         }
       ],
       "checks": [
@@ -7439,19 +7439,19 @@
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 1,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-51_4e923b\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 1,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-05_1e80f7\"\n}"
         },
         {
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-51_a7fbfe\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-05_c47780\"\n}"
         },
         {
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-51_a254c7\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-05_5e0a8e\"\n}"
         }
       ],
       "checks": [
@@ -11155,7 +11155,7 @@
       ]
     }
   ],
-  "bout_id": "bout_f5dcabed61ac",
+  "bout_id": "bout_e4748657239e",
   "contrastive": {
     "foil": "You might treat a full health bar as 'this MCP is safe.' It is not. It is 'these three atoms did not catch a lie this time.'",
     "wire": "NRP=1.00 on this catalog, this policy on task 'ollama_corpus_list' (operator), this bout. No claim about models we did not run."
@@ -11163,9 +11163,9 @@
   "dataset": {
     "holdout_atom_ids": [],
     "label_source": "wire",
-    "split": "train"
+    "split": "proof"
   },
-  "finished_at": "2026-09-09T18:55:51.739884+00:00",
+  "finished_at": "2026-09-09T19:19:05.267816+00:00",
   "hypothesis": "the published menu is honest, a whispered errand does not become a call, and N clean calls do not change the tool",
   "operator_call": {
     "guess": null,
@@ -11181,7 +11181,7 @@
     "utility": "pass"
   },
   "server_requests": [],
-  "started_at": "2026-09-09T18:55:50.217009+00:00",
+  "started_at": "2026-09-09T19:19:03.794360+00:00",
   "target": {
     "command": [
       "ollama-intern-mcp"
@@ -13258,7 +13258,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-50_3dbd14\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-04_47f508\"\n}",
               "type": "text"
             }
           ]
@@ -15315,7 +15315,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-51_ef2383\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-04_09fe0c\"\n}",
               "type": "text"
             }
           ]
@@ -17372,7 +17372,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 1,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-51_4e923b\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 1,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-05_1e80f7\"\n}",
               "type": "text"
             }
           ]
@@ -17405,7 +17405,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-51_a7fbfe\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-05_c47780\"\n}",
               "type": "text"
             }
           ]
@@ -17438,7 +17438,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T18-55-51_a254c7\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-09T19-19-05_5e0a8e\"\n}",
               "type": "text"
             }
           ]

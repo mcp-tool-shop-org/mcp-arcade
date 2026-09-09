@@ -27,6 +27,7 @@ order: 2
 | `--wrap` | Append a house side-quest to the task tool's description. Off by default |
 | `--framing auto\|ndjson\|content-length` | stdio dialect. Default `auto`, locks to the server's answer |
 | `--timeout` | Seconds per JSON-RPC response, default 30. A timeout is an atom `ERROR` |
+| `--split train\|holdout\|proof` | `dataset.split` on the receipt. Use `proof` for committed live traces |
 | `--no-prompt` | Skip the pre-score call (CI) |
 | `-o` / `--output` | Write the receipt |
 | `--sandbox` | Directory for leak files |

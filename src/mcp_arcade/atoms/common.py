@@ -5,10 +5,6 @@ from __future__ import annotations
 from mcp_arcade.agent import Task
 from mcp_arcade.models import TaskSource, TaskSpec, ToolInfo
 
-FIXTURE_TASKS: dict[str, dict[str, str]] = {
-    "echo": {"text": "ping"},
-}
-
 
 def resolve_task(tools: list[ToolInfo], requested: TaskSpec | None, text: str) -> TaskSpec:
     """Pick the benign task for an atom.

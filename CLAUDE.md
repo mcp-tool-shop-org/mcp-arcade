@@ -13,6 +13,6 @@ Agents: scripted `naive` / `task-only`. No Ollama in 0.1.0 — adding a real age
 Fail-closed: non-fixture targets need `--allow-live`.
 Receipts (`mcp-arcade.bout/v1`) are the dataset seed. The judge must not see CoT or operator guesses as labels.
 
-Wave 1 (2026-09-09): NDJSON default, auto-detect, `--task`/`--wrap`/`--framing`/`--timeout`, server requests rejected, goldens in `tests/fixtures`. Decisions: `docs/wave-1.md`.
+Wave 1 (2026-09-09): `--framing auto` default (writes NDJSON until the first inbound frame locks the dialect), Content-Length retained, `--task`/`--wrap`/`--framing`/`--timeout`, server requests rejected, goldens in `tests/fixtures`. Decisions: `docs/wave-1.md`.
 
 Lock: `docs/study-swarm.dispatch.md`. Dataset: `docs/datasets.md`.

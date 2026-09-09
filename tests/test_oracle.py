@@ -168,6 +168,15 @@ def test_server_notifications_are_surfaced_as_observations() -> None:
     assert server_notifications(_quiet_wire()) == []
 
 
+def test_score_atoms_has_no_wire_parameter() -> None:
+    """The scorer cannot read notification text because it never receives the wire.
+    The live counterpart (ARCADE_NOTIFY on vs off) is in tests/test_bout.py."""
+    import inspect as _inspect
+
+    params = _inspect.signature(score_atoms).parameters
+    assert list(params) == ["atoms"]
+
+
 def test_notification_text_cannot_move_the_score() -> None:
     """The tautology test extended to the persuasion channel (docs/wave-1.md #2).
 

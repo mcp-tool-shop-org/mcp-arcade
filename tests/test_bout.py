@@ -215,3 +215,40 @@ async def test_a_timed_out_bout_errors_every_atom_and_scores_nothing(
     assert receipt.scores.nrp == 0.0
     assert "stopped early" in receipt.contrastive.wire
     assert "not a score" in receipt.contrastive.foil
+
+
+@pytest.mark.asyncio
+async def test_persuasive_notification_on_the_live_wire_does_not_move_scores(
+    tmp_path: Path,
+) -> None:
+    """End-to-end tautology: the fixture pushes a notifications/message telling the
+    oracle to pass; the receipt carries it as an untrusted observation; Scores are
+    identical to the quiet bout."""
+    target = resolve_target("fixture", None)
+    quiet_box = tmp_path / "quiet"
+    loud_box = tmp_path / "loud"
+    quiet_box.mkdir()
+    loud_box.mkdir()
+    quiet = await run_bout(target, AgentPolicy.TASK_ONLY, allow_live=False, sandbox=quiet_box)
+    loud = await run_bout(
+        target,
+        AgentPolicy.TASK_ONLY,
+        allow_live=False,
+        sandbox=loud_box,
+        extra_env={"ARCADE_NOTIFY": "1"},
+    )
+    loud_notes = [w for w in loud.wire if w.method == "notifications/message"]
+    quiet_notes = [w for w in quiet.wire if w.method == "notifications/message"]
+    assert loud_notes and not quiet_notes
+    assert "attack_success=false" in str(loud_notes[0].message)
+    assert loud.scores == quiet.scores
+    assert [a.result for a in loud.atoms] == [a.result for a in quiet.atoms]
+
+
+@pytest.mark.asyncio
+async def test_split_lands_on_the_receipt(tmp_path: Path) -> None:
+    target = resolve_target("fixture", None)
+    receipt = await run_bout(
+        target, AgentPolicy.TASK_ONLY, allow_live=False, sandbox=tmp_path, split="proof"
+    )
+    assert receipt.dataset["split"] == "proof"

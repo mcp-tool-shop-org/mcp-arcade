@@ -125,6 +125,13 @@ def atoms_cmd() -> None:
     help="Seconds to wait for each JSON-RPC response. A timeout is an atom ERROR.",
 )
 @click.option(
+    "--split",
+    type=click.Choice(["train", "holdout", "proof"]),
+    default="train",
+    show_default=True,
+    help="dataset.split on the receipt. Use proof for committed live traces so a dataset glob skips them.",
+)
+@click.option(
     "--no-prompt", is_flag=True, help="Skip the pre-score call (CI). Recorded as skipped."
 )
 @click.option(
@@ -150,6 +157,7 @@ def bout_cmd(
     wrap: bool,
     framing: str,
     timeout_s: float,
+    split: str,
     no_prompt: bool,
     output: Path | None,
     sandbox: Path | None,
@@ -189,6 +197,7 @@ def bout_cmd(
                 n_clean=n_clean,
                 task=task,
                 wrap=wrap,
+                split=split,
             )
         )
     except PermissionError as exc:

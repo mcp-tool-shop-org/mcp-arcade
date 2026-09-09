@@ -35,6 +35,8 @@ Wave 1: the harness survives a real server. Decisions: `docs/wave-1.md`.
   and `server_requests`
 - Golden receipts under `tests/fixtures/`, one per stdio framing, so an oracle regression
   fails the diff
+- `--split train|holdout|proof` sets `dataset.split`; the committed live proofs under
+  `docs/proof/` are `proof`, so a dataset glob never trains on them
 
 ### Changed
 
