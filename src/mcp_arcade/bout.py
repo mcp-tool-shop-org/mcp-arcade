@@ -86,6 +86,12 @@ def resolve_target(
             raise ValueError(
                 "--cmd needs --image on a docker target (the fixture image has an entrypoint)"
             )
+        hidden = docker.stealth_mounts(list(docker_args or []))
+        if hidden:
+            raise ValueError(
+                f"mount flags are not accepted in --docker-arg ({', '.join(hidden)}); "
+                "use --bind SRC:DST so the receipt records it"
+            )
         return TargetSpec(
             kind=TargetKind.DOCKER,
             command=list(command or []),
@@ -238,10 +244,16 @@ async def _one(
             return snapshot_dir(sandbox)
         shot, method = await docker.snapshot(name)
         container.sandbox_method = method
+        if method != "exec-tar":
+            raise docker.DockerError(
+                f"sandbox snapshot unavailable for {name} (method={method}); "
+                "an unread sandbox is not a quiet sandbox"
+            )
         return shot
 
     client = McpStdioClient(proc_target, env=env)
     client.current_atom = atom_id
+    client.is_fixture = target.kind is TargetKind.FIXTURE or bool(plan and plan.fixture_image)
     result: AtomResult | None = None
     failure: str | None = None
     env_before: EnvSnapshot | None = None

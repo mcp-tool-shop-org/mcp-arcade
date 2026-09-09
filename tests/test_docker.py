@@ -29,7 +29,14 @@ from click.testing import CliRunner
 from mcp_arcade import __version__, docker
 from mcp_arcade.bout import resolve_target, run_bout
 from mcp_arcade.cli import app
-from mcp_arcade.models import AgentPolicy, AtomId, AxisResult, TargetKind, TargetSpec
+from mcp_arcade.models import (
+    AgentPolicy,
+    AtomId,
+    AxisResult,
+    EnvSnapshot,
+    TargetKind,
+    TargetSpec,
+)
 
 # Resolved once at import: `docker version` is a subprocess and the skipif on
 # every live test would otherwise pay for it again and again.
@@ -576,3 +583,75 @@ def test_cli_docker_group_lists_its_compensators() -> None:
     assert result.exit_code == 0
     for sub in ("build-fixture", "rm-fixture", "leftovers"):
         assert sub in result.output
+
+
+# ----- review fixes (Grok, wave 2) -----
+
+
+def test_run_argv_records_docker_not_an_absolute_path() -> None:
+    plan = docker.ContainerPlan(
+        image="img:1", image_id="sha256:" + "0" * 64, repo_digest=None, fixture_image=False
+    )
+    target = TargetSpec(kind=TargetKind.DOCKER, command=[], image="img:1")
+    argv = docker.run_argv(plan, target, "arcade-x-inspect", {})
+    assert argv[0] == "docker"
+
+
+def test_fixture_base_image_is_pinned_by_digest() -> None:
+    assert "@sha256:" in docker.FIXTURE_BASE
+    assert f"FROM {docker.FIXTURE_BASE}" in docker._FIXTURE_DOCKERFILE
+
+
+@pytest.mark.parametrize(
+    "args",
+    [
+        ["-v", "/:/host"],
+        ["--volume", "/:/host"],
+        ["--volume=/:/host"],
+        ["--mount", "type=bind,src=/,dst=/host"],
+        ["--mount=type=bind,src=/,dst=/host"],
+    ],
+)
+def test_stealth_mounts_in_docker_arg_are_rejected(args: list[str]) -> None:
+    assert docker.stealth_mounts(args)
+    with pytest.raises(ValueError, match="use --bind"):
+        resolve_target("docker", None, image="img:1", docker_args=args)
+
+
+def test_plain_docker_args_are_accepted() -> None:
+    assert docker.stealth_mounts(["--memory", "512m", "--env", "X=1"]) == []
+    spec = resolve_target("docker", None, image="img:1", docker_args=["--memory", "512m"])
+    assert spec.docker_args == ["--memory", "512m"]
+
+
+@pytest.mark.parametrize(
+    "kwargs",
+    [{"binds": ["/tmp:/data"]}, {"docker_args": ["--network", "host"]}],
+)
+def test_fixture_skip_covers_default_argv_only(monkeypatch, kwargs) -> None:
+    monkeypatch.setattr(docker, "available", lambda: True)
+    monkeypatch.setattr(
+        docker, "build_fixture_image", lambda: (_ for _ in ()).throw(AssertionError("built"))
+    )
+    target = TargetSpec(kind=TargetKind.DOCKER, command=[], image=None, **kwargs)
+    with pytest.raises(PermissionError, match="default argv only"):
+        docker.prepare(target, allow_live=False)
+
+
+@requires_docker
+async def test_unavailable_sandbox_snapshot_is_an_atom_error(monkeypatch, tmp_path) -> None:
+    async def _unavailable(name: str):
+        return EnvSnapshot(), "unavailable"
+
+    monkeypatch.setattr(docker, "snapshot", _unavailable)
+    target = resolve_target("docker", None, timeout_s=60)
+    receipt = await run_bout(target, AgentPolicy.TASK_ONLY, allow_live=False, sandbox=tmp_path)
+    assert [a.result.value for a in receipt.atoms] == ["error", "error", "error"]
+    for atom in receipt.atoms:
+        harness = next(c for c in atom.checks if c.id == "harness")
+        assert "snapshot unavailable" in harness.detail
+        assert atom.session.container is not None
+        assert atom.session.container.sandbox_method == "unavailable"
+    assert receipt.scores.nrp == 0.0
+    assert receipt.scores.integrity.value == "error"
+    assert docker.leftovers() == []

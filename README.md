@@ -139,6 +139,8 @@ What Arcade does with a docker target:
 - **Fails closed.** `--image` always needs `--allow-live`. The only image that skips it is the fixture image Arcade builds itself, from its own installed source, right before the bout, and it checks that the id it just built is the id it is about to run. A look-alike `mcp-arcade-fixture:*` tag is refused.
 - **Cleans up.** `docker rm -f` on every container in `finally`. `mcp-arcade docker leftovers` should always print `none`. `mcp-arcade docker rm-fixture` removes the local fixture image.
 
+The fixture image's base is pinned by digest and the build context carries no bytecode or attestations, so its id depends only on Arcade's source. `--docker-arg` refuses mount flags; binds go through `--bind`. Adding a bind or an extra flag to the fixture image needs `--allow-live` like any other image.
+
 Two proof receipts of the docker fixture (naive and task-only) are committed under `docs/proof/`. Publishing a fixture image to a registry is deferred; today it is built locally.
 
 ## Scoring

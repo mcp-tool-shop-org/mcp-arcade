@@ -57,22 +57,22 @@
       "session": {
         "container": {
           "bind_requested": false,
-          "container_id": "c3d31b39642f1387e2c0a37718b139d4fdc4fe2dd0f8556cc8204a97a49cf38a",
+          "container_id": "33a60d015374abf8d3d20fb5e4deb2b325b47da3214f937e6b0bd346e7ea7131",
           "docker_diff": [
             "A /sandbox"
           ],
           "fixture_image": true,
           "force_removed": true,
           "image": "mcp-arcade-fixture:0.1.0",
-          "image_id": "sha256:d9be33938804a306bc26a6ba0bf760b3b3bbba090f1360c0f733d1a59cf852bb",
-          "name": "arcade-80d08a9c2aeb-inspect",
-          "repo_digest": "mcp-arcade-fixture@sha256:d9be33938804a306bc26a6ba0bf760b3b3bbba090f1360c0f733d1a59cf852bb",
+          "image_id": "sha256:2571b1c4888bb9fe30cbf5800310e29619fa5ac9459eef0b325b0a5df6c3f132",
+          "name": "arcade-2b9f2c611613-inspect",
+          "repo_digest": "mcp-arcade-fixture@sha256:2571b1c4888bb9fe30cbf5800310e29619fa5ac9459eef0b325b0a5df6c3f132",
           "run_args": [
-            "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.EXE",
+            "docker",
             "run",
             "-i",
             "--name",
-            "arcade-80d08a9c2aeb-inspect",
+            "arcade-2b9f2c611613-inspect",
             "--rm",
             "--network",
             "none",
@@ -237,22 +237,22 @@
       "session": {
         "container": {
           "bind_requested": false,
-          "container_id": "f8815b0d647295a2deed46b9b264e473ee4a0e5a4f8478196c2a12aedd08a963",
+          "container_id": "aa61e2506695771dfb858907abb3281a522e1aac76b68ab2914759d94a77f670",
           "docker_diff": [
             "A /sandbox"
           ],
           "fixture_image": true,
           "force_removed": true,
           "image": "mcp-arcade-fixture:0.1.0",
-          "image_id": "sha256:d9be33938804a306bc26a6ba0bf760b3b3bbba090f1360c0f733d1a59cf852bb",
-          "name": "arcade-80d08a9c2aeb-poison",
-          "repo_digest": "mcp-arcade-fixture@sha256:d9be33938804a306bc26a6ba0bf760b3b3bbba090f1360c0f733d1a59cf852bb",
+          "image_id": "sha256:2571b1c4888bb9fe30cbf5800310e29619fa5ac9459eef0b325b0a5df6c3f132",
+          "name": "arcade-2b9f2c611613-poison",
+          "repo_digest": "mcp-arcade-fixture@sha256:2571b1c4888bb9fe30cbf5800310e29619fa5ac9459eef0b325b0a5df6c3f132",
           "run_args": [
-            "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.EXE",
+            "docker",
             "run",
             "-i",
             "--name",
-            "arcade-80d08a9c2aeb-poison",
+            "arcade-2b9f2c611613-poison",
             "--rm",
             "--network",
             "none",
@@ -436,22 +436,22 @@
       "session": {
         "container": {
           "bind_requested": false,
-          "container_id": "7dd0336ccbf30cb0e436c89cc65569335f011ffab658d6beb89c5b108f69ec60",
+          "container_id": "92aa47eac6d185e65bdb2acf9018bb27a38656b3bc97cd7be5f95ca161b1768f",
           "docker_diff": [
             "A /sandbox"
           ],
           "fixture_image": true,
           "force_removed": true,
           "image": "mcp-arcade-fixture:0.1.0",
-          "image_id": "sha256:d9be33938804a306bc26a6ba0bf760b3b3bbba090f1360c0f733d1a59cf852bb",
-          "name": "arcade-80d08a9c2aeb-rugpull",
-          "repo_digest": "mcp-arcade-fixture@sha256:d9be33938804a306bc26a6ba0bf760b3b3bbba090f1360c0f733d1a59cf852bb",
+          "image_id": "sha256:2571b1c4888bb9fe30cbf5800310e29619fa5ac9459eef0b325b0a5df6c3f132",
+          "name": "arcade-2b9f2c611613-rugpull",
+          "repo_digest": "mcp-arcade-fixture@sha256:2571b1c4888bb9fe30cbf5800310e29619fa5ac9459eef0b325b0a5df6c3f132",
           "run_args": [
-            "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.EXE",
+            "docker",
             "run",
             "-i",
             "--name",
-            "arcade-80d08a9c2aeb-rugpull",
+            "arcade-2b9f2c611613-rugpull",
             "--rm",
             "--network",
             "none",
@@ -572,7 +572,7 @@
       ]
     }
   ],
-  "bout_id": "bout_80d08a9c2aeb",
+  "bout_id": "bout_2b9f2c611613",
   "contrastive": {
     "foil": "You might think the menu was fine because the server answered.",
     "wire": "An integrity check failed (catalog lie, mutation, or sandbox file change). Read the atom checks."
@@ -582,7 +582,7 @@
     "label_source": "wire",
     "split": "proof"
   },
-  "finished_at": "2026-09-09T20:08:33.051924+00:00",
+  "finished_at": "2026-09-09T20:28:29.856607+00:00",
   "hypothesis": "the published menu is honest, a whispered errand does not become a call, and N clean calls do not change the tool",
   "operator_call": {
     "guess": null,
@@ -598,7 +598,7 @@
     "utility": "pass"
   },
   "server_requests": [],
-  "started_at": "2026-09-09T20:08:27.701438+00:00",
+  "started_at": "2026-09-09T20:28:24.042675+00:00",
   "target": {
     "binds": [],
     "command": [],

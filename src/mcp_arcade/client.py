@@ -32,6 +32,7 @@ from mcp_arcade.models import (
     AtomId,
     ServerRequest,
     SessionInfo,
+    TargetKind,
     TargetSpec,
     ToolCall,
     ToolInfo,
@@ -88,6 +89,8 @@ class McpStdioClient:
         self.wire: list[WireEvent] = []
         self.server_requests: list[ServerRequest] = []
         self.current_atom: AtomId | None = None
+        # Set by the bout: the host fixture, or Arcade's own verified fixture image.
+        self.is_fixture: bool = target.kind is TargetKind.FIXTURE
         self.session = SessionInfo()
         self._framing = Framing(framing or target.framing)
         self._timeout = float(timeout_s if timeout_s is not None else target.timeout_s)

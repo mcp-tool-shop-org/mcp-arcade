@@ -30,6 +30,9 @@ Wave 2: Docker is the sandbox. Decisions: `docs/wave-2.md`.
   repo digest, the exact `run_args`, container name and id, sandbox method, docker diff
 - `mcp-arcade docker build-fixture | rm-fixture | leftovers`
 - Docker proof receipts under `docs/proof/` (`split: proof`)
+- Fixture base image pinned by digest; mount flags refused in `--docker-arg`; a bind or extra
+  flag on the fixture image needs `--allow-live`; an unavailable sandbox snapshot is an atom
+  `ERROR` (review fixes, `docs/wave-2.md`)
 
 - Newline-delimited JSON framing (the MCP spec's stdio dialect) as the default, with
   `Content-Length` retained for servers that speak it

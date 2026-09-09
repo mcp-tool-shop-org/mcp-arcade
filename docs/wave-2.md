@@ -45,3 +45,18 @@
 Gates measured the same day: `--image python:3.12-slim` without `--allow-live` refused; a look-alike `mcp-arcade-fixture:0.1.0-fake` tag (python:3.12-slim retagged) refused with the same message; `python:3.12-slim` running `python -c print('hello')` with `--allow-live` produced three ERROR atoms ("cannot detect framing from first line"), integrity `error`, NRP 0. `mcp-arcade docker leftovers` printed `none` after every run. All three containers in a bout carried the same image id. Whole fixture bout: about 11 s with the image cached.
 
 Bug found and fixed during the proof: `docker image inspect --format` with `.Config.Labels` errors on images that carry no labels; the whole `Config` is now taken as JSON.
+
+## Review fixes (Grok, cross-family verifier, 2026-09-09)
+
+Verdict was merge-after-fixes. Six findings, all taken:
+
+1. An unavailable `/sandbox` snapshot (`docker exec` failed) scored as quiet files. Now a `DockerError` → atom ERROR, NRP 0. "An unread sandbox is not a quiet sandbox." (C3)
+2. `--docker-arg -v /:/host` mounted the host with `bind_requested` false. Mount flags (`-v`, `--volume`, `--mount`, with or without `=`) are rejected in `--docker-arg`; binds go through `--bind` so the receipt is honest.
+3. The fixture image skipped `--allow-live` even with `--bind` or `--docker-arg`. The skip now covers Arcade's default argv only; any bind or extra flag on the fixture image needs `--allow-live`. (C8)
+4. `FROM python:3.12-slim` was a floating tag, so "image id depends only on source" was false. The base is pinned by digest: `python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea`. Bump it on purpose, with a line here.
+5. `run_args[0]` was the resolved `docker.exe` path (a host path on the receipt). It is `docker` now; the client resolves it via PATH at spawn.
+6. `poison_source` keyed off the tag string. The bout sets `client.is_fixture` from the verified plan; the atom trusts that flag.
+
+Tests 141 → 152. Cloud panel (deepseek-v4-pro, kimi-k2.7-code, glm-5.2): 10/10 wave-2 claims confirmed, ≥2 jurors each. CI green on PR #3 including the live Docker tests on ubuntu.
+
+Grok's "next" before the dataset CLI: close the env-oracle lies (done above) and glob only `split=train`, never `docs/proof/`.

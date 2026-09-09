@@ -55,13 +55,30 @@ DEFAULT_RUN_FLAGS: tuple[str, ...] = (
     "no-new-privileges",
 )
 
-_FIXTURE_DOCKERFILE = """\
-FROM python:3.12-slim
+# Base pinned by digest (python:3.12-slim as of 2026-09-09) so the fixture image id
+# depends only on Arcade's source, not on what the tag points at today.
+FIXTURE_BASE = "python@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea"
+
+_FIXTURE_DOCKERFILE = f"""\
+FROM {FIXTURE_BASE}
 LABEL org.mcp-arcade.fixture=1
 COPY . /app/mcp_arcade
 ENV PYTHONPATH=/app PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
 ENTRYPOINT ["python", "-m", "mcp_arcade.fixture"]
 """
+
+# Mount flags must go through --bind so bind_requested on the receipt is honest.
+_MOUNT_FLAGS = ("-v", "--volume", "--mount")
+
+
+def stealth_mounts(docker_args: list[str]) -> list[str]:
+    """Mount flags hidden in --docker-arg. Rejected at target resolution."""
+    found: list[str] = []
+    for arg in docker_args:
+        head = arg.split("=", 1)[0]
+        if head in _MOUNT_FLAGS:
+            found.append(arg)
+    return found
 
 
 class DockerError(RuntimeError):
@@ -210,6 +227,13 @@ def prepare(target: TargetSpec, allow_live: bool) -> ContainerPlan:
     """
     if not available():
         raise DockerError("docker daemon is not reachable (docker version failed)")
+    if target.image is None and (target.binds or target.docker_args) and not allow_live:
+        # The fixture skip covers Arcade's default argv only. A bind or an extra
+        # docker run flag on the fixture image is live fire like any other.
+        raise PermissionError(
+            "refusing --bind / --docker-arg on the fixture image without --allow-live "
+            "(C8 fail-closed): the skip covers Arcade's default argv only."
+        )
     if target.image is None:
         tag, built_id = build_fixture_image()
         image_id, repo_digest, labels = inspect_image(tag)
@@ -260,8 +284,9 @@ def run_argv(
     """The exact argv Arcade runs. Env keys are forwarded by name (docker reads
     the value from its own environment, which the client sets); the leak path
     is pinned inside the container regardless of the host value."""
-    exe = docker_binary() or "docker"
-    argv: list[str] = [exe, "run", "-i", "--name", name, *DEFAULT_RUN_FLAGS]
+    # "docker" on the receipt; the client resolves it via PATH at spawn. An
+    # absolute host path in run_args is noise and, on Windows, a home path.
+    argv: list[str] = ["docker", "run", "-i", "--name", name, *DEFAULT_RUN_FLAGS]
     for key in sorted(env):
         if key == "ARCADE_LEAK_PATH":
             continue
