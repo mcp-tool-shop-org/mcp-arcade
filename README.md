@@ -1,6 +1,14 @@
 # MCP Arcade
 
-GameDay testing for MCP servers. The house keeps the tape.
+<p align="center">
+  <strong>GameDay testing for MCP servers. The house keeps the tape.</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/mcp-tool-shop-org/mcp-arcade/actions/workflows/ci.yml"><img src="https://github.com/mcp-tool-shop-org/mcp-arcade/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://github.com/mcp-tool-shop-org/mcp-arcade/blob/main/LICENSE"><img src="https://img.shields.io/github/license/mcp-tool-shop-org/mcp-arcade" alt="License: MIT" /></a>
+  <a href="https://mcp-tool-shop-org.github.io/mcp-arcade/"><img src="https://img.shields.io/badge/Landing_Page-live-blue" alt="Landing Page" /></a>
+</p>
 
 You point Arcade at a server. It runs a short, named catalog of experiments. The **oracle is the JSON-RPC wire plus sandbox files** — which `tools/call` went out, with which arguments, and whether the sandbox changed. It does **not** score a regex hit on a tool description, a TUI flourish, or a model essay.
 
