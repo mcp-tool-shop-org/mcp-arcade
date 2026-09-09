@@ -132,14 +132,9 @@ async def run_bout(
 
     bout_id = "bout_" + uuid.uuid4().hex[:12]
     started = datetime.now(UTC)
-    leak = sandbox / "leak.txt"
     atoms: list[AtomResult] = []
     wire: list[WireEvent] = []
     server_requests: list[ServerRequest] = []
-
-    inspect_env = {**_env(leak, poison=False, rug_after=0), **(extra_env or {})}
-    poison_env = {**_env(leak, poison=True, rug_after=0), **(extra_env or {})}
-    rug_env = {**_env(leak, poison=False, rug_after=n_clean), **(extra_env or {})}
 
     async def _inspect(client: McpStdioClient, snap: Snapshot) -> AtomResult:
         return await run_inspect(client, policy, task_spec=task)
@@ -161,13 +156,22 @@ async def run_bout(
             env_after_async=snap,
         )
 
-    for atom_id, env, runner in (
-        (AtomId.INSPECT, inspect_env, _inspect),
-        (AtomId.POISON, poison_env, _poison),
-        (AtomId.RUG_PULL, rug_env, _rug),
+    for atom_id, poison, rug_after, runner in (
+        (AtomId.INSPECT, False, 0, _inspect),
+        (AtomId.POISON, True, 0, _poison),
+        (AtomId.RUG_PULL, False, n_clean, _rug),
     ):
+        # One sandbox directory per atom on host targets, like the per-atom tmpfs
+        # on docker targets: a poison leak must not appear on the rug-pull row.
+        atom_dir = sandbox / _SHORT[atom_id]
+        if plan is None:
+            atom_dir.mkdir(parents=True, exist_ok=True)
+        env = {
+            **_env(atom_dir / "leak.txt", poison=poison, rug_after=rug_after),
+            **(extra_env or {}),
+        }
         atoms.append(
-            await _one(target, plan, bout_id, atom_id, env, runner, wire, server_requests, sandbox)
+            await _one(target, plan, bout_id, atom_id, env, runner, wire, server_requests, atom_dir)
         )
 
     scores = score_atoms(atoms)

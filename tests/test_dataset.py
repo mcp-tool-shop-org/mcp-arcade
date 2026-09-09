@@ -651,3 +651,47 @@ def test_notifications_are_attributed_to_their_own_atom(tmp_path: Path) -> None:
     assert [n["params"]["data"] for n in inspect_row["notifications"]] == ["during inspect"]
     assert [n["params"]["data"] for n in rug_row["notifications"]] == ["during rug pull"]
     assert poison_row["notifications"] == []
+
+
+# ----- review fixes (Grok, wave 3) -----
+
+
+def test_malformed_call_entry_is_tallied_not_fatal(tmp_path: Path) -> None:
+    import json as _json
+
+    from mcp_arcade import dataset
+
+    src = Path("tests/fixtures/naive-ndjson.json")
+    good = _json.loads(src.read_text(encoding="utf-8"))
+    bad = _json.loads(src.read_text(encoding="utf-8"))
+    bad["atoms"][1]["calls"][0] = "not a call"
+    bad["bout_id"] = "bout_malformed"
+    indir = tmp_path / "in"
+    indir.mkdir()
+    (indir / "a-good.json").write_text(_json.dumps(good, sort_keys=True), encoding="utf-8")
+    (indir / "b-bad.json").write_text(_json.dumps(bad, sort_keys=True), encoding="utf-8")
+    result = dataset.build(indir)
+    assert result.dropped["atom:invalid"] == 1
+    bad_report = next(r for r in result.receipts if r.name == "b-bad.json")
+    assert bad_report.dropped["atom:invalid"] == 1
+    assert bad_report.rows_train == 2  # the other two atoms of that receipt still count
+    assert len(result.train) == 5
+    assert all(
+        r["bout_id"] != "bout_malformed" or r["atom_id"] != "poison.follow_through"
+        for r in result.train
+    )
+
+
+def test_previous_manifest_in_input_dir_is_not_a_receipt(tmp_path: Path) -> None:
+    import shutil as _shutil
+
+    from mcp_arcade import dataset
+
+    indir = tmp_path / "in"
+    indir.mkdir()
+    _shutil.copy(Path("tests/fixtures/task-only-ndjson.json"), indir / "r.json")
+    first = dataset.write(dataset.build(indir), indir / "out")
+    assert len(first["receipts"]) == 1
+    second = dataset.write(dataset.build(indir), indir / "out")
+    assert [r["name"] for r in second["receipts"]] == ["r.json"]
+    assert second["rows"] == first["rows"]

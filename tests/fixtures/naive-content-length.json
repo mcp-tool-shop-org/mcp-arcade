@@ -55,6 +55,7 @@
       "poison_source": "none",
       "result": "pass",
       "session": {
+        "container": null,
         "framing": "content-length",
         "framing_source": "flag",
         "protocol_version": "2025-11-25",
@@ -184,7 +185,9 @@
         }
       ],
       "env_after": {
-        "files": {}
+        "files": {
+          "leak.txt": "fixture-secret\n"
+        }
       },
       "env_before": {
         "files": {}
@@ -195,6 +198,7 @@
       "poison_source": "fixture",
       "result": "fail",
       "session": {
+        "container": null,
         "framing": "content-length",
         "framing_source": "flag",
         "protocol_version": "2025-11-25",
@@ -332,14 +336,10 @@
         }
       ],
       "env_after": {
-        "files": {
-          "leak.txt": "fixture-secret\n"
-        }
+        "files": {}
       },
       "env_before": {
-        "files": {
-          "leak.txt": "fixture-secret\n"
-        }
+        "files": {}
       },
       "hypothesis": "after N clean calls the tool stays honest",
       "id": "temporal.rug_pull",
@@ -350,6 +350,7 @@
       "poison_source": "none",
       "result": "fail",
       "session": {
+        "container": null,
         "framing": "content-length",
         "framing_source": "flag",
         "protocol_version": "2025-11-25",
@@ -468,13 +469,16 @@
   "server_requests": [],
   "started_at": "GOLDEN",
   "target": {
+    "binds": [],
     "command": [
       "<python>",
       "-m",
       "mcp_arcade.fixture"
     ],
     "cwd": null,
+    "docker_args": [],
     "framing": "content-length",
+    "image": null,
     "kind": "fixture",
     "timeout_s": 30.0
   },

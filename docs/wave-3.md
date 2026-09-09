@@ -26,3 +26,13 @@
 ## Review packet (what Grok asked for)
 
 Manifest with per-receipt sha256; JSONL from the committed goldens only (naive + task-only pair); a planted `docs/proof/` copy → zero rows; an ERROR receipt → dropped, not "held"; one row beside its source receipt showing stripped keys gone; a grep of the JSONL with no host path.
+
+## Review fixes (Grok, cross-family verifier, 2026-09-09)
+
+Verdict was merge-after-fixes. Both findings taken, plus the "next" item:
+
+1. A malformed `calls[]` entry raised out of the generator and aborted the whole directory. It is now tallied as `atom:invalid` on that receipt and the run continues, like every other bad input.
+2. `discover()` skips `manifest.json`, so an output directory inside the input tree is not re-ingested as a receipt.
+3. Grok's "next": host-fixture bouts shared one sandbox directory across atoms, so the poison leak appeared on the rug-pull row's `env_before` and the poison row's own `env_after` was empty. Host targets now use one sandbox subdirectory per atom (`<sandbox>/inspect`, `/poison`, `/rugpull`), matching the per-atom tmpfs on docker targets. The committed goldens were regenerated; the naive poison row now carries `env_after.files == {"leak.txt": ...}` and the rug row starts clean.
+
+Tests 184 → 186 plus the regenerated goldens.

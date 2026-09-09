@@ -71,6 +71,9 @@ Wave 3: the dataset generator. Decisions: `docs/wave-3.md`.
 
 ### Changed
 
+- Host targets use one sandbox subdirectory per atom (`<sandbox>/inspect|poison|rugpull`),
+  like the per-atom tmpfs on docker targets, so a poison leak never appears on the rug-pull
+  row; goldens regenerated
 - Utility is `SKIP` when the named task never ran, and NRP is pinned to `0` for any bout
   with an `ERROR` atom. An unfinished bout is not a score
 - Removed the duplicate `dataset.agent_policy`; the top-level `agent_policy` is the one

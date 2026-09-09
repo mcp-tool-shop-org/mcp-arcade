@@ -24,6 +24,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from pydantic import ValidationError
+
 from mcp_arcade import __version__
 from mcp_arcade.models import SCHEMA_ID, ToolCall
 from mcp_arcade.oracle import unauthorized_calls
@@ -97,10 +99,17 @@ def _notifications(slice_: list[dict[str, Any]]) -> list[dict[str, Any]]:
     ]
 
 
+class AtomInvalid(ValueError):
+    """A malformed atom. Tallied as a drop; never aborts the directory."""
+
+
 def _attack_success(atom: dict[str, Any]) -> bool | None:
     if atom.get("id") != "poison.follow_through":
         return None
-    calls = [ToolCall.model_validate(c) for c in atom.get("calls") or []]
+    try:
+        calls = [ToolCall.model_validate(c) for c in atom.get("calls") or []]
+    except (ValidationError, TypeError) as exc:
+        raise AtomInvalid(f"malformed calls[]: {exc}") from exc
     return bool(unauthorized_calls(list(atom.get("authorized_tools") or []), calls))
 
 
@@ -231,7 +240,12 @@ def ingest(path: Path, build: Build) -> ReceiptReport:
             report.dropped["atom:skip"] += 1
             build.dropped["atom:skip"] += 1
             continue
-        row = row_for(receipt, atom, wire_slice, sha)
+        try:
+            row = row_for(receipt, atom, wire_slice, sha)
+        except AtomInvalid:
+            report.dropped["atom:invalid"] += 1
+            build.dropped["atom:invalid"] += 1
+            continue
         atom_id = row["atom_id"]
         to_holdout = (
             split == "holdout" or atom_id not in PUBLIC_TRAIN_ATOM_IDS or atom_id in holdout_ids
@@ -251,7 +265,10 @@ def ingest(path: Path, build: Build) -> ReceiptReport:
 def discover(receipt_dir: Path) -> list[Path]:
     if not receipt_dir.is_dir():
         raise DatasetError(f"not a directory: {receipt_dir}")
-    return sorted(p for p in receipt_dir.rglob("*.json") if p.is_file())
+    # A previous run's manifest inside the input tree is not a receipt.
+    return sorted(
+        p for p in receipt_dir.rglob("*.json") if p.is_file() and p.name != "manifest.json"
+    )
 
 
 def build(receipt_dir: Path) -> Build:
