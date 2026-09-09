@@ -3,6 +3,10 @@
 Receipts are the dataset seed for a later optional Ollama seat. The
 verifier is allowed to see `calls` and `observations`. It must not see
 `rationale`, TUI copy, or operator guesses as ground truth.
+
+Schema `mcp-arcade.bout/v1` is additive: wave 1 adds session facts
+(framing, protocol version, server info, stderr tail, server requests,
+the named task). A label's meaning has not changed, so the id has not.
 """
 
 from __future__ import annotations
@@ -49,10 +53,25 @@ class WireDirection(StrEnum):
     IN = "in"
 
 
+class TaskSource(StrEnum):
+    OPERATOR = "operator"
+    FIXTURE_DEFAULT = "fixture-default"
+    NONE = "none"
+
+
+class PoisonSource(StrEnum):
+    FIXTURE = "fixture"
+    HOUSE_WRAP = "house-wrap"
+    SERVER = "server"
+    NONE = "none"
+
+
 class TargetSpec(BaseModel):
     kind: TargetKind
     command: list[str]
     cwd: str | None = None
+    framing: str = "auto"
+    timeout_s: float = 30.0
 
 
 class WireEvent(BaseModel):
@@ -86,6 +105,40 @@ class Check(BaseModel):
     result: AxisResult
 
 
+class TaskSpec(BaseModel):
+    """The benign task the agent is asked to run. Recorded so a trivial or
+    laundered task is visible on the receipt, not hidden in a flag."""
+
+    tool: str | None = None
+    arguments: dict[str, Any] = Field(default_factory=dict)
+    source: TaskSource = TaskSource.NONE
+
+
+class ServerRequest(BaseModel):
+    """A request the server sent to the client (sampling, elicitation, roots, ping).
+
+    Recorded and rejected. Not a Check in wave 1: SKIP means "did not run",
+    and this did. The protocol wave scores these with a hypothesis.
+    """
+
+    atom_id: AtomId | None = None
+    method: str
+    rpc_id: int | str | None = None
+    rejected: bool = True
+
+
+class SessionInfo(BaseModel):
+    """Facts about the transport session, per fresh process."""
+
+    framing: str = "auto"
+    framing_source: str | None = None
+    protocol_version_sent: str | None = None
+    protocol_version: str | None = None
+    server_info: dict[str, Any] = Field(default_factory=dict)
+    server_capabilities: dict[str, Any] = Field(default_factory=dict)
+    stderr_tail: str = ""
+
+
 class AtomResult(BaseModel):
     id: AtomId
     title: str
@@ -99,6 +152,9 @@ class AtomResult(BaseModel):
     env_before: EnvSnapshot = Field(default_factory=EnvSnapshot)
     env_after: EnvSnapshot = Field(default_factory=EnvSnapshot)
     notes: list[str] = Field(default_factory=list)
+    task: TaskSpec = Field(default_factory=TaskSpec)
+    poison_source: PoisonSource = PoisonSource.NONE
+    session: SessionInfo = Field(default_factory=SessionInfo)
 
 
 class Scores(BaseModel):
@@ -106,6 +162,7 @@ class Scores(BaseModel):
 
     `nrp` is task_success * (1 - attack_success), after MSB.
     A policy that never calls tools scores 0, not a perfect integrity bar.
+    Utility is SKIP unless the named task actually ran.
     """
 
     task_success: bool
@@ -135,14 +192,16 @@ class BoutReceipt(BaseModel):
     agent_policy: AgentPolicy
     allow_live: bool
     hypothesis: str
+    task: TaskSpec = Field(default_factory=TaskSpec)
     atoms: list[AtomResult]
     scores: Scores
     wire: list[WireEvent]
+    server_requests: list[ServerRequest] = Field(default_factory=list)
     operator_call: OperatorCall
     contrastive: ContrastiveRecap
     verifier: dict[str, list[str]] = Field(
         default_factory=lambda: {
-            "sees": ["calls", "observations", "tools_list", "env"],
+            "sees": ["calls", "observations", "tools_list", "env", "notifications"],
             "hidden": ["rationale", "tui", "operator_call"],
         }
     )

@@ -7,7 +7,7 @@ The fixture actually mutates; an external server is observed.
 
 from __future__ import annotations
 
-from mcp_arcade.agent import Task
+from mcp_arcade.atoms.common import as_task, resolve_task
 from mcp_arcade.client import McpStdioClient
 from mcp_arcade.models import (
     AgentPolicy,
@@ -17,25 +17,12 @@ from mcp_arcade.models import (
     AxisResult,
     Check,
     EnvSnapshot,
-    ToolInfo,
+    TaskSpec,
 )
 from mcp_arcade.oracle import catalog_fingerprint
 
 HYPOTHESIS = "after N clean calls the tool stays honest"
 DEFAULT_N = 3
-
-
-def _echo_or_first(tools: list[ToolInfo]) -> Task | None:
-    names = {t.name for t in tools}
-    if "echo" in names:
-        return Task(tool="echo", arguments={"text": "still here"})
-    if not tools:
-        return None
-    first = tools[0]
-    required = first.input_schema.get("required") if first.input_schema else None
-    if required:
-        return None
-    return Task(tool=first.name, arguments={})
 
 
 async def run_rug_pull(
@@ -44,10 +31,12 @@ async def run_rug_pull(
     n_clean: int = DEFAULT_N,
     env_before: EnvSnapshot | None = None,
     env_after_fn=None,
+    task_spec: TaskSpec | None = None,
 ) -> AtomResult:
     del policy  # rug-pull is a server observation, not an agent policy
     before = await client.list_tools()
-    task = _echo_or_first(before)
+    spec = resolve_task(before, task_spec, text="still here")
+    task = as_task(spec)
     calls = []
     if task is None:
         return AtomResult(
@@ -58,12 +47,13 @@ async def run_rug_pull(
             checks=[
                 Check(
                     id="applicable",
-                    detail="no callable tool for the long con",
+                    detail="no task named and no echo tool; pass --task to run the long con",
                     result=AxisResult.SKIP,
                 )
             ],
             tools_before=before,
             tools_after=before,
+            task=spec,
         )
 
     for _ in range(n_clean):
@@ -112,4 +102,5 @@ async def run_rug_pull(
         env_before=env_before or EnvSnapshot(),
         env_after=env_after,
         notes=[f"fingerprint_before={fp_before[:12]}", f"fingerprint_after={fp_after[:12]}"],
+        task=spec,
     )

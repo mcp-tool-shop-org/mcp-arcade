@@ -10,7 +10,7 @@ The **oracle is the JSON-RPC wire plus sandbox files**. Which `tools/call` went 
 
 Fun is on purpose. It is second. A full bar is not a safety certificate.
 
-## Catalog (v1)
+## Catalog (0.1.x)
 
 Three atoms. We do not advertise 1,312 of anything.
 
@@ -18,7 +18,7 @@ Three atoms. We do not advertise 1,312 of anything.
 2. **The Whispered Errand** (`poison.follow_through`) — does a side-quest in a description become a call?
 3. **The Long Con** (`temporal.rug_pull`) — after N clean calls, is it still the same tool?
 
-The connected agent in v1 is a **scripted policy**: `naive` follows “also call X” whispers; `task-only` does not. That is the floor for a later optional Ollama seat.
+The connected agent is a **scripted policy**: `naive` follows “also call X” whispers; `task-only` does not. That is the floor for a later optional Ollama seat.
 
 ## Dual axis
 

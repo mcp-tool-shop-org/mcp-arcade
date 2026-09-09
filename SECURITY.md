@@ -4,7 +4,7 @@
 
 | Version | Supported |
 |---------|-----------|
-| 1.0.x   | yes       |
+| 0.1.x   | yes       |
 
 ## Reporting
 
@@ -33,6 +33,26 @@ MCP Arcade is a GameDay harness. It talks to MCP servers you name.
 ## Data scope
 
 - No telemetry
-- No outbound network in v1 (stdio subprocess only)
+- No outbound network of its own (stdio subprocess only)
 - Sandbox writes stay under `--sandbox`
 - The fixture `leak` tool writes a token file inside that sandbox on purpose — that is the env oracle, not exfiltration to the network
+
+### What a receipt holds
+
+A receipt is the tape. It records what the harness observed, because the verifier is
+allowed to see actions and observations and nothing else. That means a receipt now also
+contains:
+
+- **Server notifications** — anything the target pushed on the wire (`notifications/*`),
+  recorded verbatim. They are observations, not labels; the oracle never scores their text.
+- **Server-originated requests** — `sampling/createMessage`, `elicitation/create`,
+  `roots/list`, `ping`. Arcade records them, answers with a JSON-RPC error, and lists them
+  as `server_requests`.
+- **The negotiated protocol version and server info** — what the server answered to
+  `initialize`, plus its declared capabilities.
+- **A stderr tail** — the last 4 KB the target wrote to stderr, as `session.stderr_tail`.
+  It is kept so a failed handshake has a cause instead of a shrug.
+
+A stderr tail contains whatever the target chose to log: paths, tokens, request bodies,
+anything. Arcade does not filter it. **Treat receipts from live targets as sensitive**,
+and read one before you attach it to an issue or a dataset.

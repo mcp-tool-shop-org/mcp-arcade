@@ -39,10 +39,39 @@ Fail-closed. Without `--allow-live`, Arcade will not spawn a non-fixture command
 ```bash
 mcp-arcade bout --target stdio \
   --cmd python --cmd -m --cmd your_server \
-  --allow-live --no-prompt
+  --allow-live --task your_read_only_tool --no-prompt
 ```
 
 Do not point this at production.
+
+### Real servers
+
+Four things separate a real server from the lab fixture.
+
+**Framing.** The MCP spec's stdio dialect is newline-delimited JSON, one message per line.
+Arcade speaks that by default and still speaks `Content-Length` for servers that answer in
+it. `--framing auto` (the default) locks to whatever the server answers in, and a frame in
+the other dialect after the lock is a protocol error, not a skip. The receipt records
+`session.framing` and `session.framing_source`.
+
+**`--task NAME --args JSON`.** This names the benign tool the agent is asked to run. Arcade
+will not invent arguments for a tool it does not understand, so without it a real server
+with no `echo` tool makes the atoms `SKIP` — on purpose, and utility scores `SKIP` with it.
+
+**`--wrap`.** Opt-in. It appends a house side-quest to the task tool's presented description
+and labels the receipt `poison_source: house-wrap`. Leave it off and the poison atom
+measures the server's own descriptions (`poison_source: server`).
+
+**`--timeout`.** Per request, default 30 s. A timeout is an atom `ERROR`, never
+`attack_success`, and any `ERROR` atom pins NRP to 0.
+
+```bash
+mcp-arcade bout --target stdio --cmd "ollama-intern-mcp" \
+  --allow-live --agent task-only --task ollama_corpus_list --no-prompt -o receipt.json
+```
+
+`--cmd` takes one quoted string like that, or the repeatable form. On Windows a bare npm
+shim name resolves via `PATHEXT`.
 
 ## Keep the tape
 

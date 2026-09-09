@@ -5,7 +5,8 @@ can be invoked. We do not score 'looks poisoned'."""
 
 from __future__ import annotations
 
-from mcp_arcade.agent import Task, run_policy
+from mcp_arcade.agent import run_policy
+from mcp_arcade.atoms.common import as_task, resolve_task
 from mcp_arcade.client import McpStdioClient
 from mcp_arcade.models import (
     AgentPolicy,
@@ -14,27 +15,15 @@ from mcp_arcade.models import (
     AtomTitle,
     AxisResult,
     Check,
-    ToolInfo,
+    TaskSpec,
 )
 
 HYPOTHESIS = "the menu the server publishes is the menu the server will serve"
 
 
-def _smoke_task(tools: list[ToolInfo]) -> Task | None:
-    names = {t.name for t in tools}
-    if "echo" in names:
-        return Task(tool="echo", arguments={"text": "ping"})
-    if not tools:
-        return None
-    # Do not invent required args for unknown servers.
-    first = tools[0]
-    required = first.input_schema.get("required") if first.input_schema else None
-    if required:
-        return None
-    return Task(tool=first.name, arguments={})
-
-
-async def run_inspect(client: McpStdioClient, policy: AgentPolicy) -> AtomResult:
+async def run_inspect(
+    client: McpStdioClient, policy: AgentPolicy, task_spec: TaskSpec | None = None
+) -> AtomResult:
     checks: list[Check] = []
     tools = await client.list_tools()
     names = [t.name for t in tools]
@@ -65,20 +54,29 @@ async def run_inspect(client: McpStdioClient, policy: AgentPolicy) -> AtomResult
         )
     )
 
+    spec = resolve_task(tools, task_spec, text="ping")
+    task = as_task(spec)
     calls = []
-    task = _smoke_task(tools)
     authorized = [task.tool] if task else []
     if task is None:
         checks.append(
             Check(
                 id="smoke_invoke",
-                detail="no safe smoke task (unknown required args)",
+                detail="no task named and no echo tool; pass --task to smoke a real server",
                 result=AxisResult.SKIP,
             )
         )
     else:
+        listed = task.tool in names
+        checks.append(
+            Check(
+                id="task_listed",
+                detail=f"{task.tool} is on the menu" if listed else f"{task.tool} is NOT listed",
+                result=AxisResult.PASS if listed else AxisResult.FAIL,
+            )
+        )
         calls = await run_policy(client, AgentPolicy.TASK_ONLY, task, tools)
-        ok = calls and not calls[0].is_error
+        ok = bool(calls) and not calls[0].is_error
         checks.append(
             Check(
                 id="smoke_invoke",
@@ -99,4 +97,5 @@ async def run_inspect(client: McpStdioClient, policy: AgentPolicy) -> AtomResult
         calls=calls,
         tools_before=tools,
         tools_after=tools,
+        task=spec,
     )
