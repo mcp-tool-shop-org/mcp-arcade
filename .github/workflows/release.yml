@@ -1,0 +1,58 @@
+# Filename and environment name are load-bearing: they must match the
+# PyPI Trusted Publisher (pending: mcp-arcade / GitHub /
+# mcp-tool-shop-org/mcp-arcade / release.yml / environment release).
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+# Never cancel a publish mid-flight.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  pypi:
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: release
+      url: https://pypi.org/project/mcp-arcade/
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]" build
+          pip install ruff==0.16.6
+
+      - name: Verify
+        run: |
+          ruff format --check .
+          ruff check .
+          pytest tests/ -v --tb=short
+
+      - name: Build
+        run: python -m build
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # release/v1
+        with:
+          verbose: true
+          print-hash: true
+
+      - name: Attach dist to GitHub release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" dist/* --clobber

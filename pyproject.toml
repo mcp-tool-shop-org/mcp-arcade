@@ -37,8 +37,10 @@ mcp-arcade = "mcp_arcade.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/mcp-tool-shop-org/mcp-arcade"
+Documentation = "https://mcp-tool-shop-org.github.io/mcp-arcade/"
 Repository = "https://github.com/mcp-tool-shop-org/mcp-arcade"
 Issues = "https://github.com/mcp-tool-shop-org/mcp-arcade/issues"
+Changelog = "https://github.com/mcp-tool-shop-org/mcp-arcade/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["hatchling"]
