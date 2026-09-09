@@ -38,6 +38,13 @@ def render_preamble(receipt: BoutReceipt) -> None:
             f"[dim]Server:[/dim] {name} {ver}  [dim]protocol[/dim] {s.protocol_version}  "
             f"[dim]framing[/dim] {s.framing} ({s.framing_source or 'unknown'})"
         )
+    containers = [a.session.container for a in receipt.atoms if a.session.container]
+    if containers:
+        c = containers[0]
+        console.print(
+            f"[dim]Container:[/dim] {c.image} [dim]{c.image_id[:19]}[/dim]  "
+            f"[dim]fixture_image[/dim]={c.fixture_image}  [dim]binds[/dim]={c.bind_requested}"
+        )
     if receipt.task.tool:
         console.print(
             f"[dim]Task:[/dim] {receipt.task.tool} {receipt.task.arguments} "

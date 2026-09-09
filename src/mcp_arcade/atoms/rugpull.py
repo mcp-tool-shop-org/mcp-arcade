@@ -32,6 +32,7 @@ async def run_rug_pull(
     env_before: EnvSnapshot | None = None,
     env_after_fn=None,
     task_spec: TaskSpec | None = None,
+    env_after_async=None,
 ) -> AtomResult:
     del policy  # rug-pull is a server observation, not an agent policy
     before = await client.list_tools()
@@ -62,7 +63,12 @@ async def run_rug_pull(
     fp_before = catalog_fingerprint(before)
     fp_after = catalog_fingerprint(after)
     mutated = fp_before != fp_after
-    env_after = env_after_fn() if env_after_fn else EnvSnapshot()
+    if env_after_async is not None:
+        env_after = await env_after_async()
+    elif env_after_fn is not None:
+        env_after = env_after_fn()
+    else:
+        env_after = EnvSnapshot()
     leaked = False
     if env_before is not None:
         leaked = env_after.files != env_before.files

@@ -36,6 +36,8 @@ MCP Arcade is a GameDay harness. It talks to MCP servers you name.
 - No outbound network of its own (stdio subprocess only)
 - Sandbox writes stay under `--sandbox`
 - The fixture `leak` tool writes a token file inside that sandbox on purpose — that is the env oracle, not exfiltration to the network
+- A docker target runs each atom in its own container with no network, a read-only root, a per-atom tmpfs sandbox, memory/pid/cpu limits, all capabilities dropped, and no host bind mounts unless you pass `--bind` (recorded on the receipt). Arcade force-removes every container it started
+- `--image` always requires `--allow-live`. Only the fixture image Arcade builds itself, verified by image id, skips it
 
 ### What a receipt holds
 

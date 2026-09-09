@@ -12,13 +12,18 @@ order: 2
 | `mcp-arcade atoms` | List the catalog |
 | `mcp-arcade receipt <file>` | Print a saved receipt as canonical JSON |
 | `mcp-arcade fixture` | Run the lab MCP server on stdio |
+| `mcp-arcade docker build-fixture` | Build the local fixture image and print its id |
+| `mcp-arcade docker rm-fixture` | Remove it (compensator) |
+| `mcp-arcade docker leftovers` | List `arcade-*` containers still present (should be `none`) |
 | `mcp-arcade --version` | 0.1.0 |
 
 ### `bout` flags
 
 | Flag | Meaning |
 |------|---------|
-| `--target fixture\|stdio` | Required. No target, no bout. |
+| `--target fixture\|stdio\|docker` | Required. No target, no bout. `docker` runs one container per atom with safe defaults |
+| `--image REF` | docker target: your image. Always needs `--allow-live`. Omit to run Arcade's self-built fixture image |
+| `--bind SRC:DST` / `--docker-arg FLAG` | docker target: explicit, repeatable, recorded. No host binds by default |
 | `--cmd` | argv for `stdio`. One quoted string or repeatable |
 | `--agent naive\|task-only` | Default `naive` |
 | `--allow-live` | Required for non-fixture targets |
@@ -56,6 +61,8 @@ Utility is `SKIP` when the named task never ran, and NRP is pinned to `0` for an
 `schema_id` = `mcp-arcade.bout/v1`
 
 The verifier is allowed to see `calls`, `observations`, `tools_list`, `env`, and inbound notifications. It is not allowed to see TUI copy or `operator_call` as a label. See `docs/datasets.md` in the repo.
+
+A docker target adds `atoms[].session.container`: image, image id, repo digest, the exact `run_args` Arcade built, container name and id, `bind_requested`, sandbox method, and the `docker diff` path list.
 
 Session facts per atom live under `atoms[].session`: `framing`, `framing_source`, the negotiated `protocol_version`, `server_info`, `server_capabilities`, and `stderr_tail` (last 4 KB). Server-originated requests are listed at receipt level as `server_requests`.
 

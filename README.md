@@ -117,6 +117,30 @@ mcp-arcade bout --target stdio --cmd "ollama-intern-mcp" \
 
 `--split proof` marks a committed live trace so a dataset glob never treats it as training data.
 
+## Docker is the sandbox
+
+A directory sandbox is a weak version of what the lock asks for. A container is the real one.
+
+```bash
+# Arcade builds its own fixture image and runs it. No --allow-live needed.
+mcp-arcade bout --target docker --agent naive --no-prompt -o receipt.json
+
+# Your server's image. Always needs --allow-live; a tag or label is not proof.
+mcp-arcade bout --target docker --image ghcr.io/you/your-server:1.2.3 \
+  --cmd your-server --allow-live --task your_read_only_tool --no-prompt
+```
+
+What Arcade does with a docker target:
+
+- **Owns the argv.** Every container runs with `--network none --read-only --tmpfs /tmp --tmpfs /sandbox --memory 256m --pids-limit 128 --cpus 1 --cap-drop ALL --security-opt no-new-privileges --rm`, one fresh container per atom, named `arcade-<bout>-<atom>`. The exact `docker run` line Arcade built is on the receipt as `session.container.run_args`, never your shorthand.
+- **Pins the image.** The image id is resolved once before the first atom and re-checked before every atom. A floating tag that moves mid-bout is an atom `ERROR`, because three atoms against two images is not one experiment.
+- **Reads the sandbox from inside.** `/sandbox` is a per-atom tmpfs. Arcade snapshots its contents through `docker exec` before and after each atom, so a leak that lands inside the container is on the tape (`env_after.files`). `docker diff` is recorded beside it as a path list. It is names, not bytes, which is why the contents snapshot exists.
+- **No host binds by default.** `--bind SRC:DST` and `--docker-arg FLAG` are explicit, repeatable, and recorded; `bind_requested` on the receipt says whether any bind was given.
+- **Fails closed.** `--image` always needs `--allow-live`. The only image that skips it is the fixture image Arcade builds itself, from its own installed source, right before the bout, and it checks that the id it just built is the id it is about to run. A look-alike `mcp-arcade-fixture:*` tag is refused.
+- **Cleans up.** `docker rm -f` on every container in `finally`. `mcp-arcade docker leftovers` should always print `none`. `mcp-arcade docker rm-fixture` removes the local fixture image.
+
+Two proof receipts of the docker fixture (naive and task-only) are committed under `docs/proof/`. Publishing a fixture image to a registry is deferred; today it is built locally.
+
 ## Scoring
 
 Two axes, then one number that cannot be gamed by refusing to work:
@@ -138,7 +162,7 @@ bout should pass. It does not move the score.
 
 ## Security & data scope
 
-- Default target is the bundled fixture. It writes only under the `--sandbox` directory you pass (or `.arcade-sandbox` in the current working directory).
+- Default target is the bundled fixture. It writes only under the `--sandbox` directory you pass (or `.arcade-sandbox` in the current working directory). A docker target writes only to a per-atom tmpfs inside the container.
 - Non-fixture servers require `--allow-live`. Arcade will not spawn your command otherwise.
 - No telemetry. No network of its own. An optional future Ollama seat talks to localhost if you turn it on.
 - Receipts contain tool names, arguments, sandbox file snapshots, server notifications, and the last 4 KB of the target's stderr. Do not point `--allow-live` at a production server that can reach real secrets, and read a live receipt before you share it.
@@ -154,6 +178,7 @@ Every receipt is `mcp-arcade.bout/v1` JSON: calls, observations, tool lists, ses
 - Not a scanner benchmark and not a port of MCPTox’s 1,312 cases. MCPTox is the *method* we cite (agent follow-through on live servers). The catalog we ship is the three atoms above.
 - Not load testing.
 - Not a sampling/elicitation client: server-originated requests are recorded and rejected.
+- Not a container orchestrator. One container per atom with safe defaults; multi-container topologies, HTTP transports, and GPU passthrough are not here.
 - Not a 3D canvas. A spatial overview can wait; the diagnostic surface is the timeline plus the receipt.
 
 ## Development

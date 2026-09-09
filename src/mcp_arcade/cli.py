@@ -13,6 +13,7 @@ from rich.console import Console
 
 from mcp_arcade import __version__
 from mcp_arcade.bout import resolve_target, run_bout
+from mcp_arcade.docker import DockerError
 from mcp_arcade.models import AgentPolicy, AtomTitle, TaskSource, TaskSpec
 from mcp_arcade.receipt import canonical_dumps, write_receipt
 from mcp_arcade.tui import ask_operator_call, render_preamble, render_score, render_timeline
@@ -69,9 +70,10 @@ def atoms_cmd() -> None:
 @click.option(
     "--target",
     "target_kind",
-    type=click.Choice(["fixture", "stdio"]),
+    type=click.Choice(["fixture", "stdio", "docker"]),
     required=True,
-    help="fixture = lab server. stdio = your command (needs --allow-live).",
+    help="fixture = lab server. stdio = your command (needs --allow-live). "
+    "docker = a container Arcade runs with safe defaults (no --image = Arcade's own fixture image).",
 )
 @click.option(
     "--cmd",
@@ -81,6 +83,23 @@ def atoms_cmd() -> None:
         "stdio argv. Repeatable (--cmd python --cmd -m --cmd my_server) or one quoted "
         'string (--cmd "npx -y my-server").'
     ),
+)
+@click.option(
+    "--image",
+    default=None,
+    help="docker target: image to run (needs --allow-live). Omit to run Arcade's fixture image.",
+)
+@click.option(
+    "--docker-arg",
+    "docker_args",
+    multiple=True,
+    help="docker target: extra `docker run` flag, repeatable, recorded on the receipt.",
+)
+@click.option(
+    "--bind",
+    "binds",
+    multiple=True,
+    help="docker target: explicit host bind SRC:DST. Off by default; recorded on the receipt.",
 )
 @click.option(
     "--agent",
@@ -150,6 +169,9 @@ def atoms_cmd() -> None:
 def bout_cmd(
     target_kind: str,
     command: tuple[str, ...],
+    image: str | None,
+    docker_args: tuple[str, ...],
+    binds: tuple[str, ...],
     policy: str,
     allow_live: bool,
     task_tool: str | None,
@@ -166,7 +188,15 @@ def bout_cmd(
     """Run the three v0 atoms and print a contrastive house call."""
     try:
         argv = split_command(command) if command else None
-        target = resolve_target(target_kind, argv, framing=framing, timeout_s=timeout_s)
+        target = resolve_target(
+            target_kind,
+            argv,
+            framing=framing,
+            timeout_s=timeout_s,
+            image=image,
+            docker_args=list(docker_args),
+            binds=list(binds),
+        )
     except ValueError as exc:
         raise click.ClickException(str(exc)) from exc
 
@@ -202,6 +232,8 @@ def bout_cmd(
         )
     except PermissionError as exc:
         raise click.ClickException(str(exc)) from exc
+    except DockerError as exc:
+        raise click.ClickException(f"docker: {exc}") from exc
     except Exception as exc:
         raise click.ClickException(f"bout failed: {exc}") from exc
 
@@ -231,6 +263,40 @@ def receipt_cmd(path: Path) -> None:
 
     receipt = read_receipt(path)
     click.echo(canonical_dumps(receipt), nl=False)
+
+
+@app.group("docker")
+def docker_group() -> None:
+    """Arcade's own fixture image (built locally from the installed source)."""
+
+
+@docker_group.command("build-fixture")
+def docker_build_fixture() -> None:
+    """Build mcp-arcade-fixture:<version> and print its image id."""
+    from mcp_arcade import docker as _docker
+
+    try:
+        tag, image_id = _docker.build_fixture_image()
+    except DockerError as exc:
+        raise click.ClickException(f"docker: {exc}") from exc
+    click.echo(f"{tag} {image_id}")
+
+
+@docker_group.command("rm-fixture")
+def docker_rm_fixture() -> None:
+    """Remove the local fixture image (compensator for build-fixture)."""
+    from mcp_arcade import docker as _docker
+
+    click.echo("removed" if _docker.remove_fixture_image() else "nothing to remove")
+
+
+@docker_group.command("leftovers")
+def docker_leftovers() -> None:
+    """List arcade-* containers still present (should be none after a bout)."""
+    from mcp_arcade import docker as _docker
+
+    names = _docker.leftovers()
+    click.echo("\n".join(names) if names else "none")
 
 
 @app.command("fixture")

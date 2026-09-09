@@ -8,8 +8,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 Wave 1: the harness survives a real server. Decisions: `docs/wave-1.md`.
+Wave 2: Docker is the sandbox. Decisions: `docs/wave-2.md`.
 
 ### Added
+
+- `--target docker [--image REF] [--cmd ...]`: one fresh container per atom with safe
+  defaults (`--network none --read-only --tmpfs /tmp --tmpfs /sandbox --memory 256m
+  --pids-limit 128 --cpus 1 --cap-drop ALL --security-opt no-new-privileges --rm`), named
+  `arcade-<bout>-<atom>`, force-removed in `finally`
+- Without `--image`, Arcade builds its own fixture image (`mcp-arcade-fixture:<version>`)
+  from the installed source and runs it; that is the only image that skips `--allow-live`,
+  checked by image id, not tag or label
+- Image id resolved once before atom 1 and re-checked before every atom; drift is an atom
+  `ERROR`
+- Per-atom `/sandbox` tmpfs snapshotted from inside the container (`docker exec tar`) as
+  `env_before`/`env_after`; `docker diff` recorded as a path list on
+  `session.container.docker_diff`
+- `--bind SRC:DST` and `--docker-arg FLAG`, explicit and recorded; `bind_requested` on the
+  receipt. No host binds by default
+- `session.container` on the receipt (additive on `mcp-arcade.bout/v1`): image, image id,
+  repo digest, the exact `run_args`, container name and id, sandbox method, docker diff
+- `mcp-arcade docker build-fixture | rm-fixture | leftovers`
+- Docker proof receipts under `docs/proof/` (`split: proof`)
 
 - Newline-delimited JSON framing (the MCP spec's stdio dialect) as the default, with
   `Content-Length` retained for servers that speak it
