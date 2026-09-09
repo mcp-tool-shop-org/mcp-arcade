@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.arcade-sandbox/
+dist/
+build/
+*.egg-info/
+site/node_modules/
+site/dist/
+.DS_Store

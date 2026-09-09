@@ -1,0 +1,61 @@
+[project]
+name = "mcp-arcade"
+version = "1.0.0"
+description = "GameDay testing for MCP servers — the oracle is the wire, not the scoreboard."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "mcp-tool-shop", email = "64996768+mcp-tool-shop@users.noreply.github.com" }
+]
+keywords = ["mcp", "testing", "security", "gameday", "agents"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Security",
+]
+dependencies = [
+    "click>=8.1.0",
+    "pydantic>=2.0.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+mcp-arcade = "mcp_arcade.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/mcp-tool-shop-org/mcp-arcade"
+Repository = "https://github.com/mcp-tool-shop-org/mcp-arcade"
+Issues = "https://github.com/mcp-tool-shop-org/mcp-arcade/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_arcade"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP"]
+ignore = ["E501"]
