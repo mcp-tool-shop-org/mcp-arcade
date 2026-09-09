@@ -7,7 +7,7 @@ def test_version() -> None:
     runner = CliRunner()
     result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0
-    assert "1.0.0" in result.output
+    assert "0.1.0" in result.output
 
 
 def test_atoms_lists_three() -> None:

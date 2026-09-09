@@ -98,7 +98,7 @@ def handle(state: FixtureState, message: dict[str, Any]) -> dict[str, Any] | Non
             {
                 "protocolVersion": "2024-11-05",
                 "capabilities": {"tools": {"listChanged": True}},
-                "serverInfo": {"name": "mcp-arcade-fixture", "version": "1.0.0"},
+                "serverInfo": {"name": "mcp-arcade-fixture", "version": "0.1.0"},
             },
         )
 

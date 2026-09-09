@@ -12,7 +12,7 @@ order: 2
 | `mcp-arcade atoms` | List the catalog |
 | `mcp-arcade receipt <file>` | Print a saved receipt as canonical JSON |
 | `mcp-arcade fixture` | Run the lab MCP server on stdio |
-| `mcp-arcade --version` | 1.0.0 |
+| `mcp-arcade --version` | 0.1.0 |
 
 ### `bout` flags
 

@@ -5,7 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2026-09-09
+## [0.1.0] - 2026-09-09
+
+First public version of a brand-new repo.
 
 ### Added
 
@@ -17,3 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Canonical bout receipts (`mcp-arcade.bout/v1`) as the dataset seed for a later Ollama seat
 - Fail-closed `--allow-live` for non-fixture targets
 - Delayed score in the TUI; contrastive house call
+
+## [1.0.0] - 2026-09-09 [YANKED]
+
+Mistaken first tag on a brand-new repo. Same code as 0.1.0. Yanked on PyPI — do not install.

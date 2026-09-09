@@ -1,6 +1,6 @@
 [project]
 name = "mcp-arcade"
-version = "1.0.0"
+version = "0.1.0"
 description = "GameDay testing for MCP servers — the oracle is the wire, not the scoreboard."
 readme = "README.md"
 license = "MIT"
