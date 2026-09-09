@@ -54,6 +54,21 @@ MCPMark (Wu et al., 2025, arXiv:2509.24002) contributes programmatic env checks 
 
 AgentHarm (Andriushchenko et al., 2024, arXiv:2410.09024) is the reminder that chatbot refusal is not the score; multi-step tool use is.
 
+## The generator (wave 3)
+
+```bash
+mcp-arcade dataset <receipt-dir> -o <out-dir>
+```
+
+Writes `train.jsonl`, `holdout.jsonl`, `manifest.json`. One row per atom (`mcp-arcade.row/v1`).
+
+- **Row:** atom id, calls, tools before/after, env before/after, the named task, `poison_source`, `agent_policy`, that atom's rejected server requests, inbound notifications from that atom's wire slice (observations), session facts without the stderr tail, docker image id when present, check ids and results.
+- **Label:** the atom's `result`, plus on `poison.follow_through` an `attack_success` computed from the calls by the oracle's own `unauthorized_calls`. Bout NRP is not a row label.
+- **Dropped, tallied, never rows:** `ERROR` atoms; `SKIP` atoms (a task that never ran is not a "held" negative); every receipt with `split: proof`; receipts whose wire cannot be attributed to atoms (outbound `initialize` count must equal the atom count; the generator never guesses slices).
+- **Holdout:** an atom id outside the frozen public tuple (the catalog three), or listed in the receipt's `holdout_atom_ids`, goes to `holdout.jsonl` even when the receipt says `split: train`. A `split: holdout` receipt goes there whole. Re-running the generator cannot promote a row.
+- **Manifest:** generator version, receipt schema id, sha256 of each canonical receipt, the public-atom-id pin, rows per shard, drop reasons, agent policies and docker image ids seen. File names only, never directories.
+- **Never carried:** `operator_call`, `contrastive`, titles, hypothesis prose, check detail text, `stderr_tail`, host paths.
+
 ## Fixture as a generator
 
 `mcp-arcade bout --target fixture --agent naive|task-only -o out.json` is a labeled pair:

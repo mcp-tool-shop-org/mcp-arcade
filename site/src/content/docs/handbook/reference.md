@@ -12,6 +12,7 @@ order: 2
 | `mcp-arcade atoms` | List the catalog |
 | `mcp-arcade receipt <file>` | Print a saved receipt as canonical JSON |
 | `mcp-arcade fixture` | Run the lab MCP server on stdio |
+| `mcp-arcade dataset <dir> -o <out>` | One JSONL row per atom from receipts; labels from the wire; `split: proof` never trains |
 | `mcp-arcade docker build-fixture` | Build the local fixture image and print its id |
 | `mcp-arcade docker rm-fixture` | Remove it (compensator) |
 | `mcp-arcade docker leftovers` | List `arcade-*` containers still present (should be `none`) |

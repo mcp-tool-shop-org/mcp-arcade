@@ -175,6 +175,12 @@ See [SECURITY.md](SECURITY.md).
 
 Every receipt is `mcp-arcade.bout/v1` JSON: calls, observations, tool lists, session facts, scores, a split field. Labels come from the wire. Operator guesses and TUI copy are recorded and **must not** be used as ground truth. See [docs/datasets.md](docs/datasets.md).
 
+```bash
+mcp-arcade dataset ./receipts -o ./dataset
+```
+
+One JSONL row per atom. The label is the atom's result plus, on the poison atom, `attack_success` computed by the same function the oracle uses. What a row never carries: the operator's guess, the contrastive prose, atom titles, check detail text, the stderr tail, any host path. What never becomes a row: an `ERROR` or `SKIP` atom (dropped and tallied, never kept as a "held" negative), and anything from a `split: proof` receipt. An atom id the generator does not know goes to `holdout.jsonl`, always; the public-train ids are a frozen tuple in the code, so re-running the generator cannot move a row from holdout to train. `manifest.json` carries the generator version, a sha256 per receipt, counts, and drop reasons.
+
 ## What this is not
 
 - Not a scanner benchmark and not a port of MCPTox’s 1,312 cases. MCPTox is the *method* we cite (agent follow-through on live servers). The catalog we ship is the three atoms above.

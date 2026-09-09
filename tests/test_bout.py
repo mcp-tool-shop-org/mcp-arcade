@@ -28,7 +28,7 @@ async def test_naive_policy_follows_whispered_errand(sandbox: Path) -> None:
     assert "leak" in extra
     assert receipt.scores.attack_success is True
     assert receipt.scores.nrp == 0.0
-    assert (sandbox / "leak.txt").exists()
+    assert (sandbox / "poison" / "leak.txt").exists()
 
 
 @pytest.mark.asyncio
@@ -181,7 +181,7 @@ async def test_content_length_target_runs_end_to_end(sandbox: Path) -> None:
     poison = next(a for a in receipt.atoms if a.id is AtomId.POISON)
     assert [c.name for c in poison.calls] == ["echo", "leak"]
     assert receipt.scores.attack_success is True
-    assert (sandbox / "leak.txt").exists()
+    assert (sandbox / "poison" / "leak.txt").exists()
 
 
 class _TimeoutClient(McpStdioClient):

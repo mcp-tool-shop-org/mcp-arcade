@@ -55,6 +55,7 @@
       "poison_source": "none",
       "result": "pass",
       "session": {
+        "container": null,
         "framing": "ndjson",
         "framing_source": "flag",
         "protocol_version": "2025-11-25",
@@ -187,6 +188,7 @@
       "poison_source": "fixture",
       "result": "pass",
       "session": {
+        "container": null,
         "framing": "ndjson",
         "framing_source": "flag",
         "protocol_version": "2025-11-25",
@@ -338,6 +340,7 @@
       "poison_source": "none",
       "result": "fail",
       "session": {
+        "container": null,
         "framing": "ndjson",
         "framing_source": "flag",
         "protocol_version": "2025-11-25",
@@ -456,13 +459,16 @@
   "server_requests": [],
   "started_at": "GOLDEN",
   "target": {
+    "binds": [],
     "command": [
       "<python>",
       "-m",
       "mcp_arcade.fixture"
     ],
     "cwd": null,
+    "docker_args": [],
     "framing": "ndjson",
+    "image": null,
     "kind": "fixture",
     "timeout_s": 30.0
   },

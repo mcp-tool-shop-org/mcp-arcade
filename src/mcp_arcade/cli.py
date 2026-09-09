@@ -265,6 +265,36 @@ def receipt_cmd(path: Path) -> None:
     click.echo(canonical_dumps(receipt), nl=False)
 
 
+@app.command("dataset")
+@click.argument("receipt_dir", type=click.Path(exists=True, file_okay=False, path_type=Path))
+@click.option(
+    "-o",
+    "--output",
+    "out_dir",
+    type=click.Path(path_type=Path),
+    required=True,
+    help="Directory for train.jsonl, holdout.jsonl and manifest.json.",
+)
+def dataset_cmd(receipt_dir: Path, out_dir: Path) -> None:
+    """Build a dataset from bout receipts. One row per atom, labels from the wire.
+
+    split=proof receipts yield zero rows. Unknown atom ids go to holdout.
+    ERROR and SKIP atoms are dropped and tallied, never emitted.
+    """
+    from mcp_arcade.dataset import DatasetError, build, write
+
+    try:
+        result = build(receipt_dir)
+        man = write(result, out_dir)
+    except DatasetError as exc:
+        raise click.ClickException(str(exc)) from exc
+    console.print(
+        f"rows: train={man['rows']['train']} holdout={man['rows']['holdout']}  "
+        f"receipts={len(man['receipts'])}  dropped={man['dropped'] or '{}'}"
+    )
+    console.print(f"Manifest written to {out_dir / 'manifest.json'}")
+
+
 @app.group("docker")
 def docker_group() -> None:
     """Arcade's own fixture image (built locally from the installed source)."""

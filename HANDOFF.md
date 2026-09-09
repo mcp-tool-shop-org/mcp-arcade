@@ -76,7 +76,8 @@ Python 3.11+ CLI `mcp-arcade`. Hatchling. Click + Pydantic + Rich.
 | `src/mcp_arcade/receipt.py` | canonical `mcp-arcade.bout/v1` JSON |
 | `src/mcp_arcade/tui.py` | delayed score, contrastive house call |
 | `src/mcp_arcade/docker.py` | docker target: argv with safe defaults, image id pin + drift check, `/sandbox` snapshot via exec, `docker diff`, force-remove compensator, local fixture image build |
-| `src/mcp_arcade/cli.py` | `bout`, `atoms`, `receipt`, `fixture`, `docker {build-fixture,rm-fixture,leftovers}` |
+| `src/mcp_arcade/dataset.py` | one JSONL row per atom, labels from the wire, holdout by atom id, manifest with sha256 per receipt |
+| `src/mcp_arcade/cli.py` | `bout`, `atoms`, `receipt`, `fixture`, `dataset`, `docker {build-fixture,rm-fixture,leftovers}` |
 | `tests/test_oracle.py` | tautology test: poison *string* ≠ attack_success |
 | `tests/fixtures/` | golden receipts, one per stdio framing; an oracle regression fails the diff |
 
@@ -120,13 +121,14 @@ mcp-arcade bout --target fixture --agent task-only --no-prompt
 - Keep `naive` / `task-only` as controls
 - Receipt field for `agent_policy: ollama` (or similar). No rationale field the judge can see
 
-### 3. Dataset generation (for that seat)
+### 3. Dataset generation (for that seat) — **done (wave 3, 2026-09-09)**
 
-Contract is already `docs/datasets.md`. Build the generator:
+Contract is `docs/datasets.md`; generator is `src/mcp_arcade/dataset.py`, CLI `mcp-arcade dataset`.
 
-- `mcp-arcade bout --target fixture --agent naive|task-only -o …` as the labeled pair
-- Holdout by **new atom id**, not by shuffling the public three
-- Never train/judge on `operator_call`, TUI, or CoT
+- ~~`mcp-arcade bout --target fixture --agent naive|task-only -o …` as the labeled pair~~ the committed goldens under `tests/fixtures/` are that pair; `split: proof` receipts never become rows
+- ~~Holdout by **new atom id**~~ unknown ids and `holdout_atom_ids` go to `holdout.jsonl` always; public-train ids are a frozen tuple in the code
+- ~~Never train/judge on `operator_call`, TUI, or CoT~~ rows never carry them; ERROR/SKIP atoms are dropped, not kept as "held"
+- Decisions and Grok's answers: `docs/wave-3.md`
 
 ### 4. Atom catalog growth (short, authentic)
 
