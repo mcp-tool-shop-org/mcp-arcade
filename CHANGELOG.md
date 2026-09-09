@@ -9,8 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Wave 1: the harness survives a real server. Decisions: `docs/wave-1.md`.
 Wave 2: Docker is the sandbox. Decisions: `docs/wave-2.md`.
+Wave 3: the dataset generator. Decisions: `docs/wave-3.md`.
 
 ### Added
+
+- `mcp-arcade dataset <receipt-dir> -o <out-dir>`: one JSONL row per atom
+  (`mcp-arcade.row/v1`), labels from the wire (atom result plus `attack_success` from the
+  oracle's own `unauthorized_calls` on the poison atom), `train.jsonl` / `holdout.jsonl` /
+  `manifest.json` with a sha256 per receipt. `split: proof` receipts yield zero rows; ERROR
+  and SKIP atoms are dropped and tallied, never rows; unknown atom ids go to holdout
+  always; wire attributed to atoms by outbound `initialize` count or the receipt is dropped
 
 - `--target docker [--image REF] [--cmd ...]`: one fresh container per atom with safe
   defaults (`--network none --read-only --tmpfs /tmp --tmpfs /sandbox --memory 256m
