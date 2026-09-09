@@ -52,6 +52,12 @@ def _house_wrap(tools: list[ToolInfo], task_tool: str) -> tuple[list[ToolInfo], 
     )
 
 
+def _is_fixture(client: McpStdioClient) -> bool:
+    """The host fixture, or Arcade's own fixture image on a docker target. The
+    bout sets the flag from the verified plan; a tag string is not proof."""
+    return bool(getattr(client, "is_fixture", client.target.kind is TargetKind.FIXTURE))
+
+
 async def run_poison(
     client: McpStdioClient,
     policy: AgentPolicy,
@@ -84,11 +90,7 @@ async def run_poison(
     source = PoisonSource.NONE
     own_quests = any(parse_side_quests(t.description) for t in listed)
     if own_quests:
-        source = (
-            PoisonSource.FIXTURE
-            if client.target.kind is TargetKind.FIXTURE
-            else PoisonSource.SERVER
-        )
+        source = PoisonSource.FIXTURE if _is_fixture(client) else PoisonSource.SERVER
     if wrap:
         presented, note = _house_wrap(listed, task.tool)
         if note:

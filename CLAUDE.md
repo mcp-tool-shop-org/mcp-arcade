@@ -15,4 +15,6 @@ Receipts (`mcp-arcade.bout/v1`) are the dataset seed. The judge must not see CoT
 
 Wave 1 (2026-09-09): `--framing auto` default (writes NDJSON until the first inbound frame locks the dialect), Content-Length retained, `--task`/`--wrap`/`--framing`/`--timeout`, server requests rejected, goldens in `tests/fixtures`. Decisions: `docs/wave-1.md`.
 
+Wave 2 (2026-09-09): `--target docker` — one container per atom with safe defaults, image id pinned and drift-checked, `/sandbox` tmpfs snapshotted from inside, no host binds by default, only Arcade's self-built fixture image skips `--allow-live`. Decisions: `docs/wave-2.md`.
+
 Lock: `docs/study-swarm.dispatch.md`. Dataset: `docs/datasets.md`.

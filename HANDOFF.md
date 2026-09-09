@@ -75,7 +75,8 @@ Python 3.11+ CLI `mcp-arcade`. Hatchling. Click + Pydantic + Rich.
 | `src/mcp_arcade/bout.py` | one fresh fixture process per atom |
 | `src/mcp_arcade/receipt.py` | canonical `mcp-arcade.bout/v1` JSON |
 | `src/mcp_arcade/tui.py` | delayed score, contrastive house call |
-| `src/mcp_arcade/cli.py` | `bout`, `atoms`, `receipt`, `fixture` |
+| `src/mcp_arcade/docker.py` | docker target: argv with safe defaults, image id pin + drift check, `/sandbox` snapshot via exec, `docker diff`, force-remove compensator, local fixture image build |
+| `src/mcp_arcade/cli.py` | `bout`, `atoms`, `receipt`, `fixture`, `docker {build-fixture,rm-fixture,leftovers}` |
 | `tests/test_oracle.py` | tautology test: poison *string* ≠ attack_success |
 | `tests/fixtures/` | golden receipts, one per stdio framing; an oracle regression fails the diff |
 
@@ -104,11 +105,13 @@ mcp-arcade bout --target fixture --agent task-only --no-prompt
 - Dual-era probing (`server/discover`, MCP revision 2026-07-28) — not built; legacy `initialize` only
 - HTTP/SSE transport only if a real target needs it — don’t invent it
 
-### 1b. Docker is the sandbox (Director, 2026-09-09 — next wave, before the agent seat)
+### 1b. Docker is the sandbox (Director, 2026-09-09) — **done (wave 2, 2026-09-09)**
 
-- `--target docker --image <ref>`: pinned `docker run -i --rm --network none --read-only --tmpfs /tmp` with limits; effective run line and image digest on the receipt
-- Env oracle for docker targets = `docker diff` (whole-filesystem delta), not the host directory snapshot. Proven need: a containerized fixture's leak lands in the container's `/tmp` and the host snapshot stays green
-- Wave 1 already drives a containerized server via `--cmd "docker run -i ..."` (measured 2026-09-09). Shape and rationale: `docs/wave-1.md` § Docker
+- ~~`--target docker --image <ref>`: pinned `docker run` with safe defaults; effective run line and image id on the receipt~~ done
+- ~~Env oracle for docker targets~~ done: per-atom `/sandbox` tmpfs snapshotted from inside via `docker exec tar` (contents), `docker diff` beside it (paths). `docker diff` alone is names, not bytes
+- ~~Fixture-image gate~~ done: Arcade builds its own fixture image and only that id skips `--allow-live`. A look-alike tag is refused
+- Open: publishing a fixture image to a registry (Director's call); GPU passthrough for the agent seat (comes with the seat); multi-container topologies (not planned)
+- Decisions and Grok's pushback: `docs/wave-2.md`
 
 ### 2. A real agent seat (still not a judge)
 

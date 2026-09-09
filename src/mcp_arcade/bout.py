@@ -1,8 +1,13 @@
-"""Run a GameDay bout. One hypothesis per atom, fresh process per atom on the fixture.
+"""Run a GameDay bout. One hypothesis per atom, fresh process per atom.
 
-An atom that cannot finish (spawn failure, protocol error, timeout) is
-recorded as ERROR with a `harness` check naming the cause. That is not a
-pass and not an attack; the oracle pins NRP to 0 for the bout.
+An atom that cannot finish (spawn failure, protocol error, timeout, docker
+failure) is recorded as ERROR with a `harness` check naming the cause. That
+is not a pass and not an attack; the oracle pins NRP to 0 for the bout.
+
+Sandboxes by target kind:
+  fixture / stdio — a host directory (`--sandbox`), snapshotted before/after
+  docker          — a per-atom tmpfs at /sandbox inside the container,
+                    snapshotted via docker exec; docker diff recorded beside
 """
 
 from __future__ import annotations
@@ -13,6 +18,7 @@ from collections.abc import Awaitable, Callable
 from datetime import UTC, datetime
 from pathlib import Path
 
+from mcp_arcade import docker
 from mcp_arcade.atoms import run_inspect, run_poison, run_rug_pull
 from mcp_arcade.client import ClientError, McpStdioClient
 from mcp_arcade.models import (
@@ -23,7 +29,9 @@ from mcp_arcade.models import (
     AxisResult,
     BoutReceipt,
     Check,
+    ContainerInfo,
     ContrastiveRecap,
+    EnvSnapshot,
     OperatorCall,
     ServerRequest,
     TargetKind,
@@ -50,6 +58,10 @@ _HYPOTHESES = {
     AtomId.POISON: "a whispered errand in a description does not become a tools/call",
     AtomId.RUG_PULL: "after N clean calls the tool stays honest",
 }
+_SHORT = {AtomId.INSPECT: "inspect", AtomId.POISON: "poison", AtomId.RUG_PULL: "rugpull"}
+
+Snapshot = Callable[[], Awaitable[EnvSnapshot]]
+Runner = Callable[[McpStdioClient, Snapshot], Awaitable[AtomResult]]
 
 
 def fixture_command() -> list[str]:
@@ -61,10 +73,33 @@ def resolve_target(
     command: list[str] | None,
     framing: str = "auto",
     timeout_s: float = 30.0,
+    image: str | None = None,
+    docker_args: list[str] | None = None,
+    binds: list[str] | None = None,
 ) -> TargetSpec:
     if kind == "fixture":
         return TargetSpec(
             kind=TargetKind.FIXTURE, command=fixture_command(), framing=framing, timeout_s=timeout_s
+        )
+    if kind == "docker":
+        if image is None and command:
+            raise ValueError(
+                "--cmd needs --image on a docker target (the fixture image has an entrypoint)"
+            )
+        hidden = docker.stealth_mounts(list(docker_args or []))
+        if hidden:
+            raise ValueError(
+                f"mount flags are not accepted in --docker-arg ({', '.join(hidden)}); "
+                "use --bind SRC:DST so the receipt records it"
+            )
+        return TargetSpec(
+            kind=TargetKind.DOCKER,
+            command=list(command or []),
+            framing=framing,
+            timeout_s=timeout_s,
+            image=image,
+            docker_args=list(docker_args or []),
+            binds=list(binds or []),
         )
     if not command:
         raise ValueError("stdio target requires a command")
@@ -85,12 +120,17 @@ async def run_bout(
     """`split` lands in dataset.split: train | holdout | proof. `extra_env` is a
     harness-test hook (fixture modes such as ARCADE_NOTIFY); it is merged into the
     per-atom environment and is not part of the product surface."""
-    if target.kind is not TargetKind.FIXTURE and not allow_live:
+    plan: docker.ContainerPlan | None = None
+    if target.kind is TargetKind.DOCKER:
+        # Builds the fixture image (no --image) or applies the --allow-live gate.
+        plan = docker.prepare(target, allow_live)
+    elif target.kind is not TargetKind.FIXTURE and not allow_live:
         raise PermissionError(
             "refusing to talk to a non-fixture server without --allow-live "
             "(C8 fail-closed). The fixture is the lab."
         )
 
+    bout_id = "bout_" + uuid.uuid4().hex[:12]
     started = datetime.now(UTC)
     leak = sandbox / "leak.txt"
     atoms: list[AtomResult] = []
@@ -101,46 +141,40 @@ async def run_bout(
     poison_env = {**_env(leak, poison=True, rug_after=0), **(extra_env or {})}
     rug_env = {**_env(leak, poison=False, rug_after=n_clean), **(extra_env or {})}
 
-    atoms.append(
-        await _one(
-            target,
-            AtomId.INSPECT,
-            inspect_env,
-            lambda c: run_inspect(c, policy, task_spec=task),
-            wire,
-            server_requests,
-        )
-    )
-    atoms.append(
-        await _one(
-            target,
-            AtomId.POISON,
-            poison_env,
-            lambda c: run_poison(c, policy, task_spec=task, wrap=wrap),
-            wire,
-            server_requests,
-        )
-    )
+    async def _inspect(client: McpStdioClient, snap: Snapshot) -> AtomResult:
+        return await run_inspect(client, policy, task_spec=task)
 
-    env_before = snapshot_dir(sandbox)
+    async def _poison(client: McpStdioClient, snap: Snapshot) -> AtomResult:
+        return await run_poison(client, policy, task_spec=task, wrap=wrap)
 
-    async def _rug(client: McpStdioClient) -> AtomResult:
+    async def _rug(client: McpStdioClient, snap: Snapshot) -> AtomResult:
+        # env_before is taken on THIS container/process after initialize, before
+        # the N calls. It is never inherited from the poison atom's sandbox.
+        env_before = await snap()
         return await run_rug_pull(
             client,
             policy,
             n_clean=n_clean,
             env_before=env_before,
-            env_after_fn=lambda: snapshot_dir(sandbox),
+            env_after_fn=None,
             task_spec=task,
+            env_after_async=snap,
         )
 
-    atoms.append(await _one(target, AtomId.RUG_PULL, rug_env, _rug, wire, server_requests))
+    for atom_id, env, runner in (
+        (AtomId.INSPECT, inspect_env, _inspect),
+        (AtomId.POISON, poison_env, _poison),
+        (AtomId.RUG_PULL, rug_env, _rug),
+    ):
+        atoms.append(
+            await _one(target, plan, bout_id, atom_id, env, runner, wire, server_requests, sandbox)
+        )
 
     scores = score_atoms(atoms)
     recap = contrastive(atoms, scores, policy)
     finished = datetime.now(UTC)
     return BoutReceipt(
-        bout_id="bout_" + uuid.uuid4().hex[:12],
+        bout_id=bout_id,
         started_at=started.isoformat(),
         finished_at=finished.isoformat(),
         target=target,
@@ -173,24 +207,75 @@ def _env(leak: Path, poison: bool, rug_after: int) -> dict[str, str]:
 
 async def _one(
     target: TargetSpec,
+    plan: docker.ContainerPlan | None,
+    bout_id: str,
     atom_id: AtomId,
     env: dict[str, str],
-    runner: Callable[[McpStdioClient], Awaitable[AtomResult]],
+    runner: Runner,
     wire: list[WireEvent],
     server_requests: list[ServerRequest],
+    sandbox: Path,
 ) -> AtomResult:
-    client = McpStdioClient(target, env=env)
+    container: ContainerInfo | None = None
+    proc_target = target
+    name = ""
+    if plan is not None:
+        name = docker.container_name(bout_id, _SHORT[atom_id])
+        argv = docker.run_argv(plan, target, name, env)
+        proc_target = TargetSpec(
+            kind=TargetKind.DOCKER,
+            command=argv,
+            framing=target.framing,
+            timeout_s=target.timeout_s,
+            image=plan.image,
+        )
+        container = ContainerInfo(
+            image=plan.image,
+            image_id=plan.image_id,
+            repo_digest=plan.repo_digest,
+            fixture_image=plan.fixture_image,
+            run_args=argv,
+            name=name,
+            bind_requested=bool(target.binds),
+        )
+
+    async def snap() -> EnvSnapshot:
+        if container is None:
+            return snapshot_dir(sandbox)
+        shot, method = await docker.snapshot(name)
+        container.sandbox_method = method
+        if method != "exec-tar":
+            raise docker.DockerError(
+                f"sandbox snapshot unavailable for {name} (method={method}); "
+                "an unread sandbox is not a quiet sandbox"
+            )
+        return shot
+
+    client = McpStdioClient(proc_target, env=env)
     client.current_atom = atom_id
+    client.is_fixture = target.kind is TargetKind.FIXTURE or bool(plan and plan.fixture_image)
     result: AtomResult | None = None
     failure: str | None = None
+    env_before: EnvSnapshot | None = None
+    env_after: EnvSnapshot | None = None
     try:
+        if plan is not None:
+            docker.check_drift(plan)
         await client.start()
         await client.initialize()
-        result = await runner(client)
-    except (ClientError, ProtocolError) as exc:
+        if container is not None:
+            container.container_id = await docker.container_id(name)
+        env_before = await snap()
+        result = await runner(client, snap)
+        env_after = await snap()
+        if container is not None:
+            container.docker_diff = await docker.diff(name)
+    except (ClientError, ProtocolError, docker.DockerError) as exc:
         failure = f"{type(exc).__name__}: {exc}"
     finally:
         await client.close()
+        if container is not None:
+            container.force_removed = await docker.remove(name)
         wire.extend(client.wire)
         server_requests.extend(client.server_requests)
 
@@ -208,7 +293,15 @@ async def _one(
                 )
             ],
         )
+    if atom_id is not AtomId.RUG_PULL:
+        # Rug-pull sets its own (before the N calls / after). The others record
+        # the sandbox around the whole atom so a poison leak is on the tape.
+        if env_before is not None:
+            result.env_before = env_before
+        if env_after is not None:
+            result.env_after = env_after
     result.session = client.session
+    result.session.container = container
     return result
 
 

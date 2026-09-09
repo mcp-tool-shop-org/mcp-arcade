@@ -73,6 +73,22 @@ mcp-arcade bout --target stdio --cmd "ollama-intern-mcp" \
 `--cmd` takes one quoted string like that, or the repeatable form. On Windows a bare npm
 shim name resolves via `PATHEXT`.
 
+### Docker
+
+```bash
+# Arcade's own fixture image, built locally. No --allow-live needed.
+mcp-arcade bout --target docker --agent naive --no-prompt -o receipt.json
+
+# Your image. Always needs --allow-live.
+mcp-arcade bout --target docker --image your/server:1.2.3 --cmd your-server \
+  --allow-live --task your_read_only_tool --no-prompt
+```
+
+One fresh container per atom: no network, read-only root, a per-atom `/sandbox` tmpfs that
+Arcade reads back from inside, memory/pid/cpu limits, all capabilities dropped, no host
+binds unless you pass `--bind`. The image id is pinned before the first atom and re-checked
+before each one. `mcp-arcade docker leftovers` should print `none` afterwards.
+
 ## Keep the tape
 
 ```bash

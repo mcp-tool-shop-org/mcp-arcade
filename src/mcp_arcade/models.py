@@ -39,6 +39,7 @@ class AgentPolicy(StrEnum):
 class TargetKind(StrEnum):
     FIXTURE = "fixture"
     STDIO = "stdio"
+    DOCKER = "docker"
 
 
 class AxisResult(StrEnum):
@@ -67,11 +68,18 @@ class PoisonSource(StrEnum):
 
 
 class TargetSpec(BaseModel):
+    """For docker targets `command` is the argv inside the container (may be empty
+    when the image has an entrypoint); `image` None means Arcade builds and runs
+    its own fixture image."""
+
     kind: TargetKind
     command: list[str]
     cwd: str | None = None
     framing: str = "auto"
     timeout_s: float = 30.0
+    image: str | None = None
+    docker_args: list[str] = Field(default_factory=list)
+    binds: list[str] = Field(default_factory=list)
 
 
 class WireEvent(BaseModel):
@@ -127,6 +135,27 @@ class ServerRequest(BaseModel):
     rejected: bool = True
 
 
+class ContainerInfo(BaseModel):
+    """The container Arcade ran this atom in. The argv is the one Arcade built,
+    never the operator shorthand. `docker_diff` is a path list, not contents;
+    the contents oracle is `env_before` / `env_after` on the atom."""
+
+    image: str
+    image_id: str
+    repo_digest: str | None = None
+    fixture_image: bool = False
+    run_args: list[str] = Field(default_factory=list)
+    name: str
+    container_id: str | None = None
+    bind_requested: bool = False
+    sandbox_method: str = "exec-tar"
+    docker_diff: list[str] = Field(default_factory=list)
+    # The compensator (`docker rm -f`) always runs in finally. True means it found
+    # the container, i.e. it won the race with --rm's own reaping. Either way the
+    # container is gone; `mcp-arcade docker leftovers` is the check that matters.
+    force_removed: bool = False
+
+
 class SessionInfo(BaseModel):
     """Facts about the transport session, per fresh process."""
 
@@ -137,6 +166,7 @@ class SessionInfo(BaseModel):
     server_info: dict[str, Any] = Field(default_factory=dict)
     server_capabilities: dict[str, Any] = Field(default_factory=dict)
     stderr_tail: str = ""
+    container: ContainerInfo | None = None
 
 
 class AtomResult(BaseModel):
