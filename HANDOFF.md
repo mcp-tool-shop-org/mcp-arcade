@@ -63,11 +63,12 @@ Python 3.11+ CLI `mcp-arcade`. Hatchling. Click + Pydantic + Rich.
 
 | Path | Role |
 |------|------|
-| `src/mcp_arcade/protocol.py` | Content-Length JSON-RPC framing |
-| `src/mcp_arcade/client.py` | stdio MCP client that **records the wire** |
+| `src/mcp_arcade/protocol.py` | JSON-RPC framing: NDJSON (spec) + Content-Length, auto-detect then lock |
+| `src/mcp_arcade/client.py` | stdio MCP client that **records the wire**; demuxes by id, records notifications, rejects server requests, per-request timeout, stderr drain |
 | `src/mcp_arcade/fixture.py` | lab server (`echo` + `leak`; poison / rug-pull via env) |
 | `src/mcp_arcade/agent.py` | scripted `naive` / `task-only` (frozen “also call X” parser) |
 | `src/mcp_arcade/oracle.py` | scores **calls**, not descriptions |
+| `src/mcp_arcade/atoms/common.py` | named task (`--task`), fail-closed default: no task, no invented arguments |
 | `src/mcp_arcade/atoms/inspect.py` | Honest Menu |
 | `src/mcp_arcade/atoms/poison.py` | Whispered Errand |
 | `src/mcp_arcade/atoms/rugpull.py` | Long Con |
@@ -76,6 +77,7 @@ Python 3.11+ CLI `mcp-arcade`. Hatchling. Click + Pydantic + Rich.
 | `src/mcp_arcade/tui.py` | delayed score, contrastive house call |
 | `src/mcp_arcade/cli.py` | `bout`, `atoms`, `receipt`, `fixture` |
 | `tests/test_oracle.py` | tautology test: poison *string* ≠ attack_success |
+| `tests/fixtures/` | golden receipts, one per stdio framing; an oracle regression fails the diff |
 
 Prove the floor:
 
@@ -96,10 +98,17 @@ mcp-arcade bout --target fixture --agent task-only --no-prompt
 
 ### 1. Harness that survives a real server
 
-- Stdio client: timeouts, stderr drain, servers that speak NDJSON instead of Content-Length, initialize/protocolVersion negotiation
-- `--cmd` quoting on Windows
-- Golden receipts in `tests/fixtures/` (commit them; oracle regressions should fail the diff)
+- ~~Stdio client: timeouts, stderr drain, servers that speak NDJSON instead of Content-Length, initialize/protocolVersion negotiation~~ **done (wave 1, 2026-09-09)**
+- ~~`--cmd` quoting on Windows~~ **done (wave 1, 2026-09-09)**
+- ~~Golden receipts in `tests/fixtures/` (commit them; oracle regressions should fail the diff)~~ **done (wave 1, 2026-09-09)**
+- Dual-era probing (`server/discover`, MCP revision 2026-07-28) — not built; legacy `initialize` only
 - HTTP/SSE transport only if a real target needs it — don’t invent it
+
+### 1b. Docker is the sandbox (Director, 2026-09-09 — next wave, before the agent seat)
+
+- `--target docker --image <ref>`: pinned `docker run -i --rm --network none --read-only --tmpfs /tmp` with limits; effective run line and image digest on the receipt
+- Env oracle for docker targets = `docker diff` (whole-filesystem delta), not the host directory snapshot. Proven need: a containerized fixture's leak lands in the container's `/tmp` and the host snapshot stays green
+- Wave 1 already drives a containerized server via `--cmd "docker run -i ..."` (measured 2026-09-09). Shape and rationale: `docs/wave-1.md` § Docker
 
 ### 2. A real agent seat (still not a judge)
 
@@ -151,5 +160,8 @@ ruff format --check .
 ruff check .
 python %USERPROFILE%\.grok\bin\identity-scan.py .
 ```
+
+`pytest` runs the suite against both stdio framings (NDJSON and Content-Length) and
+diffs the golden receipts in `tests/fixtures/`.
 
 CI: `.github/workflows/ci.yml` (3.11/3.12). Release: `.github/workflows/release.yml` on GitHub **release published**, environment `release`.

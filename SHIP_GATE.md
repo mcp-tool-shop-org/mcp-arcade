@@ -30,6 +30,7 @@
 ## D. Shipping Hygiene
 
 - [x] `[all]` verify = `pytest` (2026-09-09)
+- [x] `[all]` Golden receipts under tests/fixtures, both stdio framings (2026-09-09)
 - [x] `[all]` Version in pyproject / `__init__.py` is 0.1.0 (2026-09-09)
 - [x] `[all]` Dependency scanning via GitHub Dependabot (2026-09-09)
 - [x] `[pypi]` `requires-python` set `>=3.11` (2026-09-09)

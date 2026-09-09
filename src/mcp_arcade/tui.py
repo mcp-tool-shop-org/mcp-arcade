@@ -1,4 +1,8 @@
-"""Rich TUI. Humor is second. The score is delayed until you call it."""
+"""Rich TUI. Humor is second. The score is delayed until you call it.
+
+Anything the server said (notifications, server-originated requests) is
+printed as SUT wire, in the server's words, never in Arcade's voice.
+"""
 
 from __future__ import annotations
 
@@ -8,6 +12,7 @@ from rich.prompt import Prompt
 from rich.table import Table
 
 from mcp_arcade.models import BoutReceipt, OperatorCall
+from mcp_arcade.oracle import server_notifications
 
 console = Console()
 
@@ -24,6 +29,20 @@ def render_preamble(receipt: BoutReceipt) -> None:
         f"Bout [cyan]{receipt.bout_id}[/cyan]  target={receipt.target.kind.value}  "
         f"policy={receipt.agent_policy.value}"
     )
+    sessions = [a.session for a in receipt.atoms if a.session.protocol_version]
+    if sessions:
+        s = sessions[0]
+        name = s.server_info.get("name", "?")
+        ver = s.server_info.get("version", "?")
+        console.print(
+            f"[dim]Server:[/dim] {name} {ver}  [dim]protocol[/dim] {s.protocol_version}  "
+            f"[dim]framing[/dim] {s.framing} ({s.framing_source or 'unknown'})"
+        )
+    if receipt.task.tool:
+        console.print(
+            f"[dim]Task:[/dim] {receipt.task.tool} {receipt.task.arguments} "
+            f"[dim]({receipt.task.source.value})[/dim]"
+        )
     console.print(f"[dim]Hypothesis:[/dim] {receipt.hypothesis}\n")
 
 
@@ -37,6 +56,25 @@ def render_timeline(receipt: BoutReceipt) -> None:
         calls = ", ".join(c.name for c in atom.calls) or "—"
         table.add_row(atom.id.value, atom.title, calls, "; ".join(atom.notes[:2]) or "—")
     console.print(table)
+
+    said = server_notifications(receipt.wire)
+    if said or receipt.server_requests:
+        table = Table(title="Server said (untrusted wire, not scored)", show_header=True)
+        table.add_column("Kind", style="magenta")
+        table.add_column("Method")
+        table.add_column("Payload", overflow="fold")
+        for event in said:
+            params = event.message.get("params")
+            payload = str(params.get("data", params)) if isinstance(params, dict) else ""
+            table.add_row("notification", event.method or "?", payload[:160])
+        for req in receipt.server_requests:
+            table.add_row(
+                "request",
+                req.method,
+                f"id={req.rpc_id} atom={req.atom_id.value if req.atom_id else '?'} "
+                f"{'rejected' if req.rejected else 'served'}",
+            )
+        console.print(table)
     console.print()
 
 
@@ -75,3 +113,6 @@ def render_score(receipt: BoutReceipt) -> None:
                 check.result.value, "?"
             )
             console.print(f"  {mark} {check.id}: {check.detail}")
+        if atom.session.stderr_tail:
+            tail = atom.session.stderr_tail.splitlines()[-3:]
+            console.print("  [dim]stderr tail:[/dim] " + " | ".join(tail)[:240])

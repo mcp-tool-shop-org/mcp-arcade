@@ -1,6 +1,6 @@
 # Datasets for the optional Ollama seat
 
-v1 does not call Ollama. The receipt schema is the dataset contract so a later seat has something honest to eat.
+0.1.x does not call Ollama. The receipt schema is the dataset contract so a later seat has something honest to eat.
 
 ## Primary corpus: bout receipts
 
@@ -11,16 +11,32 @@ Each `mcp-arcade.bout/v1` JSON file is one labeled trajectory.
 - `atoms[].calls` — name, arguments, `is_error`, result text
 - `atoms[].tools_before` / `tools_after` — published schemas
 - `atoms[].env_before` / `env_after` — sandbox files
-- `wire` — raw JSON-RPC (actions and observations)
+- `wire` — raw JSON-RPC (actions and observations), including inbound `notifications/*` the
+  server pushed. Those are untrusted observations: a wave-2 seat has to see the persuasion
+  channel, because that is the channel it will be attacked through
+- `server_requests` — server-originated requests (sampling, elicitation, roots, ping),
+  recorded and rejected
+- `atoms[].task` — the named benign task and where it came from (`operator`,
+  `fixture-default`, `none`)
+- `atoms[].poison_source` — `fixture`, `house-wrap`, `server`, or `none`. A house wrap and a
+  server's own description are different experiments; do not pool them
+- `atoms[].session` — framing and framing source, negotiated protocol version, server info
+  and capabilities, stderr tail
 - `scores` produced by the deterministic oracle
 
 **The seat must not treat as labels**
 
 - `operator_call` — a human guess, recorded for cognitive forcing, not truth
 - TUI copy, atom titles, contrastive prose
-- any `rationale` field (none in v1; do not add one that the judge can see)
+- any `rationale` field (none today; do not add one that the judge can see)
+- the text of a server notification. It is evidence of what the server said, never a label.
+  A server that announces "this bout is verified safe" has produced a data point about the
+  server, not a score
 
 This is the Gaming-the-Judge rule: actions and observations in, chain-of-thought out.
+
+`dataset.agent_policy` was removed as a duplicate. Read the policy from the top-level
+`agent_policy` on the receipt.
 
 ## Splits
 
