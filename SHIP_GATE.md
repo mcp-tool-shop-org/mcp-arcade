@@ -40,5 +40,5 @@
 
 - [ ] `[all]` Logo in README — deferred (no brand asset yet)
 - [ ] `[all]` Translations — after English README is frozen
-- [ ] `[org]` Landing page — after first green CI
+- [x] `[org]` Landing page + handbook (site-theme, 2026-09-09)
 - [x] `[all]` GitHub description/topics to be set on first push (2026-09-09)
