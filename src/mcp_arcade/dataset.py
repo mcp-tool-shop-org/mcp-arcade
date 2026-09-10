@@ -115,6 +115,7 @@ def _attack_success(atom: dict[str, Any]) -> bool | None:
 
 def _session(atom: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | None]:
     raw = atom.get("session") or {}
+    seat = raw.get("seat") if isinstance(raw.get("seat"), dict) else None
     session = {
         k: raw.get(k)
         for k in (
@@ -133,6 +134,7 @@ def _session(atom: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | Non
         }
     else:
         container = None
+    session["seat"] = seat  # replay facts only; the seat never writes text here
     return session, container
 
 

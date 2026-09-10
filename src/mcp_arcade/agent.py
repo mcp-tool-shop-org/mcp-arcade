@@ -60,6 +60,14 @@ async def run_policy(
     task: Task,
     tools: list[ToolInfo],
 ) -> list[ToolCall]:
+    if policy is AgentPolicy.OLLAMA:
+        seat = getattr(client, "seat", None)
+        if seat is None:
+            raise RuntimeError("ollama policy needs a seat attached to the client")
+        # The seat decides every call, including whether the task runs at all.
+        # No call at all is utility SKIP downstream, never a pass.
+        return await seat.run(client, task.tool, task.arguments, tools)
+
     calls: list[ToolCall] = []
     calls.append(await client.call_tool(task.tool, task.arguments))
     if policy is AgentPolicy.TASK_ONLY:

@@ -16,6 +16,7 @@ from mcp_arcade.bout import resolve_target, run_bout
 from mcp_arcade.docker import DockerError
 from mcp_arcade.models import AgentPolicy, AtomTitle, TaskSource, TaskSpec
 from mcp_arcade.receipt import canonical_dumps, write_receipt
+from mcp_arcade.seat import OllamaSeat, parse_agent_spec
 from mcp_arcade.tui import ask_operator_call, render_preamble, render_score, render_timeline
 
 console = Console()
@@ -104,10 +105,31 @@ def atoms_cmd() -> None:
 @click.option(
     "--agent",
     "policy",
-    type=click.Choice([p.value for p in AgentPolicy]),
     default=AgentPolicy.NAIVE.value,
     show_default=True,
-    help="naive follows description side-quests. task-only does not.",
+    help="naive follows description side-quests. task-only does not. "
+    "ollama:<model> seats a local LLM that sees tools/list and emits tools/call "
+    "(it is not a judge).",
+)
+@click.option(
+    "--seat-temperature", type=float, default=0.0, show_default=True, help="ollama seat option."
+)
+@click.option("--seat-seed", type=int, default=42, show_default=True, help="ollama seat option.")
+@click.option(
+    "--seat-num-ctx", type=int, default=8192, show_default=True, help="ollama seat option."
+)
+@click.option(
+    "--seat-endpoint",
+    default="http://127.0.0.1:11434",
+    show_default=True,
+    help="Ollama endpoint. Local by default; recorded on the receipt.",
+)
+@click.option(
+    "--seat-timeout",
+    type=float,
+    default=120.0,
+    show_default=True,
+    help="Seconds per Ollama chat call. A timeout is an atom ERROR.",
 )
 @click.option("--allow-live", is_flag=True, help="Required for non-fixture targets.")
 @click.option(
@@ -173,6 +195,11 @@ def bout_cmd(
     docker_args: tuple[str, ...],
     binds: tuple[str, ...],
     policy: str,
+    seat_temperature: float,
+    seat_seed: int,
+    seat_num_ctx: int,
+    seat_endpoint: str,
+    seat_timeout: float,
     allow_live: bool,
     task_tool: str | None,
     task_args: str | None,
@@ -200,6 +227,32 @@ def bout_cmd(
     except ValueError as exc:
         raise click.ClickException(str(exc)) from exc
 
+    seat = None
+    try:
+        seat_config = parse_agent_spec(policy)
+    except ValueError as exc:
+        raise click.ClickException(str(exc)) from exc
+    if seat_config is not None:
+        from dataclasses import replace
+
+        seat_config = replace(
+            seat_config,
+            temperature=seat_temperature,
+            seed=seat_seed,
+            num_ctx=seat_num_ctx,
+            endpoint=seat_endpoint,
+            timeout_s=seat_timeout,
+        )
+        seat = OllamaSeat(seat_config)
+        agent_policy = AgentPolicy.OLLAMA
+    else:
+        try:
+            agent_policy = AgentPolicy(policy)
+        except ValueError as exc:
+            raise click.ClickException(
+                f"--agent must be naive, task-only, or ollama:<model> (got {policy!r})"
+            ) from exc
+
     task: TaskSpec | None = None
     if task_args is not None and task_tool is None:
         raise click.ClickException("--args needs --task")
@@ -221,13 +274,14 @@ def bout_cmd(
         receipt = asyncio.run(
             run_bout(
                 target=target,
-                policy=AgentPolicy(policy),
+                policy=agent_policy,
                 allow_live=allow_live,
                 sandbox=sandbox_path,
                 n_clean=n_clean,
                 task=task,
                 wrap=wrap,
                 split=split,
+                seat=seat,
             )
         )
     except PermissionError as exc:

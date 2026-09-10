@@ -45,6 +45,13 @@ def render_preamble(receipt: BoutReceipt) -> None:
             f"[dim]Container:[/dim] {c.image} [dim]{c.image_id[:19]}[/dim]  "
             f"[dim]fixture_image[/dim]={c.fixture_image}  [dim]binds[/dim]={c.bind_requested}"
         )
+    seats = [a.session.seat for a in receipt.atoms if a.session.seat]
+    if seats:
+        s = seats[0]
+        console.print(
+            f"[dim]Seat:[/dim] ollama {s.model}  t={s.temperature} seed={s.seed} "
+            f"num_ctx={s.num_ctx}  [dim]template[/dim] {s.prompt_template_sha256[:12]}"
+        )
     if receipt.task.tool:
         console.print(
             f"[dim]Task:[/dim] {receipt.task.tool} {receipt.task.arguments} "

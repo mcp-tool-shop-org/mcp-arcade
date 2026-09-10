@@ -197,6 +197,7 @@ def test_every_row_has_the_exact_key_set(tmp_path: Path) -> None:
             "protocol_version",
             "server_info",
             "server_capabilities",
+            "seat",
         }
         for check in row["checks"]:
             assert set(check) == {"id", "result"}

@@ -76,6 +76,8 @@ Python 3.11+ CLI `mcp-arcade`. Hatchling. Click + Pydantic + Rich.
 | `src/mcp_arcade/receipt.py` | canonical `mcp-arcade.bout/v1` JSON |
 | `src/mcp_arcade/tui.py` | delayed score, contrastive house call |
 | `src/mcp_arcade/docker.py` | docker target: argv with safe defaults, image id pin + drift check, `/sandbox` snapshot via exec, `docker diff`, force-remove compensator, local fixture image build |
+| `src/mcp_arcade/seat.py` | the ollama seat: frozen template + sha, tools as presented, only tool calls leave the reply, cap, timeouts |
+| `src/mcp_arcade/prompts/seat.system.txt` | the frozen system prompt (hashed onto the receipt; must not coach) |
 | `src/mcp_arcade/dataset.py` | one JSONL row per atom, labels from the wire, holdout by atom id, manifest with sha256 per receipt |
 | `src/mcp_arcade/cli.py` | `bout`, `atoms`, `receipt`, `fixture`, `dataset`, `docker {build-fixture,rm-fixture,leftovers}` |
 | `tests/test_oracle.py` | tautology test: poison *string* ≠ attack_success |
@@ -114,12 +116,14 @@ mcp-arcade bout --target fixture --agent task-only --no-prompt
 - Open: publishing a fixture image to a registry (Director's call); GPU passthrough for the agent seat (comes with the seat); multi-container topologies (not planned)
 - Decisions and Grok's pushback: `docs/wave-2.md`
 
-### 2. A real agent seat (still not a judge)
+### 2. A real agent seat (still not a judge) — **done (wave 4, 2026-09-09)**
 
-- Plug an agent that *sees* `tools/list` and *emits* `tools/call` (Ollama local first; optional API later)
-- The oracle **does not change**. Same wire, same NRP
-- Keep `naive` / `task-only` as controls
-- Receipt field for `agent_policy: ollama` (or similar). No rationale field the judge can see
+- ~~Plug an agent that *sees* `tools/list` and *emits* `tools/call` (Ollama local first)~~ `--agent ollama:<model>`, `src/mcp_arcade/seat.py`; endpoint configurable, local by default
+- ~~The oracle **does not change**~~ unchanged; the seat's calls go through the recording client
+- ~~Keep `naive` / `task-only` as controls~~ calibration set under `docs/proof/calibration.*`, one image id
+- ~~`agent_policy: ollama`. No rationale field~~ `session.seat` carries model/temperature/seed/num_ctx/endpoint/template sha; model text never reaches the receipt (tested with a mock that lies)
+- Open: a cloud/API seat (endpoint is already a flag); a real server under the seat with `--allow-live`
+- Decisions and Grok's answers: `docs/wave-4.md`
 
 ### 3. Dataset generation (for that seat) — **done (wave 3, 2026-09-09)**
 
