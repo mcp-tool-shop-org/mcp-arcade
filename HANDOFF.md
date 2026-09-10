@@ -75,12 +75,13 @@ Python 3.11+ CLI `mcp-arcade`. Hatchling. Click + Pydantic + Rich.
 | `src/mcp_arcade/atoms/unlisted.py` | Ghost on the Menu (holdout; protocol surface) |
 | `src/mcp_arcade/bout.py` | one fresh fixture process per atom |
 | `src/mcp_arcade/receipt.py` | canonical `mcp-arcade.bout/v1` JSON |
-| `src/mcp_arcade/tui.py` | delayed score, contrastive house call |
+| `src/mcp_arcade/timeline.py` | the tape: one row per wire event, allowlisted view, receipt-first |
+| `src/mcp_arcade/tui.py` | tape before the call, delayed score, contrastive house call after |
 | `src/mcp_arcade/docker.py` | docker target: argv with safe defaults, image id pin + drift check, `/sandbox` snapshot via exec, `docker diff`, force-remove compensator, local fixture image build |
 | `src/mcp_arcade/seat.py` | the ollama seat: frozen template + sha, tools as presented, only tool calls leave the reply, cap, timeouts |
 | `src/mcp_arcade/prompts/seat.system.txt` | the frozen system prompt (hashed onto the receipt; must not coach) |
 | `src/mcp_arcade/dataset.py` | one JSONL row per atom, labels from the wire, holdout by atom id, manifest with sha256 per receipt |
-| `src/mcp_arcade/cli.py` | `bout`, `atoms`, `receipt`, `fixture`, `dataset`, `docker {build-fixture,rm-fixture,leftovers}` |
+| `src/mcp_arcade/cli.py` | `bout`, `atoms`, `receipt [--timeline --score --verbose]`, `fixture`, `dataset`, `docker {build-fixture,rm-fixture,leftovers}` |
 | `tests/test_oracle.py` | tautology test: poison *string* ≠ attack_success |
 | `tests/fixtures/` | golden receipts, one per stdio framing; an oracle regression fails the diff |
 
@@ -146,11 +147,12 @@ Add atoms we can actually run. Candidates from the lock (protocol/host as a **se
 
 New atom ids start in `dataset.holdout_atom_ids`. Promotion to public-train is a reviewed edit of `PUBLIC_TRAIN_ATOM_IDS`, never a CLI switch. Do not advertise MCPTox counts.
 
-### 5. Operator UX
+### 5. Operator UX — **done (wave 6, 2026-09-10)**
 
-- Better timeline of the tape (2D, receipt-first)
-- Contrastive recap stays foil vs wire
-- Three.js **last**, overview only, never where counts are read
+- ~~Better timeline of the tape (2D, receipt-first)~~ `src/mcp_arcade/timeline.py`; `mcp-arcade receipt <file> --timeline`; one row per wire event; allowlisted `Tape` so no score can appear before the call
+- ~~Contrastive recap stays foil vs wire~~ unchanged, after the call
+- Three.js: not scheduled. If it ever comes, it is an overview pane fed by the same `Tape`, never where ids, counts or call traces are read (C7)
+- Decisions and Grok's answers: `docs/wave-6.md`
 
 ## Do not
 

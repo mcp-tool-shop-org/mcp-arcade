@@ -63,9 +63,20 @@ mcp-arcade bout --target stdio \
   --allow-live --no-prompt
 ```
 
-`mcp-arcade atoms` lists the catalog. `mcp-arcade receipt receipt.json` prints the canonical tape.
+`mcp-arcade atoms` lists the catalog. `mcp-arcade receipt receipt.json` prints the canonical JSON; `--timeline` renders the tape.
 
 Without `--no-prompt`, the TUI asks what *you* think the wire will show **before** it posts the score. That pause is load-bearing.
+
+## The timeline
+
+```bash
+mcp-arcade receipt receipt.json --timeline            # the tape, nothing else
+mcp-arcade receipt receipt.json --timeline --score    # then the house call
+```
+
+The diagnostic surface is a table with one row per wire event: seq, direction, method, id, the atom it belongs to, and a note. Nothing is folded under a `tools/call`. A server notification is its own row, quoted as an untrusted SUT string. A server-originated request is its own row, marked rejected. The ghost probe is its own row beside the `tools/list` that never listed it. A request that got no response says so.
+
+What the tape never shows: a score, a colour by result, a check mark, NRP. The renderer is built from an allowlisted view of the receipt that has no fields for scores, the operator's guess, or the contrastive prose, so it cannot show a verdict before you call it. Holdout atoms stay in the table with a dim tag; hiding them would hide the integrity failure NRP does not measure. The same renderer runs on a live bout and on a saved receipt. Three.js is not scheduled; a 3D overview is not where counts are read.
 
 ## Talking to a real server
 

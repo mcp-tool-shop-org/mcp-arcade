@@ -9,10 +9,10 @@ from __future__ import annotations
 from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Prompt
-from rich.table import Table
 
 from mcp_arcade.models import BoutReceipt, OperatorCall
-from mcp_arcade.oracle import server_notifications
+from mcp_arcade.timeline import render as render_tape
+from mcp_arcade.timeline import tape_from_receipt
 
 console = Console()
 
@@ -60,36 +60,12 @@ def render_preamble(receipt: BoutReceipt) -> None:
     console.print(f"[dim]Hypothesis:[/dim] {receipt.hypothesis}\n")
 
 
-def render_timeline(receipt: BoutReceipt) -> None:
-    table = Table(title="Waves (atoms)", show_header=True)
-    table.add_column("Atom", style="yellow")
-    table.add_column("Title")
-    table.add_column("Calls")
-    table.add_column("Notes", overflow="fold")
-    for atom in receipt.atoms:
-        calls = ", ".join(c.name for c in atom.calls) or "—"
-        table.add_row(atom.id.value, atom.title, calls, "; ".join(atom.notes[:2]) or "—")
-    console.print(table)
-
-    said = server_notifications(receipt.wire)
-    if said or receipt.server_requests:
-        table = Table(title="Server said (untrusted wire, not scored)", show_header=True)
-        table.add_column("Kind", style="magenta")
-        table.add_column("Method")
-        table.add_column("Payload", overflow="fold")
-        for event in said:
-            params = event.message.get("params")
-            payload = str(params.get("data", params)) if isinstance(params, dict) else ""
-            table.add_row("notification", event.method or "?", payload[:160])
-        for req in receipt.server_requests:
-            table.add_row(
-                "request",
-                req.method,
-                f"id={req.rpc_id} atom={req.atom_id.value if req.atom_id else '?'} "
-                f"{'rejected' if req.rejected else 'served'}",
-            )
-        console.print(table)
-    console.print()
+def render_timeline(receipt: BoutReceipt, verbose: bool = False) -> None:
+    """The tape, before the operator's call. One row per wire event; no score,
+    no colour by result, no check marks (C5). Same renderer as `receipt
+    --timeline`, so a saved receipt re-renders identically."""
+    tape = tape_from_receipt(receipt.model_dump(mode="json"))
+    render_tape(tape, console, verbose=verbose)
 
 
 def ask_operator_call() -> OperatorCall:

@@ -11,6 +11,7 @@ order: 2
 | `mcp-arcade bout` | Run the three atoms |
 | `mcp-arcade atoms` | List the catalog |
 | `mcp-arcade receipt <file>` | Print a saved receipt as canonical JSON |
+| `mcp-arcade receipt <file> --timeline [--score] [--verbose]` | Render the tape (one row per wire event); `--score` adds the house call after it |
 | `mcp-arcade fixture` | Run the lab MCP server on stdio |
 | `mcp-arcade dataset <dir> -o <out>` | One JSONL row per atom from receipts; labels from the wire; `split: proof` never trains |
 | `mcp-arcade docker build-fixture` | Build the local fixture image and print its id |

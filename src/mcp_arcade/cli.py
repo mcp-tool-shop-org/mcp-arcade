@@ -340,12 +340,33 @@ def bout_cmd(
 
 @app.command("receipt")
 @click.argument("path", type=click.Path(exists=True, path_type=Path))
-def receipt_cmd(path: Path) -> None:
-    """Print a saved receipt as canonical JSON."""
+@click.option(
+    "--timeline",
+    is_flag=True,
+    help="Render the tape (one row per wire event) instead of the JSON dump. No score.",
+)
+@click.option(
+    "--score",
+    is_flag=True,
+    help="With --timeline: also print the house call (scores and recap) after the tape.",
+)
+@click.option(
+    "--verbose", is_flag=True, help="With --timeline: run_args, docker diff, seat options."
+)
+def receipt_cmd(path: Path, timeline: bool, score: bool, verbose: bool) -> None:
+    """Print a saved receipt as canonical JSON, or as the tape with --timeline."""
     from mcp_arcade.receipt import read_receipt
 
     receipt = read_receipt(path)
-    click.echo(canonical_dumps(receipt), nl=False)
+    if not timeline:
+        if score:
+            raise click.ClickException("--score needs --timeline")
+        click.echo(canonical_dumps(receipt), nl=False)
+        return
+    render_preamble(receipt)
+    render_timeline(receipt, verbose=verbose)
+    if score:
+        render_score(receipt)
 
 
 @app.command("dataset")
