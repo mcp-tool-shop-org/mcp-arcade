@@ -15,6 +15,10 @@ Wave 5: the first new atom. Decisions: `docs/wave-5.md`.
 Wave 6: the 2D timeline. Decisions: `docs/wave-6.md`.
 Wave 7: the live-fire packet. `docs/live-fire.md`, decisions: `docs/wave-7.md`.
 
+### Changed
+
+- README rewritten for operators. Framing, docker internals, the seat, scoring math, and the dataset generator stay in the handbook, this file, and `docs/`. The sister game [Ghost on the Menu](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets) is how a tape is played; a 3D canvas is not on the roadmap.
+
 ### Added
 
 - `--wrap-target NAME`: the house whisper names its target; `--wrap` on a live target without

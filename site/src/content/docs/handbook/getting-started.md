@@ -92,7 +92,15 @@ before each one. `mcp-arcade docker leftovers` should print `none` afterwards.
 ## Keep the tape
 
 ```bash
-mcp-arcade receipt receipt.json
+mcp-arcade receipt receipt.json                 # canonical JSON
+mcp-arcade receipt receipt.json --timeline      # one row per wire event, no score
+mcp-arcade tape receipt.json -o tape.json       # input for Ghost on the Menu
 ```
 
-Receipts are `mcp-arcade.bout/v1` JSON. They are the dataset seed for a later Ollama seat. Labels come from the wire. Operator guesses are not ground truth.
+Receipts are `mcp-arcade.bout/v1` JSON. Labels come from the wire. Operator guesses are not ground truth. The timeline is built from an allowlisted view of the receipt that has no fields for scores, the operator's guess, or the contrastive recap, so it cannot show a verdict before you ask.
+
+To play the bout as a shooter, export the tape and open it in [Ghost on the Menu](https://mcp-tool-shop-org.github.io/mcp-arcade-cabinets/play/). The cabinet reads the tape and never sees the score.
+
+## The agent seat
+
+`--agent ollama:<model>` seats a local LLM. It sees the menu, the named task, and inbound notifications as untrusted observations, and it returns tool calls. Arcade still executes them through the recording client, so the oracle is the wire. The seat never grades itself: only tool names and arguments leave the model's reply. On a live server the house withholds harm (`--seat-allow`, default the task tool plus the wrap target). Calibration receipts for the docker fixture live under `docs/proof/calibration.*` in the repo.

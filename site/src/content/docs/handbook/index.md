@@ -19,7 +19,9 @@ Four atoms, one of them holdout. We do not advertise 1,312 of anything.
 3. **The Long Con** (`temporal.rug_pull`) — after N clean calls, is it still the same tool?
 4. **The Ghost on the Menu** (`protocol.unlisted_call`, holdout) — does the server answer a name it never listed?
 
-The connected agent is a **scripted policy**: `naive` follows “also call X” whispers; `task-only` does not. That is the floor for a later optional Ollama seat.
+The connected agent is a **policy**, not a judge: `naive` follows “also call X” whispers; `task-only` does not; `ollama:<model>` seats a local LLM that never grades itself.
+
+The tape of a bout can be played as [Ghost on the Menu](https://mcp-tool-shop-org.github.io/mcp-arcade-cabinets/play/), a short arcade shooter. The instrument scores the wire. The game never does.
 
 ## Dual axis
 

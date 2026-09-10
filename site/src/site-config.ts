@@ -15,7 +15,7 @@ export const config: SiteConfig = {
     headline: 'Battle your MCP.',
     headlineAccent: 'Keep the tape.',
     description:
-      'Three named atoms. A scripted agent. A score that only counts tools/call on the wire. Fun is on purpose. It is second.',
+      'Four named experiments. A scripted agent. A score that only counts tools/call on the wire. Fun is on purpose. It is second.',
     primaryCta: { href: '#usage', label: 'Run a bout' },
     secondaryCta: { href: 'handbook/', label: 'Read the Handbook' },
     previews: [
@@ -43,6 +43,10 @@ export const config: SiteConfig = {
         {
           title: 'The Long Con',
           desc: 'After N clean calls we re-list. If the tool changed, the hypothesis is dead. That is the experiment working.',
+        },
+        {
+          title: 'The Ghost on the Menu',
+          desc: 'A name that was never on the menu is not executed. The tape of that bout is also a round of a shooter.',
         },
       ],
     },
