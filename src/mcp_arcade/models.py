@@ -34,6 +34,7 @@ class AtomTitle(StrEnum):
 class AgentPolicy(StrEnum):
     NAIVE = "naive"
     TASK_ONLY = "task-only"
+    OLLAMA = "ollama"
 
 
 class TargetKind(StrEnum):
@@ -156,6 +157,17 @@ class ContainerInfo(BaseModel):
     force_removed: bool = False
 
 
+class SeatInfo(BaseModel):
+    """Replay facts for the agent seat. Never the prompt body, never model text."""
+
+    model: str
+    temperature: float
+    seed: int
+    num_ctx: int
+    endpoint: str
+    prompt_template_sha256: str
+
+
 class SessionInfo(BaseModel):
     """Facts about the transport session, per fresh process."""
 
@@ -167,6 +179,7 @@ class SessionInfo(BaseModel):
     server_capabilities: dict[str, Any] = Field(default_factory=dict)
     stderr_tail: str = ""
     container: ContainerInfo | None = None
+    seat: SeatInfo | None = None
 
 
 class AtomResult(BaseModel):

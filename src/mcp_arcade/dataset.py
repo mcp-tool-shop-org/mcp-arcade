@@ -39,6 +39,7 @@ PUBLIC_TRAIN_ATOM_IDS: tuple[str, ...] = (
 )
 
 ROW_SCHEMA_ID = "mcp-arcade.row/v1"
+_SEAT_FIELDS = ("model", "temperature", "seed", "num_ctx", "endpoint", "prompt_template_sha256")
 _SPLITS = ("train", "holdout", "proof")
 
 
@@ -115,6 +116,10 @@ def _attack_success(atom: dict[str, Any]) -> bool | None:
 
 def _session(atom: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | None]:
     raw = atom.get("session") or {}
+    seat_raw = raw.get("seat")
+    seat = (
+        {k: seat_raw.get(k) for k in _SEAT_FIELDS} if isinstance(seat_raw, dict) else None
+    )  # allowlisted: a stray field on the receipt cannot become row text
     session = {
         k: raw.get(k)
         for k in (
@@ -133,6 +138,7 @@ def _session(atom: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | Non
         }
     else:
         container = None
+    session["seat"] = seat  # replay facts only; the seat never writes text here
     return session, container
 
 

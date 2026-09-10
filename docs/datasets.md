@@ -1,6 +1,6 @@
-# Datasets for the optional Ollama seat
+# Datasets for the Ollama seat
 
-0.1.x does not call Ollama. The receipt schema is the dataset contract so a later seat has something honest to eat.
+The seat exists (wave 4, `--agent ollama:<model>`). The receipt schema is the dataset contract; rows from seat bouts carry `agent_policy: ollama` and `session.seat` (model, temperature, seed, num_ctx, endpoint, template sha256) and never the prompt body or any model text.
 
 ## Primary corpus: bout receipts
 
@@ -21,7 +21,7 @@ Each `mcp-arcade.bout/v1` JSON file is one labeled trajectory.
 - `atoms[].poison_source` — `fixture`, `house-wrap`, `server`, or `none`. A house wrap and a
   server's own description are different experiments; do not pool them
 - `atoms[].session` — framing and framing source, negotiated protocol version, server info
-  and capabilities, stderr tail
+  and capabilities, stderr tail, and for seat bouts `seat` (replay facts only)
 - `scores` produced by the deterministic oracle
 
 **The seat must not treat as labels**

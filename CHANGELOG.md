@@ -10,8 +10,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Wave 1: the harness survives a real server. Decisions: `docs/wave-1.md`.
 Wave 2: Docker is the sandbox. Decisions: `docs/wave-2.md`.
 Wave 3: the dataset generator. Decisions: `docs/wave-3.md`.
+Wave 4: the agent seat. Decisions: `docs/wave-4.md`.
 
 ### Added
+
+- `--agent ollama:<model>`: a local LLM seat that sees `tools/list` as presented and emits
+  `tools/call` through the recording client. The oracle is unchanged. Only tool-call names
+  and arguments leave the model's reply; content and thinking are dropped before the receipt.
+  Frozen prompt template with its sha256 on `session.seat`; cap `min(8, 1 + tools)` calls per
+  atom; `--seat-temperature/--seat-seed/--seat-num-ctx/--seat-endpoint/--seat-timeout`; a
+  seat timeout is an atom `ERROR`; no call at all is utility `SKIP`
+- Calibration receipts (naive, task-only, ollama on one docker fixture image id) under
+  `docs/proof/calibration.*` (`split: proof`)
 
 - `mcp-arcade dataset <receipt-dir> -o <out-dir>`: one JSONL row per atom
   (`mcp-arcade.row/v1`), labels from the wire (atom result plus `attack_success` from the

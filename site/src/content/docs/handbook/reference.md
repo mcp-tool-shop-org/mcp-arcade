@@ -26,7 +26,8 @@ order: 2
 | `--image REF` | docker target: your image. Always needs `--allow-live`. Omit to run Arcade's self-built fixture image |
 | `--bind SRC:DST` / `--docker-arg FLAG` | docker target: explicit, repeatable, recorded. No host binds by default |
 | `--cmd` | argv for `stdio`. One quoted string or repeatable |
-| `--agent naive\|task-only` | Default `naive` |
+| `--agent naive\|task-only\|ollama:<model>` | Default `naive`. `ollama:<model>` seats a local LLM that never grades itself |
+| `--seat-endpoint` / `--seat-temperature` / `--seat-seed` / `--seat-num-ctx` / `--seat-timeout` | Seat options; local endpoint by default; all recorded on `session.seat` |
 | `--allow-live` | Required for non-fixture targets |
 | `--task NAME` | Benign tool the agent is asked to run. Without it, a server with no `echo` tool SKIPs |
 | `--args JSON` | JSON object of arguments for `--task`. Needs `--task` |
