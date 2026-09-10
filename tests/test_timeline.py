@@ -73,6 +73,8 @@ TAPE_FIELDS = [
     "seat_template_sha256",
     "seat_options",
     "attribution_ok",
+    "task_tools",  # the named task per atom: a fact about what was asked, not a verdict
+    "facts",  # wire-derived facts (followed/held, ghost, menu); never read from scores
 ]
 
 
