@@ -47,6 +47,10 @@ PROOF_RECEIPT = "docker-fixture.naive.receipt.json"
 POISON = "poison.follow_through"
 INSPECT = "inspect.tools_list"
 RUG = "temporal.rug_pull"
+# Runs by default, but held out of the public train split (wave 5, C6): every
+# golden carries one of these rows and it always lands in holdout.jsonl.
+UNLISTED = "protocol.unlisted_call"
+FUTURE = "protocol.future_atom"  # an id the generator has never heard of
 
 # Exactly these, no more: the row schema is a contract with a future seat.
 ROW_KEYS = {
@@ -174,10 +178,14 @@ def leaked_from_calls(row: dict[str, Any]) -> bool:
 def test_goldens_produce_twelve_train_rows(tmp_path: Path) -> None:
     result, manifest = build_and_write(receipt_dir_with_goldens(tmp_path), tmp_path / "out")
     assert len(result.train) == 12
-    assert result.holdout == []
+    # The fourth atom of every golden is held out, so the train shard is still
+    # the public three per receipt.
+    assert len(result.holdout) == 4
+    assert {row["atom_id"] for row in result.holdout} == {UNLISTED}
+    assert UNLISTED not in {row["atom_id"] for row in result.train}
     assert len(result.receipts) == 4
     assert dict(result.dropped) == {}
-    assert manifest["rows"] == {"train": 12, "holdout": 0}
+    assert manifest["rows"] == {"train": 12, "holdout": 4}
     assert manifest["dropped"] == {}
     assert manifest["schema_id"] == "mcp-arcade.dataset/v1"
     assert manifest["row_schema_id"] == dataset.ROW_SCHEMA_ID
@@ -212,6 +220,7 @@ def test_rows_trace_back_to_the_manifest_receipts(tmp_path: Path) -> None:
     for entry in manifest["receipts"]:
         assert entry["reason"] is None
         assert entry["rows_train"] == 3
+        assert entry["rows_holdout"] == 1
         assert entry["split"] == "train"
 
     golden_bout_ids = {golden(name)["bout_id"] for name in GOLDEN_NAMES}
@@ -220,8 +229,9 @@ def test_rows_trace_back_to_the_manifest_receipts(tmp_path: Path) -> None:
 
 def test_agent_policies_are_counted_per_row(tmp_path: Path) -> None:
     result, manifest = build_and_write(receipt_dir_with_goldens(tmp_path), tmp_path / "out")
-    assert dict(result.agent_policies) == {"naive": 6, "task-only": 6}
-    assert manifest["agent_policies"] == {"naive": 6, "task-only": 6}
+    # Counted per row across both shards: four atoms x two receipts per policy.
+    assert dict(result.agent_policies) == {"naive": 8, "task-only": 8}
+    assert manifest["agent_policies"] == {"naive": 8, "task-only": 8}
 
 
 # --------------------------------------------------------------------------
@@ -297,7 +307,7 @@ def test_planted_proof_receipt_yields_no_rows(tmp_path: Path) -> None:
     shutil.copy(PROOF / PROOF_RECEIPT, receipts / PROOF_RECEIPT)
     result, manifest = build_and_write(receipts, tmp_path / "out")
 
-    assert manifest["rows"] == {"train": 12, "holdout": 0}
+    assert manifest["rows"] == {"train": 12, "holdout": 4}
     assert manifest["dropped"] == {"split:proof": 1}
     entry = next(r for r in manifest["receipts"] if r["name"] == PROOF_RECEIPT)
     assert entry["reason"] == "split:proof"
@@ -318,7 +328,7 @@ def test_the_same_proof_bytes_marked_train_do_produce_rows(tmp_path: Path) -> No
         plant(tmp_path / "receipts", PROOF_RECEIPT, receipt).parent, tmp_path / "out"
     )
 
-    assert len(result.train) == 3
+    assert len(result.train) == 3  # a wave-1 proof receipt: the public three
     assert dict(result.dropped) == {}
     image_ids = {row["container"]["image_id"] for row in result.train}
     assert image_ids and all(i.startswith("sha256:") for i in image_ids)
@@ -384,8 +394,11 @@ def test_unknown_atom_id_goes_to_holdout_even_when_the_receipt_says_train(
     tmp_path: Path,
 ) -> None:
     receipt = golden(NAIVE_GOLDEN)
-    atom_of(receipt, RUG)["id"] = "protocol.unlisted_call"
+    # An id the generator has never heard of, and which the receipt does NOT
+    # name in holdout_atom_ids: the routing has to come from the frozen tuple.
+    atom_of(receipt, RUG)["id"] = FUTURE
     assert receipt["dataset"]["split"] == "train"
+    assert FUTURE not in receipt["dataset"]["holdout_atom_ids"]
     _, manifest = build_and_write(
         plant(tmp_path / "receipts", "future.json", receipt).parent, tmp_path / "out"
     )
@@ -393,9 +406,12 @@ def test_unknown_atom_id_goes_to_holdout_even_when_the_receipt_says_train(
     out = tmp_path / "out"
     train_ids = {row["atom_id"] for row in rows_of(out / "train.jsonl")}
     holdout_ids = {row["atom_id"] for row in rows_of(out / "holdout.jsonl")}
-    assert "protocol.unlisted_call" in holdout_ids
-    assert "protocol.unlisted_call" not in train_ids
-    assert manifest["rows"] == {"train": 2, "holdout": 1}
+    assert FUTURE in holdout_ids
+    assert FUTURE not in train_ids
+    # The wave-5 atom rides the same road, by both routes.
+    assert holdout_ids == {FUTURE, UNLISTED}
+    assert train_ids == {INSPECT, POISON}
+    assert manifest["rows"] == {"train": 2, "holdout": 2}
 
 
 def test_receipt_holdout_atom_ids_pull_a_public_atom_out_of_train(tmp_path: Path) -> None:
@@ -403,7 +419,8 @@ def test_receipt_holdout_atom_ids_pull_a_public_atom_out_of_train(tmp_path: Path
     receipt["dataset"]["holdout_atom_ids"] = [RUG]
     result = dataset.build(plant(tmp_path / "receipts", "held.json", receipt).parent)
 
-    assert {row["atom_id"] for row in result.holdout} == {RUG}
+    # RUG is public but named on the receipt; UNLISTED is not public at all.
+    assert {row["atom_id"] for row in result.holdout} == {RUG, UNLISTED}
     assert {row["atom_id"] for row in result.train} == {INSPECT, POISON}
 
 
@@ -415,15 +432,15 @@ def test_split_holdout_sends_every_row_to_the_holdout_shard(tmp_path: Path) -> N
     )
 
     assert result.train == []
-    assert len(result.holdout) == 3
-    assert manifest["rows"] == {"train": 0, "holdout": 3}
-    assert report_named(result, "holdout.json").rows_holdout == 3
+    assert len(result.holdout) == 4
+    assert manifest["rows"] == {"train": 0, "holdout": 4}
+    assert report_named(result, "holdout.json").rows_holdout == 4
 
 
 def test_write_is_deterministic_and_holdout_never_leaks_into_train(tmp_path: Path) -> None:
     receipts = receipt_dir_with_goldens(tmp_path)
     unknown = golden(TASK_ONLY_GOLDEN)
-    atom_of(unknown, RUG)["id"] = "protocol.unlisted_call"
+    atom_of(unknown, RUG)["id"] = FUTURE
     unknown["bout_id"] = "bout_UNKNOWN"
     plant(receipts, "future.json", unknown)
 
@@ -440,11 +457,14 @@ def test_write_is_deterministic_and_holdout_never_leaks_into_train(tmp_path: Pat
 
     train_rows = rows_of(first / "train.jsonl")
     holdout_rows = rows_of(first / "holdout.jsonl")
-    assert len(holdout_rows) == 1
+    # Four goldens plus the planted receipt: one held atom each, plus the
+    # future id on the planted one.
+    assert len(holdout_rows) == 6
+    assert {r["atom_id"] for r in holdout_rows} == {FUTURE, UNLISTED}
     train_keys = {(r["receipt_sha256"], r["atom_id"]) for r in train_rows}
     for row in holdout_rows:
         assert (row["receipt_sha256"], row["atom_id"]) not in train_keys
-    assert "protocol.unlisted_call" not in {r["atom_id"] for r in train_rows}
+    assert {FUTURE, UNLISTED}.isdisjoint({r["atom_id"] for r in train_rows})
 
 
 # --------------------------------------------------------------------------
@@ -476,12 +496,13 @@ def _no_wire() -> dict[str, Any]:
 
 
 def _wire_mismatch() -> dict[str, Any]:
-    """Three atoms, two outbound initializes. The wire cannot be attributed,
+    """Four atoms, three outbound initializes. The wire cannot be attributed,
     so the receipt is dropped whole rather than sliced by guess."""
     receipt = golden()
     wire = receipt["wire"]
+    assert len(initialize_indexes(wire)) == len(receipt["atoms"]) == 4
     del wire[initialize_indexes(wire)[1]]
-    assert len(initialize_indexes(wire)) == 2
+    assert len(initialize_indexes(wire)) == 3
     return receipt
 
 
@@ -526,7 +547,7 @@ def test_one_bad_receipt_does_not_stop_the_good_ones(tmp_path: Path) -> None:
     plant(receipts, "mismatch.json", _wire_mismatch())
 
     _, manifest = build_and_write(receipts, tmp_path / "out")
-    assert manifest["rows"] == {"train": 12, "holdout": 0}
+    assert manifest["rows"] == {"train": 12, "holdout": 4}
     assert manifest["dropped"] == {"invalid:json": 1, "wire_mismatch": 1}
 
 
@@ -609,7 +630,7 @@ def test_cli_builds_the_dataset(tmp_path: Path) -> None:
     result = CliRunner().invoke(app, ["dataset", str(receipts), "-o", str(out)])
     assert result.exit_code == 0, result.output
     assert "train=12" in result.output
-    assert "holdout=0" in result.output
+    assert "holdout=4" in result.output
     assert "receipts=4" in result.output
     assert "Manifest written to" in result.output
 
@@ -675,7 +696,8 @@ def test_malformed_call_entry_is_tallied_not_fatal(tmp_path: Path) -> None:
     assert result.dropped["atom:invalid"] == 1
     bad_report = next(r for r in result.receipts if r.name == "b-bad.json")
     assert bad_report.dropped["atom:invalid"] == 1
-    assert bad_report.rows_train == 2  # the other two atoms of that receipt still count
+    assert bad_report.rows_train == 2  # the other two public atoms still count
+    assert bad_report.rows_holdout == 1  # and the held one is unaffected
     assert len(result.train) == 5
     assert all(
         r["bout_id"] != "bout_malformed" or r["atom_id"] != "poison.follow_through"

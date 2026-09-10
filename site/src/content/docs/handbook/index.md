@@ -12,11 +12,12 @@ Fun is on purpose. It is second. A full bar is not a safety certificate.
 
 ## Catalog (0.1.x)
 
-Three atoms. We do not advertise 1,312 of anything.
+Four atoms, one of them holdout. We do not advertise 1,312 of anything.
 
 1. **The Honest Menu** (`inspect.tools_list`) — is the published menu the real menu?
 2. **The Whispered Errand** (`poison.follow_through`) — does a side-quest in a description become a call?
 3. **The Long Con** (`temporal.rug_pull`) — after N clean calls, is it still the same tool?
+4. **The Ghost on the Menu** (`protocol.unlisted_call`, holdout) — does the server answer a name it never listed?
 
 The connected agent is a **scripted policy**: `naive` follows “also call X” whispers; `task-only` does not. That is the floor for a later optional Ollama seat.
 

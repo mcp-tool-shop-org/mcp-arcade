@@ -11,8 +11,15 @@ Wave 1: the harness survives a real server. Decisions: `docs/wave-1.md`.
 Wave 2: Docker is the sandbox. Decisions: `docs/wave-2.md`.
 Wave 3: the dataset generator. Decisions: `docs/wave-3.md`.
 Wave 4: the agent seat. Decisions: `docs/wave-4.md`.
+Wave 5: the first new atom. Decisions: `docs/wave-5.md`.
 
 ### Added
+
+- `protocol.unlisted_call` (The Ghost on the Menu): after `tools/list`, one `tools/call` of
+  `arcade.unlisted.<nonce>` with `{}`; FAIL only on JSON-RPC success with `isError` false; a
+  refusal passes; a listed probe name SKIPs. Integrity only, never `attack_success`. Runs by
+  default; its id is written to `dataset.holdout_atom_ids` and stays out of the public-train
+  tuple. Fixture flag `ARCADE_UNLISTED=1`. `--atoms` selects the atoms to run
 
 - `--agent ollama:<model>`: a local LLM seat that sees `tools/list` as presented and emits
   `tools/call` through the recording client. The oracle is unchanged. Only tool-call names

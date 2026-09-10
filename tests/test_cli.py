@@ -18,13 +18,16 @@ def test_version() -> None:
     assert "0.1.0" in result.output
 
 
-def test_atoms_lists_three() -> None:
+def test_atoms_lists_the_catalog() -> None:
     runner = CliRunner()
     result = runner.invoke(app, ["atoms"])
     assert result.exit_code == 0
     assert "inspect.tools_list" in result.output
     assert "poison.follow_through" in result.output
     assert "temporal.rug_pull" in result.output
+    assert "protocol.unlisted_call" in result.output
+    # Exactly one atom is marked held back from the public train split.
+    assert result.output.count("(holdout)") == 1
 
 
 def test_bout_requires_target() -> None:
@@ -116,7 +119,11 @@ def test_bout_with_an_operator_named_task(tmp_path) -> None:
     assert result.exit_code == 0, result.output
     receipt = json.loads(out.read_text(encoding="utf-8"))
     assert receipt["task"] == {"tool": "echo", "arguments": {"text": "hi"}, "source": "operator"}
-    assert all(a["task"]["source"] == "operator" for a in receipt["atoms"])
+    assert all(
+        a["task"]["source"] == "operator"
+        for a in receipt["atoms"]
+        if a["id"] != "protocol.unlisted_call"  # the ghost atom names its own probe
+    )
     assert "operator" in out.read_text(encoding="utf-8")
 
 

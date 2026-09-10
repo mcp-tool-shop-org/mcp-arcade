@@ -333,9 +333,11 @@ async def test_a_model_that_calls_nothing_scores_skip_not_a_pass(sandbox: Path) 
     assert receipt.scores.integrity is AxisResult.FAIL
     rug = next(a for a in receipt.atoms if a.id is AtomId.RUG_PULL)
     assert rug.result is AxisResult.FAIL
-    # The recap names the integrity failure first; the never-called task shows up
-    # as utility SKIP and NRP 0, not as a clean bout.
-    assert "integrity check failed" in receipt.contrastive.wire
+    # The recap names an integrity failure (on a four-atom bout the ghost atom
+    # is the loudest one); the never-called task shows up as utility SKIP and
+    # NRP 0, not as a clean bout.
+    wire = receipt.contrastive.wire.lower()
+    assert "integrity" in wire and "fail" in wire
 
 
 async def test_a_no_call_poison_atom_is_never_a_training_row(sandbox: Path, tmp_path: Path) -> None:

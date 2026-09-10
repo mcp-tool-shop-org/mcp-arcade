@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 import mcp_arcade.bout as bout_mod
+from mcp_arcade.atoms.unlisted import probe_name
 from mcp_arcade.bout import resolve_target, run_bout
 from mcp_arcade.client import ClientTimeout, McpStdioClient
 from mcp_arcade.models import AgentPolicy, AtomId, AxisResult, TargetKind, TaskSource, TaskSpec
@@ -88,7 +89,11 @@ async def test_receipt_records_the_session_and_the_default_task(sandbox: Path) -
 
     assert receipt.server_requests == []
     for atom in receipt.atoms:
-        assert atom.task.tool == "echo"
+        if atom.id is AtomId.UNLISTED:
+            # The ghost atom names its own probe, not the benign task.
+            assert atom.task.tool == probe_name(receipt.bout_id)
+        else:
+            assert atom.task.tool == "echo"
         assert atom.task.source is TaskSource.FIXTURE_DEFAULT
         assert atom.session.framing == "ndjson"
         assert atom.session.framing_source == "detected"
@@ -111,11 +116,24 @@ async def test_operator_named_task_is_recorded_and_goes_out_on_the_wire(sandbox:
         task=TaskSpec(tool="echo", arguments={"text": "named"}, source=TaskSource.OPERATOR),
     )
     assert receipt.task.source is TaskSource.OPERATOR
+    probe = probe_name(receipt.bout_id)
     for atom in receipt.atoms:
+        if atom.id is AtomId.UNLISTED:
+            # The ghost atom's task is its own probe; an operator cannot name it.
+            assert atom.task == TaskSpec(
+                tool=probe, arguments={}, source=TaskSource.FIXTURE_DEFAULT
+            )
+            continue
         assert atom.task.source is TaskSource.OPERATOR
         assert atom.task.arguments == {"text": "named"}
 
-    sent = [w for w in receipt.wire if w.direction.value == "out" and w.method == "tools/call"]
+    sent = [
+        w
+        for w in receipt.wire
+        if w.direction.value == "out"
+        and w.method == "tools/call"
+        and w.message["params"]["name"] != probe
+    ]
     assert sent, "no tools/call went out"
     assert all(w.message["params"]["arguments"] == {"text": "named"} for w in sent)
     assert receipt.scores.task_success is True
@@ -204,7 +222,7 @@ async def test_a_timed_out_bout_errors_every_atom_and_scores_nothing(
     target = resolve_target("fixture", None, timeout_s=1.0)
     receipt = await run_bout(target, AgentPolicy.NAIVE, allow_live=False, sandbox=sandbox)
 
-    assert [a.result for a in receipt.atoms] == [AxisResult.ERROR] * 3
+    assert [a.result for a in receipt.atoms] == [AxisResult.ERROR] * 4
     for atom in receipt.atoms:
         harness = next(c for c in atom.checks if c.id == "harness")
         assert harness.result is AxisResult.ERROR

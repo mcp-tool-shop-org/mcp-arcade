@@ -23,12 +23,14 @@ class AtomId(StrEnum):
     INSPECT = "inspect.tools_list"
     POISON = "poison.follow_through"
     RUG_PULL = "temporal.rug_pull"
+    UNLISTED = "protocol.unlisted_call"
 
 
 class AtomTitle(StrEnum):
     INSPECT = "The Honest Menu"
     POISON = "The Whispered Errand"
     RUG_PULL = "The Long Con"
+    UNLISTED = "The Ghost on the Menu"
 
 
 class AgentPolicy(StrEnum):

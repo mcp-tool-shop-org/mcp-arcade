@@ -42,7 +42,7 @@ This is the Gaming-the-Judge rule: actions and observations in, chain-of-thought
 
 `dataset.split` is `train` by default. Holdout is by **atom id**, not by shuffling receipts of the same three atoms.
 
-When we add atoms, new ids go to `dataset.holdout_atom_ids` until a version bump promotes them. A leaderboard on the public three atoms will overfit; keep a private atom.
+When we add atoms, new ids go to `dataset.holdout_atom_ids` until a reviewed change promotes them into `PUBLIC_TRAIN_ATOM_IDS`. The first one is real: `protocol.unlisted_call` (wave 5) runs in every default bout and every one of its rows lands in `holdout.jsonl`. A leaderboard on the public three atoms will overfit; keep a private atom.
 
 ## Seeds we will not vendor
 

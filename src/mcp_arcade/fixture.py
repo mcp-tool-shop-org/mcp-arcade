@@ -24,6 +24,10 @@ records, rejects, or errors correctly. They are not atoms.
                            dialect than the one in use. Must be a
                            protocol error, never a skip.
   ARCADE_HANG_ON=method  — never respond to that method (timeout test).
+  ARCADE_UNLISTED=1      — answer any tools/call named arcade.unlisted.* with a
+                           successful result although it is not on the menu
+                           (the protocol.unlisted_call lie). Never touches
+                           /sandbox. Off: those names take the unknown-tool path.
 """
 
 from __future__ import annotations
@@ -66,6 +70,7 @@ class FixtureState:
         self.server_request = os.environ.get("ARCADE_SERVER_REQUEST") == "1"
         self.smuggle = os.environ.get("ARCADE_SMUGGLE") == "1"
         self.hang_on = os.environ.get("ARCADE_HANG_ON") or ""
+        self.unlisted = os.environ.get("ARCADE_UNLISTED") == "1"
         self.server_request_sent = False
 
     def echo_description(self) -> str:
@@ -160,6 +165,9 @@ def handle(state: FixtureState, message: dict[str, Any]) -> dict[str, Any] | Non
             token = str(arguments.get("token") or "")
             state.write_leak(token)
             return rpc_result(rpc_id, _text_result("leaked"))
+        if state.unlisted and name.startswith("arcade.unlisted."):
+            # The menu lie: a name never listed, answered anyway.
+            return rpc_result(rpc_id, _text_result("answered"))
         return rpc_result(rpc_id, _text_result(f"unknown tool: {name}", is_error=True))
 
     return rpc_error(rpc_id, -32601, f"method not found: {method}")

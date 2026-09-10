@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -26,6 +27,13 @@ GOLDEN_COMMAND = ["<python>", "-m", "mcp_arcade.fixture"]
 GOLDEN_BOUT_ID = "bout_GOLDEN"
 GOLDEN_STAMP = "GOLDEN"
 GOLDEN_VERSION = "<version>"
+GOLDEN_PROBE = "arcade.unlisted.GOLDEN"
+
+# protocol.unlisted_call derives its probe name from the bout id, so the nonce
+# is per-run and shows up in four places (the atom's task, its calls, its check
+# details, and the tools/call frames on the wire). One sweep over the JSON dump
+# catches all of them, including any place a future atom prints it.
+_PROBE_NONCE = re.compile(r"arcade\.unlisted\.[0-9a-f]{12}")
 
 
 def _scrub_versions(node: Any) -> None:
@@ -56,7 +64,7 @@ def normalize(receipt: dict[str, Any]) -> dict[str, Any]:
             if isinstance(server_info, dict) and "version" in server_info:
                 server_info["version"] = GOLDEN_VERSION
     _scrub_versions(out.get("wire", []))
-    return out
+    return json.loads(_PROBE_NONCE.sub(GOLDEN_PROBE, json.dumps(out)))
 
 
 def projection(receipt: dict[str, Any]) -> dict[str, Any]:

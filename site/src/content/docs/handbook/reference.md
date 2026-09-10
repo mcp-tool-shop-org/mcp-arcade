@@ -38,6 +38,7 @@ order: 2
 | `--no-prompt` | Skip the pre-score call (CI) |
 | `-o` / `--output` | Write the receipt |
 | `--sandbox` | Directory for leak files |
+| `--atoms a,b,c` | Atom ids to run, in order. Default: the whole catalog (four) |
 | `--n-clean` | Clean calls before the rug-pull re-list (default 3) |
 
 ## Atoms
