@@ -467,6 +467,29 @@ def docker_leftovers() -> None:
     click.echo("\n".join(names) if names else "none")
 
 
+@app.command("tape")
+@click.argument("path", type=click.Path(exists=True, path_type=Path))
+@click.option("-o", "--output", type=click.Path(path_type=Path), help="Write the tape JSON here.")
+def tape_cmd(path: Path, output: Path | None) -> None:
+    """Export the tape of a receipt as `mcp-arcade.tape/v1` JSON (for cabinets).
+
+    The allowlisted view: wire rows, atoms and their named task, session facts,
+    and wire-derived facts (followed/held, ghost answered/refused, menu
+    changed/stable). Never scores, results, operator_call or contrastive.
+    """
+    from mcp_arcade.receipt import read_receipt
+    from mcp_arcade.timeline import tape_from_receipt, tape_json
+
+    receipt = read_receipt(path)
+    text = tape_json(tape_from_receipt(receipt.model_dump(mode="json")))
+    if output is None:
+        click.echo(text, nl=False)
+        return
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(text, encoding="utf-8")
+    console.print(f"Tape written to {output}")
+
+
 @app.command("fixture")
 def fixture_cmd() -> None:
     """Run the lab MCP server on stdio (used by --target fixture)."""
