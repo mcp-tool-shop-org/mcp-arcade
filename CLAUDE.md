@@ -23,4 +23,6 @@ Wave 4 (2026-09-09): `--agent ollama:<model>` — frozen template hashed onto `s
 
 Wave 5 (2026-09-10): `protocol.unlisted_call` — server answers a name it never listed; integrity only; id in `holdout_atom_ids`; `--atoms`. Decisions: `docs/wave-5.md`.
 
+Wave 6 (2026-09-10): the tape — `receipt --timeline`, one row per wire event, allowlisted `Tape` with no score fields, holdout tagged, Three.js unscheduled. Decisions: `docs/wave-6.md`. All five HANDOFF build items are done; version stays 0.1.0 until the Director says otherwise.
+
 Lock: `docs/study-swarm.dispatch.md`. Dataset: `docs/datasets.md`.

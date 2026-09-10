@@ -12,8 +12,17 @@ Wave 2: Docker is the sandbox. Decisions: `docs/wave-2.md`.
 Wave 3: the dataset generator. Decisions: `docs/wave-3.md`.
 Wave 4: the agent seat. Decisions: `docs/wave-4.md`.
 Wave 5: the first new atom. Decisions: `docs/wave-5.md`.
+Wave 6: the 2D timeline. Decisions: `docs/wave-6.md`.
 
 ### Added
+
+- The tape: one row per wire event (seq, direction, method, id, atom, note), attributed to
+  atoms by outbound `initialize` order; notifications quoted as untrusted SUT strings;
+  server requests and the ghost probe as their own rows; `[no response]` notes. Rendered
+  before the operator's call in `bout` (replacing the atom-summary table) and by
+  `mcp-arcade receipt <file> --timeline` (`--score` adds the house call, `--verbose` adds
+  run_args, docker diff, seat options). Built from an allowlisted `Tape` with no fields for
+  scores, results, `operator_call` or `contrastive` (C5)
 
 - `protocol.unlisted_call` (The Ghost on the Menu): after `tools/list`, one `tools/call` of
   `arcade.unlisted.<nonce>` with `{}`; FAIL only on JSON-RPC success with `isError` false; a
