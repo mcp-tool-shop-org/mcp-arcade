@@ -319,7 +319,7 @@ async def test_naive_docker_fixture_bout_is_the_host_verdict_in_a_container(
     tmp_path: Path,
 ) -> None:
     """The whole packet on one bout: same verdicts as the host fixture, the leak
-    inside the container's tmpfs, three named containers, none left over."""
+    inside the container's tmpfs, one named container per atom, none left over."""
     sandbox = tmp_path / "box"
     sandbox.mkdir()
     target = resolve_target("docker", None, timeout_s=60.0)
@@ -331,13 +331,16 @@ async def test_naive_docker_fixture_bout_is_the_host_verdict_in_a_container(
         AxisResult.PASS,
         AxisResult.FAIL,
         AxisResult.FAIL,
+        AxisResult.FAIL,  # the ghost: ARCADE_UNLISTED rides in on -e
     ]
     assert receipt.scores.attack_success is True
     assert receipt.scores.task_success is True
     assert receipt.scores.nrp == 0.0
     assert receipt.scores.integrity is AxisResult.FAIL
 
-    for atom, short in zip(receipt.atoms, ("inspect", "poison", "rugpull"), strict=True):
+    for atom, short in zip(
+        receipt.atoms, ("inspect", "poison", "rugpull", "unlisted"), strict=True
+    ):
         assert_container_shape(atom, receipt.bout_id, short, fixture=True)
         assert atom.session.container.image == docker.FIXTURE_TAG
         assert atom.session.container.sandbox_method == "exec-tar"
@@ -346,11 +349,11 @@ async def test_naive_docker_fixture_bout_is_the_host_verdict_in_a_container(
         assert cid is not None and len(cid) == 64
         assert set(cid) <= set(string.hexdigits.lower())
 
-    # One image resolved before atom 1: the three atoms are the same SUT.
+    # One image resolved before atom 1: every atom is the same SUT.
     ids = {a.session.container.image_id for a in receipt.atoms}
     assert len(ids) == 1
     names = {a.session.container.name for a in receipt.atoms}
-    assert len(names) == 3
+    assert len(names) == len(receipt.atoms) == 4
     assert all(receipt.bout_id.removeprefix("bout_") in n for n in names)
 
     # The leak landed in the container's tmpfs and Arcade read it back out.
@@ -426,7 +429,7 @@ async def test_a_look_alike_fixture_tag_is_refused(tmp_path: Path) -> None:
 @pytest.mark.docker
 async def test_a_live_image_that_is_not_an_mcp_server_errors_every_atom(tmp_path: Path) -> None:
     """--allow-live is permission to try, not a pass. A container that prints
-    'hello' is a harness ERROR three times, NRP 0, and no leftovers."""
+    'hello' is a harness ERROR on every atom, NRP 0, and no leftovers."""
     ensure_base_image(BASE_IMAGE)
     sandbox = tmp_path / "box"
     sandbox.mkdir()
@@ -439,7 +442,7 @@ async def test_a_live_image_that_is_not_an_mcp_server_errors_every_atom(tmp_path
 
     receipt = await run_bout(target, AgentPolicy.NAIVE, allow_live=True, sandbox=sandbox)
 
-    assert [a.result for a in receipt.atoms] == [AxisResult.ERROR] * 3
+    assert [a.result for a in receipt.atoms] == [AxisResult.ERROR] * 4
     for atom in receipt.atoms:
         harness = next(c for c in atom.checks if c.id == "harness")
         assert harness.result is AxisResult.ERROR
@@ -463,7 +466,7 @@ async def test_a_live_image_that_is_not_an_mcp_server_errors_every_atom(tmp_path
 async def test_digest_drift_between_atoms_errors_the_bout(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """A floating tag that moves mid-bout means the three atoms are not the same
+    """A floating tag that moves mid-bout means the atoms are not the same
     SUT. check_drift refuses; it never warns and carries on."""
     target = resolve_target("docker", None, timeout_s=30.0)
     plan = docker.prepare(target, allow_live=False)
@@ -477,7 +480,7 @@ async def test_digest_drift_between_atoms_errors_the_bout(
 
     receipt = await run_bout(target, AgentPolicy.NAIVE, allow_live=False, sandbox=tmp_path)
 
-    assert [a.result for a in receipt.atoms] == [AxisResult.ERROR] * 3
+    assert [a.result for a in receipt.atoms] == [AxisResult.ERROR] * 4
     for atom in receipt.atoms:
         harness = next(c for c in atom.checks if c.id == "harness")
         assert "drifted" in harness.detail
@@ -646,7 +649,7 @@ async def test_unavailable_sandbox_snapshot_is_an_atom_error(monkeypatch, tmp_pa
     monkeypatch.setattr(docker, "snapshot", _unavailable)
     target = resolve_target("docker", None, timeout_s=60)
     receipt = await run_bout(target, AgentPolicy.TASK_ONLY, allow_live=False, sandbox=tmp_path)
-    assert [a.result.value for a in receipt.atoms] == ["error", "error", "error"]
+    assert [a.result.value for a in receipt.atoms] == ["error"] * 4
     for atom in receipt.atoms:
         harness = next(c for c in atom.checks if c.id == "harness")
         assert "snapshot unavailable" in harness.detail

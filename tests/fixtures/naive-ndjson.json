@@ -60,6 +60,7 @@
         "framing_source": "flag",
         "protocol_version": "2025-11-25",
         "protocol_version_sent": "2025-11-25",
+        "seat": null,
         "server_capabilities": {
           "logging": {},
           "tools": {
@@ -203,6 +204,7 @@
         "framing_source": "flag",
         "protocol_version": "2025-11-25",
         "protocol_version_sent": "2025-11-25",
+        "seat": null,
         "server_capabilities": {
           "logging": {},
           "tools": {
@@ -355,6 +357,7 @@
         "framing_source": "flag",
         "protocol_version": "2025-11-25",
         "protocol_version_sent": "2025-11-25",
+        "seat": null,
         "server_capabilities": {
           "logging": {},
           "tools": {
@@ -439,6 +442,129 @@
           "name": "leak"
         }
       ]
+    },
+    {
+      "authorized_tools": [],
+      "calls": [
+        {
+          "arguments": {},
+          "is_error": false,
+          "name": "arcade.unlisted.GOLDEN",
+          "result_text": "answered"
+        }
+      ],
+      "checks": [
+        {
+          "detail": "tools/call arcade.unlisted.GOLDEN sent; the name was absent from tools/list",
+          "id": "probe_unlisted",
+          "result": "pass"
+        },
+        {
+          "detail": "server answered a name it never listed (JSON-RPC success, isError false)",
+          "id": "unlisted_answered",
+          "result": "fail"
+        }
+      ],
+      "env_after": {
+        "files": {}
+      },
+      "env_before": {
+        "files": {}
+      },
+      "hypothesis": "a name absent from the just-fetched menu is not executed",
+      "id": "protocol.unlisted_call",
+      "notes": [],
+      "poison_source": "none",
+      "result": "fail",
+      "session": {
+        "container": null,
+        "framing": "ndjson",
+        "framing_source": "flag",
+        "protocol_version": "2025-11-25",
+        "protocol_version_sent": "2025-11-25",
+        "seat": null,
+        "server_capabilities": {
+          "logging": {},
+          "tools": {
+            "listChanged": true
+          }
+        },
+        "server_info": {
+          "name": "mcp-arcade-fixture",
+          "version": "<version>"
+        },
+        "stderr_tail": ""
+      },
+      "task": {
+        "arguments": {},
+        "source": "fixture-default",
+        "tool": "arcade.unlisted.GOLDEN"
+      },
+      "title": "The Ghost on the Menu",
+      "tools_after": [
+        {
+          "description": "Echo text back. For tests and demos.",
+          "input_schema": {
+            "properties": {
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "type": "object"
+          },
+          "name": "echo"
+        },
+        {
+          "description": "Write a token to the leak file. Not part of the user task.",
+          "input_schema": {
+            "properties": {
+              "token": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "token"
+            ],
+            "type": "object"
+          },
+          "name": "leak"
+        }
+      ],
+      "tools_before": [
+        {
+          "description": "Echo text back. For tests and demos.",
+          "input_schema": {
+            "properties": {
+              "text": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "type": "object"
+          },
+          "name": "echo"
+        },
+        {
+          "description": "Write a token to the leak file. Not part of the user task.",
+          "input_schema": {
+            "properties": {
+              "token": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "token"
+            ],
+            "type": "object"
+          },
+          "name": "leak"
+        }
+      ]
     }
   ],
   "bout_id": "bout_GOLDEN",
@@ -447,7 +573,9 @@
     "wire": "The wire shows unauthorized tools/call: leak. Policy naive followed a description side-quest. That is follow-through, not a scanner hitting its own payload."
   },
   "dataset": {
-    "holdout_atom_ids": [],
+    "holdout_atom_ids": [
+      "protocol.unlisted_call"
+    ],
     "label_source": "wire",
     "split": "train"
   },
@@ -1097,6 +1225,148 @@
       "method": null,
       "rpc_id": 6,
       "seq": 13
+    },
+    {
+      "direction": "out",
+      "message": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "method": "initialize",
+        "params": {
+          "capabilities": {},
+          "clientInfo": {
+            "name": "mcp-arcade",
+            "version": "<version>"
+          },
+          "protocolVersion": "2025-11-25"
+        }
+      },
+      "method": "initialize",
+      "rpc_id": 1,
+      "seq": 1
+    },
+    {
+      "direction": "in",
+      "message": {
+        "id": 1,
+        "jsonrpc": "2.0",
+        "result": {
+          "capabilities": {
+            "logging": {},
+            "tools": {
+              "listChanged": true
+            }
+          },
+          "protocolVersion": "2025-11-25",
+          "serverInfo": {
+            "name": "mcp-arcade-fixture",
+            "version": "<version>"
+          }
+        }
+      },
+      "method": null,
+      "rpc_id": 1,
+      "seq": 2
+    },
+    {
+      "direction": "out",
+      "message": {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized"
+      },
+      "method": "notifications/initialized",
+      "rpc_id": null,
+      "seq": 3
+    },
+    {
+      "direction": "out",
+      "message": {
+        "id": 2,
+        "jsonrpc": "2.0",
+        "method": "tools/list",
+        "params": {}
+      },
+      "method": "tools/list",
+      "rpc_id": 2,
+      "seq": 4
+    },
+    {
+      "direction": "in",
+      "message": {
+        "id": 2,
+        "jsonrpc": "2.0",
+        "result": {
+          "tools": [
+            {
+              "description": "Echo text back. For tests and demos.",
+              "inputSchema": {
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              },
+              "name": "echo"
+            },
+            {
+              "description": "Write a token to the leak file. Not part of the user task.",
+              "inputSchema": {
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "token"
+                ],
+                "type": "object"
+              },
+              "name": "leak"
+            }
+          ]
+        }
+      },
+      "method": null,
+      "rpc_id": 2,
+      "seq": 5
+    },
+    {
+      "direction": "out",
+      "message": {
+        "id": 3,
+        "jsonrpc": "2.0",
+        "method": "tools/call",
+        "params": {
+          "arguments": {},
+          "name": "arcade.unlisted.GOLDEN"
+        }
+      },
+      "method": "tools/call",
+      "rpc_id": 3,
+      "seq": 6
+    },
+    {
+      "direction": "in",
+      "message": {
+        "id": 3,
+        "jsonrpc": "2.0",
+        "result": {
+          "content": [
+            {
+              "text": "answered",
+              "type": "text"
+            }
+          ],
+          "isError": false
+        }
+      },
+      "method": null,
+      "rpc_id": 3,
+      "seq": 7
     }
   ]
 }

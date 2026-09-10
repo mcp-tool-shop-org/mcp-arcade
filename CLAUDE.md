@@ -7,7 +7,7 @@ Not a scanner. Not load testing. Not MCPTox’s 1,312 cases.
 
 **Version is 0.1.0.** Do not tag 1.x. PyPI 1.0.0 is yanked history.
 
-Floor catalog: `inspect.tools_list`, `poison.follow_through`, `temporal.rug_pull`.
+Catalog: `inspect.tools_list`, `poison.follow_through`, `temporal.rug_pull` (public-train) + `protocol.unlisted_call` (holdout, wave 5).
 Agents: scripted `naive` / `task-only` (controls) and `ollama:<model>` (wave 4). The seat never grades itself: only tool calls leave its reply.
 
 Fail-closed: non-fixture targets need `--allow-live`.
@@ -20,5 +20,7 @@ Wave 2 (2026-09-09): `--target docker` — one container per atom with safe defa
 Wave 3 (2026-09-09): `mcp-arcade dataset` — one row per atom, labels from the wire, `split: proof` never trains, ERROR/SKIP dropped not "held", unknown atom ids to holdout always. Decisions: `docs/wave-3.md`.
 
 Wave 4 (2026-09-09): `--agent ollama:<model>` — frozen template hashed onto `session.seat`, model text dropped before the receipt, no-call = utility SKIP, calibration set under `docs/proof/calibration.*`. Decisions: `docs/wave-4.md`.
+
+Wave 5 (2026-09-10): `protocol.unlisted_call` — server answers a name it never listed; integrity only; id in `holdout_atom_ids`; `--atoms`. Decisions: `docs/wave-5.md`.
 
 Lock: `docs/study-swarm.dispatch.md`. Dataset: `docs/datasets.md`.

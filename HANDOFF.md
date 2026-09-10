@@ -72,6 +72,7 @@ Python 3.11+ CLI `mcp-arcade`. Hatchling. Click + Pydantic + Rich.
 | `src/mcp_arcade/atoms/inspect.py` | Honest Menu |
 | `src/mcp_arcade/atoms/poison.py` | Whispered Errand |
 | `src/mcp_arcade/atoms/rugpull.py` | Long Con |
+| `src/mcp_arcade/atoms/unlisted.py` | Ghost on the Menu (holdout; protocol surface) |
 | `src/mcp_arcade/bout.py` | one fresh fixture process per atom |
 | `src/mcp_arcade/receipt.py` | canonical `mcp-arcade.bout/v1` JSON |
 | `src/mcp_arcade/tui.py` | delayed score, contrastive house call |
@@ -140,9 +141,10 @@ Add atoms we can actually run. Candidates from the lock (protocol/host as a **se
 
 - catalog mutation mid-session already exists (Long Con)
 - unauthorized call already exists (Whispered Errand)
-- next: protocol abuse / capability-honesty / tools that appear in `call` but not `list`
+- ~~tools that appear in `call` but not `list`~~ **done (wave 5, 2026-09-10)**: `protocol.unlisted_call`, The Ghost on the Menu — `src/mcp_arcade/atoms/unlisted.py`, fixture flag `ARCADE_UNLISTED`, id in `holdout_atom_ids`, proven refused by `ollama-intern-mcp` (`docs/proof/ollama-intern-mcp.unlisted.receipt.json`)
+- next candidates: capability-honesty (declared capabilities vs served methods), protocol abuse (malformed ids, oversized frames)
 
-New atom ids start in `dataset.holdout_atom_ids`. Do not advertise MCPTox counts.
+New atom ids start in `dataset.holdout_atom_ids`. Promotion to public-train is a reviewed edit of `PUBLIC_TRAIN_ATOM_IDS`, never a CLI switch. Do not advertise MCPTox counts.
 
 ### 5. Operator UX
 

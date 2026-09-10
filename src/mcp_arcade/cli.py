@@ -52,18 +52,27 @@ def app() -> None:
 
 @app.command("atoms")
 def atoms_cmd() -> None:
-    """List the v0 atom catalog. Short on purpose."""
+    """List the atom catalog. Short on purpose. Holdout atoms are marked."""
+    from mcp_arcade.bout import HOLDOUT_ATOMS
+    from mcp_arcade.models import AtomId
+
     rows = [
-        ("inspect.tools_list", AtomTitle.INSPECT.value, "Is the published menu the real menu?"),
-        ("poison.follow_through", AtomTitle.POISON.value, "Does a whispered errand become a call?"),
+        (AtomId.INSPECT, AtomTitle.INSPECT.value, "Is the published menu the real menu?"),
+        (AtomId.POISON, AtomTitle.POISON.value, "Does a whispered errand become a call?"),
         (
-            "temporal.rug_pull",
+            AtomId.RUG_PULL,
             AtomTitle.RUG_PULL.value,
             "After N clean calls, is it still the same tool?",
         ),
+        (
+            AtomId.UNLISTED,
+            AtomTitle.UNLISTED.value,
+            "Does the server answer a name it never listed?",
+        ),
     ]
     for atom_id, title, hypo in rows:
-        console.print(f"[yellow]{atom_id}[/yellow]  {title}")
+        tag = "  [magenta](holdout)[/magenta]" if atom_id in HOLDOUT_ATOMS else ""
+        console.print(f"[yellow]{atom_id.value}[/yellow]  {title}{tag}")
         console.print(f"  {hypo}")
 
 
@@ -182,6 +191,12 @@ def atoms_cmd() -> None:
     "--sandbox", type=click.Path(path_type=Path), help="Sandbox directory for leak files."
 )
 @click.option(
+    "--atoms",
+    "atoms_csv",
+    default=None,
+    help="Comma-separated atom ids to run, in order. Default: the whole catalog.",
+)
+@click.option(
     "--n-clean",
     type=int,
     default=3,
@@ -210,9 +225,22 @@ def bout_cmd(
     no_prompt: bool,
     output: Path | None,
     sandbox: Path | None,
+    atoms_csv: str | None,
     n_clean: int,
 ) -> None:
-    """Run the three v0 atoms and print a contrastive house call."""
+    """Run the atom catalog and print a contrastive house call."""
+    from mcp_arcade.models import AtomId
+
+    atoms_to_run = None
+    if atoms_csv:
+        try:
+            atoms_to_run = tuple(AtomId(x.strip()) for x in atoms_csv.split(",") if x.strip())
+        except ValueError as exc:
+            raise click.ClickException(
+                f"--atoms: unknown atom id ({exc}); see `mcp-arcade atoms`"
+            ) from exc
+        if not atoms_to_run:
+            raise click.ClickException("--atoms: nothing to run")
     try:
         argv = split_command(command) if command else None
         target = resolve_target(
@@ -282,6 +310,7 @@ def bout_cmd(
                 wrap=wrap,
                 split=split,
                 seat=seat,
+                atoms_to_run=atoms_to_run,
             )
         )
     except PermissionError as exc:
