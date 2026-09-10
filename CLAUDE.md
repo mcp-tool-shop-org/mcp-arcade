@@ -25,4 +25,6 @@ Wave 5 (2026-09-10): `protocol.unlisted_call` — server answers a name it never
 
 Wave 6 (2026-09-10): the tape — `receipt --timeline`, one row per wire event, allowlisted `Tape` with no score fields, holdout tagged, Three.js unscheduled. Decisions: `docs/wave-6.md`. All five HANDOFF build items are done; version stays 0.1.0 until the Director says otherwise.
 
+Wave 7 (2026-09-10): live-fire packet `docs/live-fire.md`; `--wrap-target` required on live wraps; `--seat-allow` on live seat bouts (attempts outside are recorded as `sent: false`, never sent); `tests/test_proofs.py` guards committed receipts against host paths.
+
 Lock: `docs/study-swarm.dispatch.md`. Dataset: `docs/datasets.md`.

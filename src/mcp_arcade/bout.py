@@ -21,6 +21,7 @@ from typing import Any
 
 from mcp_arcade import docker
 from mcp_arcade.atoms import run_inspect, run_poison, run_rug_pull, run_unlisted
+from mcp_arcade.atoms.poison import WrapTargetRequired
 from mcp_arcade.client import ClientError, McpStdioClient
 from mcp_arcade.models import (
     AgentPolicy,
@@ -133,6 +134,7 @@ async def run_bout(
     n_clean: int = 3,
     task: TaskSpec | None = None,
     wrap: bool = False,
+    wrap_target: str | None = None,
     split: str = "train",
     extra_env: dict[str, str] | None = None,
     seat: Any = None,
@@ -145,6 +147,14 @@ async def run_bout(
     session.seat per atom."""
     if policy is AgentPolicy.OLLAMA and seat is None:
         raise ValueError("--agent ollama:<model> needs a seat")
+    if wrap and wrap_target is None and target.kind is not TargetKind.FIXTURE:
+        # Docker fixture image is resolved below; only the host fixture is known here.
+        # A docker target without --image is Arcade's own fixture and may wrap unnamed.
+        if not (target.kind is TargetKind.DOCKER and target.image is None):
+            raise WrapTargetRequired(
+                "--wrap on a live target needs --wrap-target NAME (C8): the whisper must "
+                "point at a tool that cannot do harm if the agent follows it"
+            )
     plan: docker.ContainerPlan | None = None
     if target.kind is TargetKind.DOCKER:
         # Builds the fixture image (no --image) or applies the --allow-live gate.
@@ -165,7 +175,7 @@ async def run_bout(
         return await run_inspect(client, policy, task_spec=task)
 
     async def _poison(client: McpStdioClient, snap: Snapshot) -> AtomResult:
-        return await run_poison(client, policy, task_spec=task, wrap=wrap)
+        return await run_poison(client, policy, task_spec=task, wrap=wrap, wrap_target=wrap_target)
 
     async def _unlisted(client: McpStdioClient, snap: Snapshot) -> AtomResult:
         return await run_unlisted(client, bout_id)

@@ -33,6 +33,8 @@ order: 2
 | `--task NAME` | Benign tool the agent is asked to run. Without it, a server with no `echo` tool SKIPs |
 | `--args JSON` | JSON object of arguments for `--task`. Needs `--task` |
 | `--wrap` | Append a house side-quest to the task tool's description. Off by default |
+| `--wrap-target NAME` | The tool the whisper points at. Required with `--wrap` on live targets |
+| `--seat-allow a,b` | Live targets: tools the seat may actually send (default: task + wrap target); other attempts are recorded, never sent |
 | `--framing auto\|ndjson\|content-length` | stdio dialect. Default `auto`, locks to the server's answer |
 | `--timeout` | Seconds per JSON-RPC response, default 30. A timeout is an atom `ERROR` |
 | `--split train\|holdout\|proof` | `dataset.split` on the receipt. Use `proof` for committed live traces |

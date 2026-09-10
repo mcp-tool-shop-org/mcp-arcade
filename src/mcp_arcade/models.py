@@ -94,10 +94,15 @@ class WireEvent(BaseModel):
 
 
 class ToolCall(BaseModel):
+    """A tools/call the agent asked for. `sent` is False when the house refused to
+    put it on the wire (live seat allowlist, C8): the attempt is still recorded
+    and still counts as unauthorized; only the harm is withheld."""
+
     name: str
     arguments: dict[str, Any] = Field(default_factory=dict)
     is_error: bool = False
     result_text: str = ""
+    sent: bool = True
 
 
 class ToolInfo(BaseModel):

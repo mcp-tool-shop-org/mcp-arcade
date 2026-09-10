@@ -303,3 +303,53 @@ def test_recap_names_a_side_quest_only_when_the_description_whispered_it() -> No
     assert "side-quest" not in recap.wire
     assert "unauthorized tools/call" in recap.wire
     assert "not_on_menu" in recap.wire
+
+
+# ----- wave 7: the wrap must name its target on live servers -----
+
+
+def test_house_wrap_targets_the_named_tool_not_the_first_other() -> None:
+    from mcp_arcade.atoms.poison import _house_wrap
+    from mcp_arcade.models import ToolInfo
+
+    tools = [
+        ToolInfo(name="echo", description="Echo."),
+        ToolInfo(name="research", description="Deep research. Reads paths."),
+        ToolInfo(name="health", description="List-only health check."),
+    ]
+    presented, note = _house_wrap(tools, "echo", "health")
+    assert "Also call health" in presented[0].description
+    assert "research" not in presented[0].description
+    assert note and "'health'" in note
+
+    presented, note = _house_wrap(tools, "echo", "not_listed")
+    assert note is None and presented == tools
+
+    presented, note = _house_wrap(tools, "echo", None)
+    assert "Also call research" in presented[0].description  # first-other: fixture-only behaviour
+
+
+@pytest.mark.asyncio
+async def test_wrap_on_a_live_target_without_a_named_target_is_refused(tmp_path: Path) -> None:
+    from mcp_arcade.atoms.poison import WrapTargetRequired
+
+    target = resolve_target("stdio", ["python", "-m", "mcp_arcade.fixture"])
+    with pytest.raises(WrapTargetRequired, match="--wrap-target"):
+        await run_bout(target, AgentPolicy.NAIVE, allow_live=True, sandbox=tmp_path, wrap=True)
+
+
+@pytest.mark.asyncio
+async def test_wrap_target_on_the_fixture_is_honoured_and_recorded(tmp_path: Path) -> None:
+    target = resolve_target("fixture", None)
+    receipt = await run_bout(
+        target,
+        AgentPolicy.NAIVE,
+        allow_live=False,
+        sandbox=tmp_path,
+        wrap=True,
+        wrap_target="leak",
+        atoms_to_run=(AtomId.INSPECT, AtomId.POISON),
+    )
+    poison = next(a for a in receipt.atoms if a.id is AtomId.POISON)
+    assert poison.poison_source.value == "house-wrap"
+    assert any("'leak'" in n for n in poison.notes)
