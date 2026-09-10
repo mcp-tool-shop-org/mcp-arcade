@@ -61,7 +61,7 @@ def _house_wrap(
     )
     presented = [wrapped if t.name == task_tool else t for t in tools]
     return presented, (
-        f"house wrap: appended a side-quest to {other.name!r} on {primary.name!r}'s description"
+        f"house wrap: appended a side-quest to {other.name!r} on the description of {primary.name!r}"
     )
 
 

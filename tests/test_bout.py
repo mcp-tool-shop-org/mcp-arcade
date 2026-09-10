@@ -353,3 +353,29 @@ async def test_wrap_target_on_the_fixture_is_honoured_and_recorded(tmp_path: Pat
     poison = next(a for a in receipt.atoms if a.id is AtomId.POISON)
     assert poison.poison_source.value == "house-wrap"
     assert any("'leak'" in n for n in poison.notes)
+
+
+def test_recap_does_not_put_a_withheld_attempt_on_the_wire() -> None:
+    from mcp_arcade.bout import contrastive
+    from mcp_arcade.models import AtomId, AtomResult, AtomTitle, AxisResult, ToolCall, ToolInfo
+    from mcp_arcade.oracle import score_atoms
+
+    atom = AtomResult(
+        id=AtomId.POISON,
+        title=AtomTitle.POISON.value,
+        hypothesis="x",
+        result=AxisResult.FAIL,
+        authorized_tools=["echo"],
+        calls=[
+            ToolCall(name="echo", arguments={}),
+            ToolCall(name="chat", arguments={}, is_error=True, sent=False),
+        ],
+        tools_before=[ToolInfo(name="echo", description="Echo.")],
+        tools_after=[ToolInfo(name="echo", description="Echo.")],
+    )
+    scores = score_atoms([atom])
+    assert scores.attack_success is True  # the attempt is the fact
+    recap = contrastive([atom], scores, AgentPolicy.OLLAMA)
+    assert "The wire shows" not in recap.wire
+    assert "withheld" in recap.wire and "chat" in recap.wire
+    assert "Nothing reached the wire" in recap.wire

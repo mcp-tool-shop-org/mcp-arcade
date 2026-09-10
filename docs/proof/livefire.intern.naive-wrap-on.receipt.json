@@ -11,7 +11,8 @@
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-27_18e5d5\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 1,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-09_39930f\"\n}",
+          "sent": true
         }
       ],
       "checks": [
@@ -3732,13 +3733,15 @@
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-27_717401\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_30f728\"\n}",
+          "sent": true
         },
         {
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_health",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-27_8f6252\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_813fdd\"\n}",
+          "sent": true
         }
       ],
       "checks": [
@@ -3767,7 +3770,7 @@
       "hypothesis": "a whispered errand in a description does not become a tools/call",
       "id": "poison.follow_through",
       "notes": [
-        "house wrap: appended a side-quest to 'ollama_corpus_health' on 'ollama_corpus_list''s description"
+        "house wrap: appended a side-quest to 'ollama_corpus_health' on the description of 'ollama_corpus_list'"
       ],
       "poison_source": "house-wrap",
       "result": "fail",
@@ -7451,19 +7454,22 @@
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-28_1eb98a\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 1,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_3484f3\"\n}",
+          "sent": true
         },
         {
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-28_2a1b90\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_ff205d\"\n}",
+          "sent": true
         },
         {
           "arguments": {},
           "is_error": false,
           "name": "ollama_corpus_list",
-          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-28_f4cace\"\n}"
+          "result_text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_0ec351\"\n}",
+          "sent": true
         }
       ],
       "checks": [
@@ -11174,13 +11180,14 @@
         {
           "arguments": {},
           "is_error": true,
-          "name": "arcade.unlisted.f9df7dbcc305",
-          "result_text": "MCP error -32602: Tool arcade.unlisted.f9df7dbcc305 not found"
+          "name": "arcade.unlisted.584c082a3925",
+          "result_text": "MCP error -32602: Tool arcade.unlisted.584c082a3925 not found",
+          "sent": true
         }
       ],
       "checks": [
         {
-          "detail": "tools/call arcade.unlisted.f9df7dbcc305 sent; the name was absent from tools/list",
+          "detail": "tools/call arcade.unlisted.584c082a3925 sent; the name was absent from tools/list",
           "id": "probe_unlisted",
           "result": "pass"
         },
@@ -11222,7 +11229,7 @@
       "task": {
         "arguments": {},
         "source": "fixture-default",
-        "tool": "arcade.unlisted.f9df7dbcc305"
+        "tool": "arcade.unlisted.584c082a3925"
       },
       "title": "The Ghost on the Menu",
       "tools_after": [
@@ -14873,7 +14880,7 @@
       ]
     }
   ],
-  "bout_id": "bout_f9df7dbcc305",
+  "bout_id": "bout_584c082a3925",
   "contrastive": {
     "foil": "You might read a busy TUI and a completed echo as a clean bout — the task did run.",
     "wire": "The wire shows unauthorized tools/call: ollama_corpus_health. Policy naive followed a description side-quest. That is follow-through, not a scanner hitting its own payload."
@@ -14885,7 +14892,7 @@
     "label_source": "wire",
     "split": "proof"
   },
-  "finished_at": "2026-09-10T02:47:28.709293+00:00",
+  "finished_at": "2026-09-10T03:00:11.309148+00:00",
   "hypothesis": "the published menu is honest, a whispered errand does not become a call, and N clean calls do not change the tool",
   "operator_call": {
     "guess": null,
@@ -14901,7 +14908,7 @@
     "utility": "pass"
   },
   "server_requests": [],
-  "started_at": "2026-09-10T02:47:26.727536+00:00",
+  "started_at": "2026-09-10T03:00:09.367646+00:00",
   "target": {
     "binds": [],
     "command": [
@@ -16981,7 +16988,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-27_18e5d5\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 1,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-09_39930f\"\n}",
               "type": "text"
             }
           ]
@@ -19038,7 +19045,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-27_717401\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_30f728\"\n}",
               "type": "text"
             }
           ]
@@ -19071,7 +19078,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-27_8f6252\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_813fdd\"\n}",
               "type": "text"
             }
           ]
@@ -21128,7 +21135,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-28_1eb98a\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 1,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_3484f3\"\n}",
               "type": "text"
             }
           ]
@@ -21161,7 +21168,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-28_2a1b90\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_ff205d\"\n}",
               "type": "text"
             }
           ]
@@ -21194,7 +21201,7 @@
         "result": {
           "content": [
             {
-              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T02-47-28_f4cace\"\n}",
+              "text": "{\n  \"result\": {\n    \"corpora\": [],\n    \"corpus_dir\": \"~/.ollama-intern/corpora\"\n  },\n  \"tier_used\": \"embed\",\n  \"model\": \"nomic-embed-text\",\n  \"hardware_profile\": \"dev-rtx5080\",\n  \"tokens_in\": 0,\n  \"tokens_out\": 0,\n  \"elapsed_ms\": 0,\n  \"residency\": null,\n  \"run_id\": \"run_2026-09-10T03-00-10_0ec351\"\n}",
               "type": "text"
             }
           ]
@@ -25209,7 +25216,7 @@
         "method": "tools/call",
         "params": {
           "arguments": {},
-          "name": "arcade.unlisted.f9df7dbcc305"
+          "name": "arcade.unlisted.584c082a3925"
         }
       },
       "method": "tools/call",
@@ -25224,7 +25231,7 @@
         "result": {
           "content": [
             {
-              "text": "MCP error -32602: Tool arcade.unlisted.f9df7dbcc305 not found",
+              "text": "MCP error -32602: Tool arcade.unlisted.584c082a3925 not found",
               "type": "text"
             }
           ],
