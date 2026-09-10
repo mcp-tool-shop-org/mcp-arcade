@@ -743,3 +743,13 @@ def test_cli_help_shows_the_local_endpoint_as_the_only_default() -> None:
     for flag in ("--seat-temperature", "--seat-seed", "--seat-num-ctx", "--seat-timeout"):
         assert flag in flat
     assert "ollama:<model>" in flat
+
+
+def test_agent_ollama_without_a_model_is_rejected_at_parse_time() -> None:
+    with pytest.raises(ValueError, match="needs a model name"):
+        seat.parse_agent_spec("ollama")
+    result = CliRunner().invoke(
+        app, ["bout", "--target", "fixture", "--agent", "ollama", "--no-prompt"]
+    )
+    assert result.exit_code != 0
+    assert "needs a model name" in result.output

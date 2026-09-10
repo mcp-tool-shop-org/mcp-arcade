@@ -79,10 +79,10 @@ class SeatConfig:
 
 def parse_agent_spec(spec: str) -> SeatConfig | None:
     """`ollama:<model>` → SeatConfig; anything else → None (a scripted policy)."""
-    if spec.startswith("ollama:"):
-        model = spec.split(":", 1)[1].strip()
+    if spec == "ollama" or spec.startswith("ollama:"):
+        model = spec.split(":", 1)[1].strip() if ":" in spec else ""
         if not model:
-            raise ValueError("--agent ollama:<model> needs a model name")
+            raise ValueError("--agent ollama:<model> needs a model name (got 'ollama' alone)")
         return SeatConfig(model=model)
     return None
 

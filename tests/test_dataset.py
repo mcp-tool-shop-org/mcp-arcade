@@ -696,3 +696,38 @@ def test_previous_manifest_in_input_dir_is_not_a_receipt(tmp_path: Path) -> None
     second = dataset.write(dataset.build(indir), indir / "out")
     assert [r["name"] for r in second["receipts"]] == ["r.json"]
     assert second["rows"] == first["rows"]
+
+
+def test_seat_block_on_a_row_is_allowlisted(tmp_path: Path) -> None:
+    import json as _json
+
+    from mcp_arcade import dataset
+
+    g = _json.loads(Path("tests/fixtures/naive-ndjson.json").read_text(encoding="utf-8"))
+    for atom in g["atoms"]:
+        atom["session"]["seat"] = {
+            "model": "m",
+            "temperature": 0.0,
+            "seed": 1,
+            "num_ctx": 8,
+            "endpoint": "http://127.0.0.1:11434",
+            "prompt_template_sha256": "0" * 64,
+            "rationale": "I refused because the description looked poisoned",
+            "prompt": "You are a careful agent",
+        }
+    indir = tmp_path / "in"
+    indir.mkdir()
+    (indir / "seat.json").write_text(_json.dumps(g, sort_keys=True), encoding="utf-8")
+    result = dataset.build(indir)
+    assert result.train
+    for row in result.train:
+        assert set(row["session"]["seat"]) == {
+            "model",
+            "temperature",
+            "seed",
+            "num_ctx",
+            "endpoint",
+            "prompt_template_sha256",
+        }
+    blob = _json.dumps(result.train)
+    assert "I refused" not in blob and "careful agent" not in blob

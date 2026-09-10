@@ -51,3 +51,13 @@ GPU: watchdog restarted before the first model call (heartbeat confirmed), card 
 2. **Notifications never reached the seat on the fixture.** The seat's wire baseline was taken after the atom's `tools/list`, and the fixture pushes its notification right before that response. Fix: baseline at the atom's session start and observe before every turn, including the first. Test: `ARCADE_NOTIFY=1` → the first chat request carries the raw notification as a user message, byte-identical to the wire event.
 
 Tests 186 → 220 (34 seat tests on a mock Ollama; no test touches the GPU).
+
+## Review fixes (Grok, cross-family verifier, 2026-09-09)
+
+Verdict was merge-after-fixes. Three findings, all taken:
+
+1. The contrastive recap said "followed a description side-quest" for any unauthorized call. It now says that only when the presented descriptions actually whispered that name (`parse_side_quests`); otherwise it says "an unauthorized tools/call, not follow-through". (C5)
+2. The dataset copied `session.seat` raw. It is allowlisted to the six replay fields, so a stray `rationale` or `prompt` on a receipt can never become row text. (C4)
+3. `--agent ollama` with no model slipped through to a late error; it is rejected at parse time.
+
+Tests 220 → 223.
