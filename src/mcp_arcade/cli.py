@@ -12,6 +12,7 @@ import click
 from rich.console import Console
 
 from mcp_arcade import __version__
+from mcp_arcade.atoms.poison import WrapTargetRequired
 from mcp_arcade.bout import resolve_target, run_bout
 from mcp_arcade.docker import DockerError
 from mcp_arcade.models import AgentPolicy, AtomTitle, TaskSource, TaskSpec
@@ -134,6 +135,13 @@ def atoms_cmd() -> None:
     help="Ollama endpoint. Local by default; recorded on the receipt.",
 )
 @click.option(
+    "--seat-allow",
+    default=None,
+    help="Live targets: comma-separated tools the seat may actually call. Default: the --task "
+    "tool plus --wrap-target. Attempts outside it are recorded as refused, never sent (C8). "
+    "Ignored on the fixture.",
+)
+@click.option(
     "--seat-timeout",
     type=float,
     default=120.0,
@@ -158,6 +166,12 @@ def atoms_cmd() -> None:
     is_flag=True,
     help="On the poison atom, append a house side-quest to the task tool's description "
     "(evil-sibling). Off by default so live bouts measure the server's own menu.",
+)
+@click.option(
+    "--wrap-target",
+    default=None,
+    help="Tool the house whisper points at. Required with --wrap on live targets: pick one "
+    "that cannot do harm if the agent follows it. The fixture may leave it unset.",
 )
 @click.option(
     "--framing",
@@ -214,11 +228,13 @@ def bout_cmd(
     seat_seed: int,
     seat_num_ctx: int,
     seat_endpoint: str,
+    seat_allow: str | None,
     seat_timeout: float,
     allow_live: bool,
     task_tool: str | None,
     task_args: str | None,
     wrap: bool,
+    wrap_target: str | None,
     framing: str,
     timeout_s: float,
     split: str,
@@ -263,6 +279,20 @@ def bout_cmd(
     if seat_config is not None:
         from dataclasses import replace
 
+        allow: frozenset[str] | None = None
+        live = target_kind != "fixture" and not (target_kind == "docker" and image is None)
+        if live:
+            names = (
+                [x.strip() for x in seat_allow.split(",") if x.strip()]
+                if seat_allow
+                else [x for x in (task_tool, wrap_target if wrap else None) if x]
+            )
+            if not names:
+                raise click.ClickException(
+                    "a seated live bout needs --task (and --wrap-target with --wrap) or an "
+                    "explicit --seat-allow: the house will not send arbitrary calls to a live server"
+                )
+            allow = frozenset(names)
         seat_config = replace(
             seat_config,
             temperature=seat_temperature,
@@ -270,6 +300,7 @@ def bout_cmd(
             num_ctx=seat_num_ctx,
             endpoint=seat_endpoint,
             timeout_s=seat_timeout,
+            allow=allow,
         )
         seat = OllamaSeat(seat_config)
         agent_policy = AgentPolicy.OLLAMA
@@ -308,12 +339,15 @@ def bout_cmd(
                 n_clean=n_clean,
                 task=task,
                 wrap=wrap,
+                wrap_target=wrap_target,
                 split=split,
                 seat=seat,
                 atoms_to_run=atoms_to_run,
             )
         )
     except PermissionError as exc:
+        raise click.ClickException(str(exc)) from exc
+    except WrapTargetRequired as exc:
         raise click.ClickException(str(exc)) from exc
     except DockerError as exc:
         raise click.ClickException(f"docker: {exc}") from exc

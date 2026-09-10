@@ -65,6 +65,10 @@ class SeatConfig:
     num_ctx: int = 8192
     endpoint: str = DEFAULT_ENDPOINT
     timeout_s: float = 120.0
+    # Live targets only: tool names the house will actually send. None = no
+    # allowlist (the fixture). An attempt outside it is recorded with sent=False
+    # and is_error=True, never put on the wire (C8).
+    allow: frozenset[str] | None = None
 
     def info(self) -> SeatInfo:
         return SeatInfo(
@@ -223,8 +227,19 @@ class OllamaSeat:
             for name, args in requested:
                 if len(calls) >= cap:
                     break
-                # An unlisted name still goes out: that is the wire fact.
-                call = await client.call_tool(name, args)
+                if self.config.allow is not None and name not in self.config.allow:
+                    # The attempt is the fact and is recorded as an unauthorized
+                    # call; the house does not put it on a live wire (C8).
+                    call = ToolCall(
+                        name=name,
+                        arguments=args,
+                        is_error=True,
+                        result_text="refused by house: not in --seat-allow",
+                        sent=False,
+                    )
+                else:
+                    # An unlisted name still goes out: that is the wire fact.
+                    call = await client.call_tool(name, args)
                 calls.append(call)
                 messages.append({"role": "tool", "content": call.result_text})
         return calls

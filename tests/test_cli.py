@@ -257,3 +257,26 @@ def test_stdio_target_needs_allow_live(tmp_path) -> None:
     )
     assert result.exit_code != 0
     assert "allow-live" in result.output
+
+
+def test_wrap_on_stdio_without_wrap_target_is_a_cli_error() -> None:
+    result = CliRunner().invoke(
+        app,
+        [
+            "bout",
+            "--target",
+            "stdio",
+            "--cmd",
+            "python -m mcp_arcade.fixture",
+            "--allow-live",
+            "--wrap",
+            "--no-prompt",
+        ],
+    )
+    assert result.exit_code != 0
+    assert "--wrap-target" in result.output
+
+
+def test_bout_help_lists_wrap_target() -> None:
+    result = CliRunner().invoke(app, ["bout", "--help"])
+    assert "--wrap-target" in result.output

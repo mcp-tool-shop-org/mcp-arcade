@@ -154,6 +154,10 @@ New atom ids start in `dataset.holdout_atom_ids`. Promotion to public-train is a
 - Three.js: not scheduled. If it ever comes, it is an overview pane fed by the same `Tape`, never where ids, counts or call traces are read (C7)
 - Decisions and Grok's answers: `docs/wave-6.md`
 
+## Live fire (wave 7, 2026-09-10)
+
+`docs/live-fire.md` is the packet the Director reads before anyone asks about 1.0: controls, seat, ghost atom and Long Con against `ollama-intern-mcp` under `--allow-live`, 0.x limits beside the table. Two rules it forced: a live `--wrap` needs `--wrap-target`, and a seated live bout sends only `--seat-allow` tools (attempts outside are recorded, never sent). Committed proofs are grepped for host home paths by `tests/test_proofs.py`; the external identity scanner misses double-escaped backslashes.
+
 ## Do not
 
 - Tag `1.x` or un-yank PyPI `1.0.0`

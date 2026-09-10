@@ -13,8 +13,18 @@ Wave 3: the dataset generator. Decisions: `docs/wave-3.md`.
 Wave 4: the agent seat. Decisions: `docs/wave-4.md`.
 Wave 5: the first new atom. Decisions: `docs/wave-5.md`.
 Wave 6: the 2D timeline. Decisions: `docs/wave-6.md`.
+Wave 7: the live-fire packet. `docs/live-fire.md`, decisions: `docs/wave-7.md`.
 
 ### Added
+
+- `--wrap-target NAME`: the house whisper names its target; `--wrap` on a live target without
+  it is refused. `--seat-allow`: on live targets the seat may send only the named tools
+  (default: task tool + wrap target); other attempts are recorded as `sent: false` and never
+  put on the wire. `ToolCall.sent` (additive). A repository test greps every committed proof
+  receipt for a host home path in any JSON escaping
+- Live-fire receipts against `ollama-intern-mcp` under `docs/proof/livefire.intern.*`
+  (naive and task-only with the wrap, the seat with and without) and the Director-facing
+  packet `docs/live-fire.md`
 
 - The tape: one row per wire event (seq, direction, method, id, atom, note), attributed to
   atoms by outbound `initialize` order; notifications quoted as untrusted SUT strings;

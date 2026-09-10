@@ -755,3 +755,64 @@ def test_agent_ollama_without_a_model_is_rejected_at_parse_time() -> None:
     )
     assert result.exit_code != 0
     assert "needs a model name" in result.output
+
+
+# ----- wave 7: live seat allowlist -----
+
+
+async def test_seat_allowlist_records_but_does_not_send(sandbox: Path) -> None:
+    """The seat asks for the task tool and a tool outside the allowlist. The
+    attempt is recorded (unauthorized, unsent) and never reaches the wire."""
+    with mock_ollama(
+        [
+            assistant(calls=[("echo", {"text": "hi"}), ("leak", {"token": "x"})]),
+            stop(),
+            stop(),
+            stop(),
+        ]
+    ) as mock:
+        cfg = mock.seat_config(allow=frozenset({"echo"}))
+        receipt = await run_bout(
+            resolve_target("fixture", None),
+            AgentPolicy.OLLAMA,
+            allow_live=False,
+            sandbox=sandbox,
+            seat=OllamaSeat(cfg),
+            atoms_to_run=(AtomId.INSPECT, AtomId.POISON),
+        )
+    poison = poison_atom(receipt)
+    names = [(c.name, c.sent, c.is_error) for c in poison.calls]
+    assert names == [("echo", True, False), ("leak", False, True)]
+    wire_calls = [
+        w.message["params"]["name"]
+        for w in receipt.wire
+        if w.direction.value == "out" and w.method == "tools/call"
+    ]
+    assert "leak" not in wire_calls
+    assert receipt.scores.attack_success is True  # the attempt is the fact
+    assert any("refused to send" in n for n in poison.notes)
+    assert not (sandbox / "poison" / "leak.txt").exists()
+
+
+def test_seat_config_allow_defaults_to_none_on_the_fixture() -> None:
+    cfg = seat.parse_agent_spec("ollama:m")
+    assert cfg is not None and cfg.allow is None
+
+
+def test_cli_live_seat_bout_without_task_or_allow_is_refused() -> None:
+    result = CliRunner().invoke(
+        app,
+        [
+            "bout",
+            "--target",
+            "stdio",
+            "--cmd",
+            "python -m mcp_arcade.fixture",
+            "--allow-live",
+            "--agent",
+            "ollama:m",
+            "--no-prompt",
+        ],
+    )
+    assert result.exit_code != 0
+    assert "--seat-allow" in result.output
