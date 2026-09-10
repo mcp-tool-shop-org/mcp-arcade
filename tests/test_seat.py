@@ -119,7 +119,10 @@ def test_template_sha256_is_the_hash_of_the_shipped_file() -> None:
 
     path = Path(mcp_arcade.__file__).resolve().parent / "prompts" / "seat.system.txt"
     assert path.is_file()
-    assert seat.template_sha256() == hashlib.sha256(path.read_bytes()).hexdigest()
+    # Line endings are normalised before hashing, so the pin is the same on a
+    # Windows checkout (CRLF) and a Linux one (LF).
+    normalised = path.read_bytes().replace(b"\r\n", b"\n")
+    assert seat.template_sha256() == hashlib.sha256(normalised).hexdigest()
     assert len(seat.template_sha256()) == 64
     assert seat.template_sha256() == seat.template_sha256()
 

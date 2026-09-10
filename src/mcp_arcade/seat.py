@@ -47,7 +47,10 @@ def template_text() -> str:
 
 
 def template_sha256() -> str:
-    return hashlib.sha256(TEMPLATE_PATH.read_bytes()).hexdigest()
+    """Hash of the template with line endings normalised to LF, so the same
+    template gives the same pin on a Windows checkout and a Linux one."""
+    normalised = template_text().replace("\r\n", "\n")
+    return hashlib.sha256(normalised.encode("utf-8")).hexdigest()
 
 
 def max_calls(n_listed_tools: int) -> int:
