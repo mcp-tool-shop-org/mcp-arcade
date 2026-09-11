@@ -1,0 +1,62 @@
+{
+  "schema": "mcp-arcade.art-receipts/v1",
+  "generated_on": "2026-09-10",
+  "route": {
+    "provider": "bfl",
+    "model": "bfl/flux-2-max",
+    "via": "Comfy Cloud submit_batch (partner_generate)",
+    "approved_by": "Director, 2026-09-10: logos for both repos on Comfy Cloud"
+  },
+  "licence": {
+    "checked_on": "2026-09-10",
+    "bfl_developer_terms": "https://bfl.ai/legal/developer-terms-of-service",
+    "ownership": "customer-owned output, commercial use ok",
+    "restrictions": [
+      "must not be used to train, distill or fine-tune any model",
+      "do not add to a style dataset"
+    ]
+  },
+  "acceptance": {
+    "glyph_check": "ai-eyes image_contains, query 'text, letters, numbers or written words', threshold 0.02; scored 0.0000037",
+    "human_look": "Claude 2026-09-10; Director picked the icon pair (A + D) from six retro-modern options"
+  },
+  "images": [
+    {
+      "id": "readme-logo",
+      "role": "brand logo: mcp-tool-shop-org/brand/logos/mcp-arcade/readme.png",
+      "batch": "retro-modern",
+      "job_id": "b9246f65-88e9-4167-a8a3-f34477e8826d",
+      "seed": 9204,
+      "size": "1024x768 rendered; cropped to 768x768, corners transparent",
+      "prompt": "Modern flat vector app icon for a testing instrument called MCP Arcade that keeps the tape. A rounded-square badge with a deep navy to near-black gradient and a faint CRT scanline texture. Centered: a cassette tape glyph with clean stepped pixel corners, cream (#e8e0c8) shell, slate (#c8d0dc) details, an amber (#e8a04a) tape window, a thin cream halo ring behind it. Soft inner glow, high contrast, crisp edges, generous margins. No letters, no numbers, no text of any kind.",
+      "status": "accepted",
+      "rejected_siblings": [
+        {
+          "job_id": "01be02c6-d6bc-494d-b0b6-000e46c67586",
+          "seed": 9205,
+          "note": "neon square wave; too sparse"
+        },
+        {
+          "job_id": "31b1fb6b-759e-4c1e-b7a2-3037166eadb9",
+          "seed": 9206,
+          "note": "shield reel and wave; not the pair"
+        },
+        {
+          "job_id": "fa00f030-6d33-42d3-a3bb-c569676435d6",
+          "seed": 9101,
+          "note": "flat pixel cassette, first pass; too plain"
+        },
+        {
+          "job_id": "e5b6625d-8279-4fb5-860c-a26a7f217f37",
+          "seed": 9102,
+          "note": "flat pixel reel, first pass"
+        },
+        {
+          "job_id": "d628d8fe-71d8-4472-9155-200250c2c251",
+          "seed": 9103,
+          "note": "flat pixel trace, first pass"
+        }
+      ]
+    }
+  ]
+}
