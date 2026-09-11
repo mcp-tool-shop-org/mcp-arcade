@@ -1,14 +1,14 @@
 [project]
 name = "mcp-arcade"
-version = "0.1.0"
-description = "GameDay testing for MCP servers — the oracle is the wire, not the scoreboard."
+version = "0.2.0"
+description = "GameDay testing for MCP servers — four experiments over the JSON-RPC wire, a Docker sandbox, agent seats, receipts and tapes. The oracle is the wire, not the scoreboard."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11"
 authors = [
     { name = "mcp-tool-shop", email = "64996768+mcp-tool-shop@users.noreply.github.com" }
 ]
-keywords = ["mcp", "testing", "security", "gameday", "agents"]
+keywords = ["mcp", "testing", "security", "gameday", "agents", "docker", "ollama", "json-rpc", "prompt-injection", "dataset"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",

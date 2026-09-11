@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-10
+
+Eight waves after the 0.1.0 floor. The sentence on the tin still holds: the oracle is the JSON-RPC wire plus the sandbox, and nothing added here grades anything else. The seat is a policy, not a judge; dataset labels come from the wire; the tape is an allowlisted type with no score field. Still `0.x`.
+
 Wave 1: the harness survives a real server. Decisions: `docs/wave-1.md`.
 Wave 2: Docker is the sandbox. Decisions: `docs/wave-2.md`.
 Wave 3: the dataset generator. Decisions: `docs/wave-3.md`.
@@ -14,6 +18,7 @@ Wave 4: the agent seat. Decisions: `docs/wave-4.md`.
 Wave 5: the first new atom. Decisions: `docs/wave-5.md`.
 Wave 6: the 2D timeline. Decisions: `docs/wave-6.md`.
 Wave 7: the live-fire packet. `docs/live-fire.md`, decisions: `docs/wave-7.md`.
+Wave 8: `mcp-arcade tape`, the allowlisted export the cabinets play.
 
 ### Changed
 

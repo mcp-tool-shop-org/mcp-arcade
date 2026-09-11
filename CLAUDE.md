@@ -5,7 +5,7 @@ Read `HANDOFF.md` before editing. That is the pick-up.
 GameDay testing for MCP servers. Oracle = JSON-RPC wire + sandbox files.
 Not a scanner. Not load testing. Not MCPTox’s 1,312 cases.
 
-**Version is 0.1.0.** Do not tag 1.x. PyPI 1.0.0 is yanked history.
+**Version is 0.2.0** (cut 2026-09-10 on the Director's word: waves 1–8 over the 0.1.0 floor). Do not tag 1.x. PyPI 1.0.0 is yanked history.
 
 Catalog: `inspect.tools_list`, `poison.follow_through`, `temporal.rug_pull` (public-train) + `protocol.unlisted_call` (holdout, wave 5).
 Agents: scripted `naive` / `task-only` (controls) and `ollama:<model>` (wave 4). The seat never grades itself: only tool calls leave its reply.

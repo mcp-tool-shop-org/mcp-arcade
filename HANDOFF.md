@@ -23,11 +23,11 @@ Fun/GameDay naming is wanted. It is **second** to the science.
 
 | Surface | Version |
 |---------|---------|
-| `pyproject.toml` / `__init__.py` | **0.1.0** |
-| PyPI installable | **0.1.0** (`pip install mcp-arcade`) |
+| `pyproject.toml` / `__init__.py` | **0.2.0** (2026-09-10, Director's word; waves 1–8) |
+| PyPI installable | **0.2.0** (`pip install mcp-arcade`) |
 | PyPI `1.0.0` | **yanked** (`wrong ver`). Still in the index as history. Do not un-yank. Do not publish another 1.x. |
 | GitHub tag `v1.0.0` | deleted |
-| GitHub tag `v0.1.0` | current release |
+| GitHub tag `v0.2.0` | current release (`v0.1.0` was the three-atom floor) |
 
 `1.0.0` means the **product** is 1.0. A pending publisher, a first CI, a landing page, or full-treatment’s old “promote to v1.0.0” line is **not** that. Director 2026-09-09. Stay on `0.x` until he says otherwise.
 

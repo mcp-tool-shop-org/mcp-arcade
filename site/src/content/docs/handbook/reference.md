@@ -18,7 +18,7 @@ order: 2
 | `mcp-arcade docker build-fixture` | Build the local fixture image and print its id |
 | `mcp-arcade docker rm-fixture` | Remove it (compensator) |
 | `mcp-arcade docker leftovers` | List `arcade-*` containers still present (should be `none`) |
-| `mcp-arcade --version` | 0.1.0 |
+| `mcp-arcade --version` | 0.2.0 |
 
 ### `bout` flags
 
