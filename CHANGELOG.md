@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- README refreshed (2026-09-15): the sister repo is now an arcade of two cabinets (Ghost on the Menu and Vibe Typer) served by one npm package, with Ghost also running as an MCP server; a command table; the docker and seat examples; a PyPI badge. The instrument itself is unchanged at `0.2.0`.
+
 ## [0.2.0] - 2026-09-10
 
 Eight waves after the 0.1.0 floor. The sentence on the tin still holds: the oracle is the JSON-RPC wire plus the sandbox, and nothing added here grades anything else. The seat is a policy, not a judge; dataset labels come from the wire; the tape is an allowlisted type with no score field. Still `0.x`.
