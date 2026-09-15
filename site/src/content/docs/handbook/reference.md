@@ -12,7 +12,7 @@ order: 2
 | `mcp-arcade atoms` | List the catalog |
 | `mcp-arcade receipt <file>` | Print a saved receipt as canonical JSON |
 | `mcp-arcade receipt <file> --timeline [--score] [--verbose]` | Render the tape (one row per wire event); `--score` adds the house call after it |
-| `mcp-arcade tape <file> [-o tape.json]` | Export `mcp-arcade.tape/v1` JSON for Ghost on the Menu |
+| `mcp-arcade tape <file> [-o tape.json]` | Export `mcp-arcade.tape/v1` JSON, the arcade's input (see [The tape](/mcp-arcade/handbook/tapes/)) |
 | `mcp-arcade fixture` | Run the lab MCP server on stdio |
 | `mcp-arcade dataset <dir> -o <out>` | One JSONL row per atom from receipts; labels from the wire; `split: proof` never trains |
 | `mcp-arcade docker build-fixture` | Build the local fixture image and print its id |
@@ -73,10 +73,10 @@ A docker target adds `atoms[].session.container`: image, image id, repo digest, 
 
 Session facts per atom live under `atoms[].session`: `framing`, `framing_source`, the negotiated `protocol_version`, `server_info`, `server_capabilities`, and `stderr_tail` (last 4 KB). Server-originated requests are listed at receipt level as `server_requests`.
 
-## What 0.1.x will not do
+## What 0.x will not do
 
 - Import MCPTox’s 1,312 cases. MCPTox is the method we cite; the catalog is the four atoms above.
 - Talk to the network of its own. The optional Ollama seat talks to a local endpoint, recorded on the receipt.
 - Serve a server-originated request. Sampling and elicitation are recorded and rejected.
 - Spawn your server without `--allow-live`.
-- Score a game. Visualization of a tape is [Ghost on the Menu](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets), a sister repo. It reads the tape and never the receipt.
+- Score a game. Playing a tape is the [arcade](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets)'s job, a sister repo whose cabinets read the tape and never the receipt.

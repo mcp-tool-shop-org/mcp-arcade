@@ -22,16 +22,16 @@
 
 ## C. Operator Docs
 
-- [x] `[all]` README is current: what it does, install, usage, what it is not (2026-09-09)
+- [x] `[all]` README is current: what it does, install, usage, the tape and the arcade, the command table, what it is not (2026-09-15)
 - [x] `[all]` CHANGELOG.md (Keep a Changelog) (2026-09-09)
 - [x] `[all]` LICENSE present (2026-09-09)
-- [x] `[cli]` `--help` matches shipped commands: bout, atoms, receipt, fixture (2026-09-09)
+- [x] `[cli]` `--help` matches shipped commands: bout, atoms, receipt, tape, dataset, docker, fixture (re-verified 2026-09-15 against `mcp-arcade --help`)
 
 ## D. Shipping Hygiene
 
 - [x] `[all]` verify = `pytest` (2026-09-09)
 - [x] `[all]` Golden receipts under tests/fixtures, both stdio framings (2026-09-09)
-- [x] `[all]` Version in pyproject / `__init__.py` is 0.1.0 (2026-09-09)
+- [x] `[all]` Version in pyproject / `__init__.py` is 0.2.0, tag v0.2.0, PyPI 0.2.0 (2026-09-10; re-verified 2026-09-15)
 - [x] `[all]` Dependency scanning via GitHub Dependabot (2026-09-09)
 - [x] `[pypi]` `requires-python` set `>=3.11` (2026-09-09)
 - [x] `[pypi]` hatchling wheel + sdist (2026-09-09)
@@ -39,7 +39,7 @@
 
 ## E. Identity (soft)
 
-- [ ] `[all]` Logo in README — deferred (no brand asset yet)
-- [ ] `[all]` Translations — after English README is frozen
+- [x] `[all]` Logo in README — brand/logos/mcp-arcade/readme.png (2026-09-10; re-verified 2026-09-15)
+- [x] `[all]` Translations — ja, zh, es, fr, hi, it, pt-BR on TranslateGemma 27B, regenerated 2026-09-15 from the arcade-agnostic README
 - [x] `[org]` Landing page + handbook (site-theme, 2026-09-09)
 - [x] `[all]` GitHub description/topics to be set on first push (2026-09-09)

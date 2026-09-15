@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - README refreshed (2026-09-15): the sister repo is now an arcade of two cabinets (Ghost on the Menu and Vibe Typer) served by one npm package, with Ghost also running as an MCP server; a command table; the docker and seat examples; a PyPI badge. The instrument itself is unchanged at `0.2.0`.
+- The treatment, game-agnostic (2026-09-15): the landing page gains a seat card, a Docker card, a tape section and two more usage cards, and no longer names one game as what a tape is for; the handbook gains **The tape** (what a tape carries, what it cannot, how to export and play one) and its three pages say "the arcade" where they said one shooter; SECURITY.md supports `0.2.x`; the ship gate's identity items are checked; the repo-knowledge entry gains a thesis, an architecture, the companion relationship to the arcade, commands and a next step.
 
 ## [0.2.0] - 2026-09-10
 

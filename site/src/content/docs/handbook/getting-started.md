@@ -94,12 +94,12 @@ before each one. `mcp-arcade docker leftovers` should print `none` afterwards.
 ```bash
 mcp-arcade receipt receipt.json                 # canonical JSON
 mcp-arcade receipt receipt.json --timeline      # one row per wire event, no score
-mcp-arcade tape receipt.json -o tape.json       # input for Ghost on the Menu
+mcp-arcade tape receipt.json -o tape.json       # the arcade's input
 ```
 
 Receipts are `mcp-arcade.bout/v1` JSON. Labels come from the wire. Operator guesses are not ground truth. The timeline is built from an allowlisted view of the receipt that has no fields for scores, the operator's guess, or the contrastive recap, so it cannot show a verdict before you ask.
 
-To play the bout as a shooter, export the tape and open it in [Ghost on the Menu](https://mcp-tool-shop-org.github.io/mcp-arcade-cabinets/play/). The cabinet reads the tape and never sees the score.
+To play the bout, export the tape and drop it into the [arcade](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets), a sister repo of small games that read tapes and never a receipt. What a tape carries, and what it cannot, is on [The tape](/mcp-arcade/handbook/tapes/).
 
 ## The agent seat
 

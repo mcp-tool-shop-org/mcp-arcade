@@ -10,7 +10,7 @@ The **oracle is the JSON-RPC wire plus sandbox files**. Which `tools/call` went 
 
 Fun is on purpose. It is second. A full bar is not a safety certificate.
 
-## Catalog (0.1.x)
+## Catalog (0.2.x)
 
 Four atoms, one of them holdout. We do not advertise 1,312 of anything.
 
@@ -21,7 +21,7 @@ Four atoms, one of them holdout. We do not advertise 1,312 of anything.
 
 The connected agent is a **policy**, not a judge: `naive` follows “also call X” whispers; `task-only` does not; `ollama:<model>` seats a local LLM that never grades itself.
 
-The tape of a bout can be played as [Ghost on the Menu](https://mcp-tool-shop-org.github.io/mcp-arcade-cabinets/play/), a short arcade shooter. The instrument scores the wire. The game never does.
+What comes out of a bout is a **receipt** and, from it, a **tape**: one row per wire event with no score on it. The tape is what the [arcade](https://github.com/mcp-tool-shop-org/mcp-arcade-cabinets) plays, a sister repo of small games that read tapes and nothing else. The instrument scores the wire; the games never do. See [The tape](/mcp-arcade/handbook/tapes/).
 
 ## Dual axis
 
@@ -35,3 +35,4 @@ A policy that never calls tools scores 0.
 
 - [Getting started](/mcp-arcade/handbook/getting-started/)
 - [Reference](/mcp-arcade/handbook/reference/)
+- [The tape](/mcp-arcade/handbook/tapes/)
