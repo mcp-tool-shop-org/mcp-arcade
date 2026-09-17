@@ -14,20 +14,20 @@ It is **not**:
 
 - a scanner-of-schemas (`mcp-stress-test` is a different, stale product — do not salvage it)
 - load testing
-- MCPTox’s 1,312 cases (cite the *method*, do not vendor or advertise the number)
+- MCPTox’s 1,312 cases (cite the _method_, do not vendor or advertise the number)
 - a 1.0.0 product
 
 Fun/GameDay naming is wanted. It is **second** to the science.
 
 ## Version — hard halt
 
-| Surface | Version |
-|---------|---------|
-| `pyproject.toml` / `__init__.py` | **0.2.0** (2026-09-10, Director's word; waves 1–8) |
-| PyPI installable | **0.2.0** (`pip install mcp-arcade`) |
-| PyPI `1.0.0` | **yanked** (`wrong ver`). Still in the index as history. Do not un-yank. Do not publish another 1.x. |
-| GitHub tag `v1.0.0` | deleted |
-| GitHub tag `v0.2.0` | current release (`v0.1.0` was the three-atom floor) |
+| Surface                          | Version                                                                                              |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `pyproject.toml` / `__init__.py` | **0.2.0** (2026-09-10, Director's word; waves 1–8)                                                   |
+| PyPI installable                 | **0.2.0** (`pip install mcp-arcade`)                                                                 |
+| PyPI `1.0.0`                     | **yanked** (`wrong ver`). Still in the index as history. Do not un-yank. Do not publish another 1.x. |
+| GitHub tag `v1.0.0`              | deleted                                                                                              |
+| GitHub tag `v0.2.0`              | current release (`v0.1.0` was the three-atom floor)                                                  |
 
 `1.0.0` means the **product** is 1.0. A pending publisher, a first CI, a landing page, or full-treatment’s old “promote to v1.0.0” line is **not** that. Director 2026-09-09. Stay on `0.x` until he says otherwise.
 
@@ -61,29 +61,29 @@ From `docs/study-swarm.dispatch.md`. Each traces to a verified finding.
 
 Python 3.11+ CLI `mcp-arcade`. Hatchling. Click + Pydantic + Rich.
 
-| Path | Role |
-|------|------|
-| `src/mcp_arcade/protocol.py` | JSON-RPC framing: NDJSON (spec) + Content-Length, auto-detect then lock |
-| `src/mcp_arcade/client.py` | stdio MCP client that **records the wire**; demuxes by id, records notifications, rejects server requests, per-request timeout, stderr drain |
-| `src/mcp_arcade/fixture.py` | lab server (`echo` + `leak`; poison / rug-pull via env) |
-| `src/mcp_arcade/agent.py` | scripted `naive` / `task-only` (frozen “also call X” parser) |
-| `src/mcp_arcade/oracle.py` | scores **calls**, not descriptions |
-| `src/mcp_arcade/atoms/common.py` | named task (`--task`), fail-closed default: no task, no invented arguments |
-| `src/mcp_arcade/atoms/inspect.py` | Honest Menu |
-| `src/mcp_arcade/atoms/poison.py` | Whispered Errand |
-| `src/mcp_arcade/atoms/rugpull.py` | Long Con |
-| `src/mcp_arcade/atoms/unlisted.py` | Ghost on the Menu (holdout; protocol surface) |
-| `src/mcp_arcade/bout.py` | one fresh fixture process per atom |
-| `src/mcp_arcade/receipt.py` | canonical `mcp-arcade.bout/v1` JSON |
-| `src/mcp_arcade/timeline.py` | the tape: one row per wire event, allowlisted view, receipt-first |
-| `src/mcp_arcade/tui.py` | tape before the call, delayed score, contrastive house call after |
-| `src/mcp_arcade/docker.py` | docker target: argv with safe defaults, image id pin + drift check, `/sandbox` snapshot via exec, `docker diff`, force-remove compensator, local fixture image build |
-| `src/mcp_arcade/seat.py` | the ollama seat: frozen template + sha, tools as presented, only tool calls leave the reply, cap, timeouts |
-| `src/mcp_arcade/prompts/seat.system.txt` | the frozen system prompt (hashed onto the receipt; must not coach) |
-| `src/mcp_arcade/dataset.py` | one JSONL row per atom, labels from the wire, holdout by atom id, manifest with sha256 per receipt |
-| `src/mcp_arcade/cli.py` | `bout`, `atoms`, `receipt [--timeline --score --verbose]`, `fixture`, `dataset`, `docker {build-fixture,rm-fixture,leftovers}` |
-| `tests/test_oracle.py` | tautology test: poison *string* ≠ attack_success |
-| `tests/fixtures/` | golden receipts, one per stdio framing; an oracle regression fails the diff |
+| Path                                     | Role                                                                                                                                                                 |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/mcp_arcade/protocol.py`             | JSON-RPC framing: NDJSON (spec) + Content-Length, auto-detect then lock                                                                                              |
+| `src/mcp_arcade/client.py`               | stdio MCP client that **records the wire**; demuxes by id, records notifications, rejects server requests, per-request timeout, stderr drain                         |
+| `src/mcp_arcade/fixture.py`              | lab server (`echo` + `leak`; poison / rug-pull via env)                                                                                                              |
+| `src/mcp_arcade/agent.py`                | scripted `naive` / `task-only` (frozen “also call X” parser)                                                                                                         |
+| `src/mcp_arcade/oracle.py`               | scores **calls**, not descriptions                                                                                                                                   |
+| `src/mcp_arcade/atoms/common.py`         | named task (`--task`), fail-closed default: no task, no invented arguments                                                                                           |
+| `src/mcp_arcade/atoms/inspect.py`        | Honest Menu                                                                                                                                                          |
+| `src/mcp_arcade/atoms/poison.py`         | Whispered Errand                                                                                                                                                     |
+| `src/mcp_arcade/atoms/rugpull.py`        | Long Con                                                                                                                                                             |
+| `src/mcp_arcade/atoms/unlisted.py`       | Ghost on the Menu (holdout; protocol surface)                                                                                                                        |
+| `src/mcp_arcade/bout.py`                 | one fresh fixture process per atom                                                                                                                                   |
+| `src/mcp_arcade/receipt.py`              | canonical `mcp-arcade.bout/v1` JSON                                                                                                                                  |
+| `src/mcp_arcade/timeline.py`             | the tape: one row per wire event, allowlisted view, receipt-first                                                                                                    |
+| `src/mcp_arcade/tui.py`                  | tape before the call, delayed score, contrastive house call after                                                                                                    |
+| `src/mcp_arcade/docker.py`               | docker target: argv with safe defaults, image id pin + drift check, `/sandbox` snapshot via exec, `docker diff`, force-remove compensator, local fixture image build |
+| `src/mcp_arcade/seat.py`                 | the ollama seat: frozen template + sha, tools as presented, only tool calls leave the reply, cap, timeouts                                                           |
+| `src/mcp_arcade/prompts/seat.system.txt` | the frozen system prompt (hashed onto the receipt; must not coach)                                                                                                   |
+| `src/mcp_arcade/dataset.py`              | one JSONL row per atom, labels from the wire, holdout by atom id, manifest with sha256 per receipt                                                                   |
+| `src/mcp_arcade/cli.py`                  | `bout`, `atoms`, `receipt [--timeline --score --verbose]`, `fixture`, `dataset`, `docker {build-fixture,rm-fixture,leftovers}`                                       |
+| `tests/test_oracle.py`                   | tautology test: poison _string_ ≠ attack_success                                                                                                                     |
+| `tests/fixtures/`                        | golden receipts, one per stdio framing; an oracle regression fails the diff                                                                                          |
 
 Prove the floor:
 
@@ -120,7 +120,7 @@ mcp-arcade bout --target fixture --agent task-only --no-prompt
 
 ### 2. A real agent seat (still not a judge) — **done (wave 4, 2026-09-09)**
 
-- ~~Plug an agent that *sees* `tools/list` and *emits* `tools/call` (Ollama local first)~~ `--agent ollama:<model>`, `src/mcp_arcade/seat.py`; endpoint configurable, local by default
+- ~~Plug an agent that _sees_ `tools/list` and _emits_ `tools/call` (Ollama local first)~~ `--agent ollama:<model>`, `src/mcp_arcade/seat.py`; endpoint configurable, local by default
 - ~~The oracle **does not change**~~ unchanged; the seat's calls go through the recording client
 - ~~Keep `naive` / `task-only` as controls~~ calibration set under `docs/proof/calibration.*`, one image id
 - ~~`agent_policy: ollama`. No rationale field~~ `session.seat` carries model/temperature/seed/num_ctx/endpoint/template sha; model text never reaches the receipt (tested with a mock that lies)
@@ -153,6 +153,10 @@ New atom ids start in `dataset.holdout_atom_ids`. Promotion to public-train is a
 - ~~Contrastive recap stays foil vs wire~~ unchanged, after the call
 - Three.js: not scheduled. If it ever comes, it is an overview pane fed by the same `Tape`, never where ids, counts or call traces are read (C7)
 - Decisions and Grok's answers: `docs/wave-6.md`
+
+### 6. The voice loop as a tool, on PyPI (Director, 2026-09-17) — planned, not started
+
+The arcade cabinets (`mcp-tool-shop-org/mcp-arcade-cabinets`) run a host-side voice worker (`voice/worker.py` there: Kokoro speaks a line, faster-whisper hears it back, fx-dub receipts the pair, and a take whose receipt fails is never played). It is a script in a venv, not a product, and that repo publishes to npm and GHCR only. The Director's decision: the loop becomes a tool of this package, published through this repo's existing PyPI route and Trusted Publishing, since the route is here already. Shape to settle before any code: the command (`mcp-arcade voice` or an extra), what it needs on the host (the Kokoro weights by path, a GPU or not), the bearer and the loopback bind the cabinets already require, and the receipt format the cabinets read back. The cabinets keep their worker until this ships, then point `VOICE_URL` at it. Sequence with [[multi-repo-publish-sequencing]]: this package first, the cabinets' `pnpm voice` second.
 
 ## Live fire (wave 7, 2026-09-10)
 
