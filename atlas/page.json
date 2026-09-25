@@ -1,0 +1,245 @@
+{
+  "authored": [
+    ".github/",
+    "docs/",
+    "root",
+    "site/"
+  ],
+  "breaks": [
+    {
+      "doors": 3,
+      "importedBy": [],
+      "importedByTests": [
+        "tests"
+      ],
+      "kind": "part",
+      "name": "src",
+      "partLabel": "src"
+    },
+    {
+      "doors": 2,
+      "importedBy": [],
+      "importedByTests": [],
+      "kind": "part",
+      "name": "tests",
+      "partLabel": "tests"
+    }
+  ],
+  "changes": {
+    "first": true
+  },
+  "changesTogether": [
+    {
+      "a": "src/mcp_arcade/atoms/poison.py",
+      "b": "src/mcp_arcade/bout.py",
+      "either": 8,
+      "partLabels": [
+        "src",
+        "src"
+      ],
+      "parts": [
+        "src",
+        "src"
+      ],
+      "relation": "inside",
+      "shared": 5
+    }
+  ],
+  "changesTogetherNote": [
+    "1 file changed together with its own test, as expected.",
+    "Confidence is low: fewer than 30 qualifying commits in the window, and fewer than 20 source files reach 10 revisions.",
+    "Window: 180 days; a pair counts from 3 shared commits, since the window holds fewer than 30 qualifying commits."
+  ],
+  "changesTogetherWithTests": 1,
+  "commit": "0c17273e798aa56857b9805de6bc7009f19f7dfa",
+  "defaultBranch": "main",
+  "derived": "6 parts, mostly Python (40 files), TypeScript (2) and JavaScript (1). Work enters through 4 doors; CI and Release each reach 2 parts, and CI is followed because a pull request goes through it. It publishes to PyPI. People run mcp-arcade.",
+  "doors": [
+    {
+      "checks": [
+        "src/"
+      ],
+      "checksCount": 1,
+      "checksMore": 0,
+      "file": ".github/workflows/ci.yml",
+      "id": ".github/workflows/ci.yml",
+      "landings": [],
+      "name": "CI",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "src",
+          "depth": 0,
+          "files": 23
+        },
+        {
+          "boundary": "tests",
+          "depth": 0,
+          "files": 17
+        }
+      ],
+      "runs": [
+        "src/mcp_arcade/cli.py",
+        "tests/"
+      ],
+      "runsCount": 2,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": [
+        "on a pull request to main touching 8 paths",
+        "on a push to main touching 8 paths",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [
+        "src/mcp_arcade/",
+        "src/"
+      ],
+      "checksCount": 2,
+      "checksMore": 0,
+      "file": ".github/workflows/release.yml",
+      "id": ".github/workflows/release.yml",
+      "landings": [],
+      "name": "Release",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "src",
+          "depth": 0,
+          "files": 23
+        },
+        {
+          "boundary": "tests",
+          "depth": 0,
+          "files": 17
+        }
+      ],
+      "runs": [
+        "tests/"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [
+        "publishes to PyPI",
+        "uploads dist/* to the release on a release event"
+      ],
+      "stages": [],
+      "triggers": [
+        "when a release is published",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": ".github/workflows/pages.yml",
+      "id": ".github/workflows/pages.yml",
+      "landings": [],
+      "name": "Deploy site to GitHub Pages",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "site",
+          "depth": 0,
+          "files": 3
+        }
+      ],
+      "runs": [
+        "site/astro.config.mjs",
+        "site/src/"
+      ],
+      "runsCount": 2,
+      "runsMore": 0,
+      "sends": [
+        "deploys the site"
+      ],
+      "stages": [],
+      "triggers": [
+        "on a push to main touching 2 paths",
+        "or by hand"
+      ]
+    },
+    {
+      "checks": [],
+      "checksCount": 0,
+      "checksMore": 0,
+      "file": "pyproject.toml",
+      "id": "pyproject.toml#mcp-arcade",
+      "kind": "command",
+      "landings": [],
+      "name": "mcp-arcade",
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "src",
+          "depth": 0,
+          "files": 22
+        }
+      ],
+      "runs": [
+        "src/mcp_arcade/cli.py"
+      ],
+      "runsCount": 1,
+      "runsMore": 0,
+      "sends": [],
+      "stages": [],
+      "triggers": []
+    }
+  ],
+  "duplicates": [],
+  "duplicatesLead": null,
+  "duplicatesNote": [],
+  "edges": [
+    {
+      "from": "tests",
+      "fromTests": true,
+      "to": "src"
+    }
+  ],
+  "generated": [],
+  "generatedAt": "2026-09-25T09:40:35.834Z",
+  "limits": [
+    "4 writes and 7 reads use paths built at run time and are not named here.",
+    "Statistics confidence is low: fewer than 30 qualifying commits in the window, and fewer than 20 source files reach 10 revisions."
+  ],
+  "mainDoor": ".github/workflows/ci.yml",
+  "partLabels": {
+    ".github": ".github",
+    "docs": "docs",
+    "root": "the repository root",
+    "site": "the site",
+    "src": "src",
+    "tests": "tests"
+  },
+  "parts": 6,
+  "readers": [],
+  "repo": "mcp-tool-shop-org/mcp-arcade",
+  "sequences": [],
+  "startDoor": ".github/workflows/ci.yml",
+  "startHere": [
+    ".github/workflows/ci.yml",
+    "src/mcp_arcade/cli.py",
+    "src/mcp_arcade/__init__.py",
+    "src/mcp_arcade/atoms/poison.py",
+    "src/mcp_arcade/bout.py",
+    "src/mcp_arcade/docker.py",
+    "src/mcp_arcade/models.py",
+    "src/mcp_arcade/receipt.py"
+  ],
+  "summary": null,
+  "summaryFrom": null,
+  "testFiles": 21,
+  "testedBy": {
+    "src": 14
+  },
+  "unnamedWrites": 4,
+  "unread": [],
+  "unreadFiles": 0,
+  "unreadNote": [],
+  "untested": [],
+  "untestedNote": [],
+  "written": 0
+}

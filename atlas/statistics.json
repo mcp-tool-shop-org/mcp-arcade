@@ -1,0 +1,755 @@
+{
+  "authorship": {
+    "parts": [],
+    "places": []
+  },
+  "boundaries": [
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": ".github",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "docs",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "root",
+      "qualifyingSourceCommits": 0,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": null,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "site",
+      "qualifyingSourceCommits": 4,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [
+          "tests"
+        ],
+        "importsOnly": []
+      },
+      "cohesion": 0.5,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "src",
+      "qualifyingSourceCommits": 14,
+      "rebaseline": null
+    },
+    {
+      "breakage": {
+        "coChangesOnly": [
+          "src"
+        ],
+        "collapsed": false,
+        "confidence": "low",
+        "importsAndCoChanges": [],
+        "importsOnly": []
+      },
+      "cohesion": 0,
+      "cohesionDropped": false,
+      "confidence": "low",
+      "highWater": null,
+      "name": "tests",
+      "qualifyingSourceCommits": 15,
+      "rebaseline": null
+    }
+  ],
+  "churn": {
+    "definition": "commits is how many commits in the window touch the file, including merges and commits dropped from coupling. lines is added plus deleted in those commits.",
+    "files": [
+      {
+        "commits": 2,
+        "lines": 4,
+        "path": ".gitattributes"
+      },
+      {
+        "commits": 1,
+        "lines": 16,
+        "path": ".github/dependabot.yml"
+      },
+      {
+        "commits": 3,
+        "lines": 72,
+        "path": ".github/workflows/ci.yml"
+      },
+      {
+        "commits": 1,
+        "lines": 50,
+        "path": ".github/workflows/pages.yml"
+      },
+      {
+        "commits": 1,
+        "lines": 58,
+        "path": ".github/workflows/release.yml"
+      },
+      {
+        "commits": 3,
+        "lines": 17,
+        "path": ".gitignore"
+      },
+      {
+        "commits": 23,
+        "lines": 269,
+        "path": "CHANGELOG.md"
+      },
+      {
+        "commits": 18,
+        "lines": 66,
+        "path": "CLAUDE.md"
+      },
+      {
+        "commits": 17,
+        "lines": 403,
+        "path": "HANDOFF.md"
+      },
+      {
+        "commits": 1,
+        "lines": 21,
+        "path": "LICENSE"
+      },
+      {
+        "commits": 2,
+        "lines": 169,
+        "path": "README.es.md"
+      },
+      {
+        "commits": 2,
+        "lines": 179,
+        "path": "README.fr.md"
+      },
+      {
+        "commits": 2,
+        "lines": 167,
+        "path": "README.hi.md"
+      },
+      {
+        "commits": 2,
+        "lines": 179,
+        "path": "README.it.md"
+      },
+      {
+        "commits": 2,
+        "lines": 169,
+        "path": "README.ja.md"
+      },
+      {
+        "commits": 21,
+        "lines": 807,
+        "path": "README.md"
+      },
+      {
+        "commits": 2,
+        "lines": 169,
+        "path": "README.pt-BR.md"
+      },
+      {
+        "commits": 2,
+        "lines": 177,
+        "path": "README.zh.md"
+      },
+      {
+        "commits": 6,
+        "lines": 93,
+        "path": "SECURITY.md"
+      },
+      {
+        "commits": 6,
+        "lines": 60,
+        "path": "SHIP_GATE.md"
+      },
+      {
+        "commits": 1,
+        "lines": 62,
+        "path": "docs/art/receipts.json"
+      },
+      {
+        "commits": 9,
+        "lines": 140,
+        "path": "docs/datasets.md"
+      },
+      {
+        "commits": 3,
+        "lines": 98,
+        "path": "docs/live-fire.md"
+      },
+      {
+        "commits": 2,
+        "lines": 2484,
+        "path": "docs/proof/calibration.docker-fixture.naive.receipt.json"
+      },
+      {
+        "commits": 2,
+        "lines": 2526,
+        "path": "docs/proof/calibration.docker-fixture.ollama.receipt.json"
+      },
+      {
+        "commits": 2,
+        "lines": 2392,
+        "path": "docs/proof/calibration.docker-fixture.task-only.receipt.json"
+      },
+      {
+        "commits": 3,
+        "lines": 2520,
+        "path": "docs/proof/docker-fixture.naive.receipt.json"
+      },
+      {
+        "commits": 3,
+        "lines": 2428,
+        "path": "docs/proof/docker-fixture.task-only.receipt.json"
+      },
+      {
+        "commits": 3,
+        "lines": 50536,
+        "path": "docs/proof/livefire.intern.naive-wrap-on.receipt.json"
+      },
+      {
+        "commits": 3,
+        "lines": 50538,
+        "path": "docs/proof/livefire.intern.ollama-wrap-off.receipt.json"
+      },
+      {
+        "commits": 3,
+        "lines": 50544,
+        "path": "docs/proof/livefire.intern.ollama-wrap-on.receipt.json"
+      },
+      {
+        "commits": 3,
+        "lines": 50452,
+        "path": "docs/proof/livefire.intern.task-only-wrap-on.receipt.json"
+      },
+      {
+        "commits": 3,
+        "lines": 38962,
+        "path": "docs/proof/ollama-intern-mcp.naive-wrap.receipt.json"
+      },
+      {
+        "commits": 3,
+        "lines": 38878,
+        "path": "docs/proof/ollama-intern-mcp.task-only.receipt.json"
+      },
+      {
+        "commits": 2,
+        "lines": 50396,
+        "path": "docs/proof/ollama-intern-mcp.unlisted.receipt.json"
+      },
+      {
+        "commits": 1,
+        "lines": 131,
+        "path": "docs/study-swarm.dispatch.citation-receipt.json"
+      },
+      {
+        "commits": 1,
+        "lines": 91,
+        "path": "docs/study-swarm.dispatch.md"
+      },
+      {
+        "commits": 3,
+        "lines": 164,
+        "path": "docs/wave-1.md"
+      },
+      {
+        "commits": 3,
+        "lines": 124,
+        "path": "docs/wave-2.md"
+      },
+      {
+        "commits": 3,
+        "lines": 76,
+        "path": "docs/wave-3.md"
+      },
+      {
+        "commits": 3,
+        "lines": 126,
+        "path": "docs/wave-4.md"
+      },
+      {
+        "commits": 2,
+        "lines": 80,
+        "path": "docs/wave-5.md"
+      },
+      {
+        "commits": 2,
+        "lines": 84,
+        "path": "docs/wave-6.md"
+      },
+      {
+        "commits": 3,
+        "lines": 98,
+        "path": "docs/wave-7.md"
+      },
+      {
+        "commits": 4,
+        "lines": 71,
+        "path": "pyproject.toml"
+      },
+      {
+        "commits": 2,
+        "lines": 35,
+        "path": "site/astro.config.mjs"
+      },
+      {
+        "commits": 2,
+        "lines": 13518,
+        "path": "site/package-lock.json"
+      },
+      {
+        "commits": 2,
+        "lines": 24,
+        "path": "site/package.json"
+      },
+      {
+        "commits": 1,
+        "lines": 7,
+        "path": "site/src/content.config.ts"
+      },
+      {
+        "commits": 7,
+        "lines": 163,
+        "path": "site/src/content/docs/handbook/getting-started.md"
+      },
+      {
+        "commits": 7,
+        "lines": 57,
+        "path": "site/src/content/docs/handbook/index.md"
+      },
+      {
+        "commits": 20,
+        "lines": 154,
+        "path": "site/src/content/docs/handbook/reference.md"
+      },
+      {
+        "commits": 1,
+        "lines": 50,
+        "path": "site/src/content/docs/handbook/tapes.md"
+      },
+      {
+        "commits": 1,
+        "lines": 33,
+        "path": "site/src/pages/index.astro"
+      },
+      {
+        "commits": 3,
+        "lines": 145,
+        "path": "site/src/site-config.ts"
+      },
+      {
+        "commits": 1,
+        "lines": 3,
+        "path": "site/src/styles/global.css"
+      },
+      {
+        "commits": 1,
+        "lines": 5,
+        "path": "site/src/styles/starlight-custom.css"
+      },
+      {
+        "commits": 1,
+        "lines": 5,
+        "path": "site/tsconfig.json"
+      },
+      {
+        "commits": 3,
+        "lines": 13,
+        "path": "src/mcp_arcade/__init__.py"
+      },
+      {
+        "commits": 1,
+        "lines": 4,
+        "path": "src/mcp_arcade/__main__.py"
+      },
+      {
+        "commits": 3,
+        "lines": 92,
+        "path": "src/mcp_arcade/agent.py"
+      },
+      {
+        "commits": 3,
+        "lines": 11,
+        "path": "src/mcp_arcade/atoms/__init__.py"
+      },
+      {
+        "commits": 3,
+        "lines": 66,
+        "path": "src/mcp_arcade/atoms/common.py"
+      },
+      {
+        "commits": 3,
+        "lines": 180,
+        "path": "src/mcp_arcade/atoms/inspect.py"
+      },
+      {
+        "commits": 11,
+        "lines": 469,
+        "path": "src/mcp_arcade/atoms/poison.py"
+      },
+      {
+        "commits": 5,
+        "lines": 181,
+        "path": "src/mcp_arcade/atoms/rugpull.py"
+      },
+      {
+        "commits": 2,
+        "lines": 184,
+        "path": "src/mcp_arcade/atoms/unlisted.py"
+      },
+      {
+        "commits": 17,
+        "lines": 1093,
+        "path": "src/mcp_arcade/bout.py"
+      },
+      {
+        "commits": 18,
+        "lines": 928,
+        "path": "src/mcp_arcade/cli.py"
+      },
+      {
+        "commits": 7,
+        "lines": 947,
+        "path": "src/mcp_arcade/client.py"
+      },
+      {
+        "commits": 6,
+        "lines": 690,
+        "path": "src/mcp_arcade/dataset.py"
+      },
+      {
+        "commits": 3,
+        "lines": 774,
+        "path": "src/mcp_arcade/docker.py"
+      },
+      {
+        "commits": 6,
+        "lines": 393,
+        "path": "src/mcp_arcade/fixture.py"
+      },
+      {
+        "commits": 11,
+        "lines": 377,
+        "path": "src/mcp_arcade/models.py"
+      },
+      {
+        "commits": 5,
+        "lines": 204,
+        "path": "src/mcp_arcade/oracle.py"
+      },
+      {
+        "commits": 2,
+        "lines": 10,
+        "path": "src/mcp_arcade/prompts/seat.system.txt"
+      },
+      {
+        "commits": 3,
+        "lines": 527,
+        "path": "src/mcp_arcade/protocol.py"
+      },
+      {
+        "commits": 1,
+        "lines": 28,
+        "path": "src/mcp_arcade/receipt.py"
+      },
+      {
+        "commits": 1,
+        "lines": 20,
+        "path": "src/mcp_arcade/sandbox.py"
+      },
+      {
+        "commits": 6,
+        "lines": 524,
+        "path": "src/mcp_arcade/seat.py"
+      },
+      {
+        "commits": 4,
+        "lines": 784,
+        "path": "src/mcp_arcade/timeline.py"
+      },
+      {
+        "commits": 9,
+        "lines": 271,
+        "path": "src/mcp_arcade/tui.py"
+      },
+      {
+        "commits": 2,
+        "lines": 36,
+        "path": "tests/conftest.py"
+      },
+      {
+        "commits": 6,
+        "lines": 2776,
+        "path": "tests/fixtures/naive-content-length.json"
+      },
+      {
+        "commits": 6,
+        "lines": 2776,
+        "path": "tests/fixtures/naive-ndjson.json"
+      },
+      {
+        "commits": 6,
+        "lines": 2664,
+        "path": "tests/fixtures/task-only-content-length.json"
+      },
+      {
+        "commits": 6,
+        "lines": 2664,
+        "path": "tests/fixtures/task-only-ndjson.json"
+      },
+      {
+        "commits": 4,
+        "lines": 242,
+        "path": "tests/golden.py"
+      },
+      {
+        "commits": 2,
+        "lines": 316,
+        "path": "tests/mock_ollama.py"
+      },
+      {
+        "commits": 1,
+        "lines": 13,
+        "path": "tests/test_agent.py"
+      },
+      {
+        "commits": 13,
+        "lines": 709,
+        "path": "tests/test_bout.py"
+      },
+      {
+        "commits": 9,
+        "lines": 527,
+        "path": "tests/test_cli.py"
+      },
+      {
+        "commits": 2,
+        "lines": 446,
+        "path": "tests/test_client.py"
+      },
+      {
+        "commits": 8,
+        "lines": 1598,
+        "path": "tests/test_dataset.py"
+      },
+      {
+        "commits": 5,
+        "lines": 1358,
+        "path": "tests/test_docker.py"
+      },
+      {
+        "commits": 2,
+        "lines": 222,
+        "path": "tests/test_golden.py"
+      },
+      {
+        "commits": 4,
+        "lines": 567,
+        "path": "tests/test_oracle.py"
+      },
+      {
+        "commits": 2,
+        "lines": 50,
+        "path": "tests/test_proofs.py"
+      },
+      {
+        "commits": 3,
+        "lines": 619,
+        "path": "tests/test_protocol.py"
+      },
+      {
+        "commits": 8,
+        "lines": 1650,
+        "path": "tests/test_seat.py"
+      },
+      {
+        "commits": 2,
+        "lines": 212,
+        "path": "tests/test_tape_export.py"
+      },
+      {
+        "commits": 4,
+        "lines": 1174,
+        "path": "tests/test_timeline.py"
+      },
+      {
+        "commits": 2,
+        "lines": 734,
+        "path": "tests/test_unlisted.py"
+      }
+    ]
+  },
+  "confidence": {
+    "level": "low",
+    "reason": "fewer than 30 qualifying commits in the window, and fewer than 20 source files reach 10 revisions"
+  },
+  "generatedAt": "2026-09-25T09:40:35.834Z",
+  "generatedFrom": {
+    "commit": "0c17273e798aa56857b9805de6bc7009f19f7dfa"
+  },
+  "pairs": [
+    {
+      "a": "CHANGELOG.md",
+      "b": "CLAUDE.md",
+      "either": 14,
+      "shared": 7,
+      "strength": 0.5
+    },
+    {
+      "a": "CHANGELOG.md",
+      "b": "README.md",
+      "either": 15,
+      "shared": 9,
+      "strength": 0.6
+    },
+    {
+      "a": "CHANGELOG.md",
+      "b": "site/src/content/docs/handbook/reference.md",
+      "either": 14,
+      "shared": 10,
+      "strength": 0.714286
+    },
+    {
+      "a": "CLAUDE.md",
+      "b": "HANDOFF.md",
+      "either": 9,
+      "shared": 7,
+      "strength": 0.777778
+    },
+    {
+      "a": "CLAUDE.md",
+      "b": "site/src/content/docs/handbook/reference.md",
+      "either": 12,
+      "shared": 7,
+      "strength": 0.583333
+    },
+    {
+      "a": "CLAUDE.md",
+      "b": "src/mcp_arcade/cli.py",
+      "either": 9,
+      "shared": 6,
+      "strength": 0.666667
+    },
+    {
+      "a": "HANDOFF.md",
+      "b": "src/mcp_arcade/cli.py",
+      "either": 10,
+      "shared": 5,
+      "strength": 0.5
+    },
+    {
+      "a": "README.md",
+      "b": "src/mcp_arcade/cli.py",
+      "either": 12,
+      "shared": 6,
+      "strength": 0.5
+    },
+    {
+      "a": "site/src/content/docs/handbook/reference.md",
+      "b": "src/mcp_arcade/cli.py",
+      "either": 12,
+      "shared": 6,
+      "strength": 0.5
+    },
+    {
+      "a": "src/mcp_arcade/atoms/poison.py",
+      "b": "src/mcp_arcade/bout.py",
+      "either": 8,
+      "shared": 5,
+      "strength": 0.625
+    },
+    {
+      "a": "src/mcp_arcade/bout.py",
+      "b": "tests/test_bout.py",
+      "either": 8,
+      "shared": 5,
+      "strength": 0.625
+    }
+  ],
+  "parameters": {
+    "appliedChangesetLimit": 25.75,
+    "changeset": 50,
+    "changesetFraction": 0.25,
+    "cohesionDrop": 0.2,
+    "couplingPopulation": "source",
+    "fallenShared": 3,
+    "floor": "fallen",
+    "floorHeld": false,
+    "floorTrigger": "both",
+    "headDate": "2026-09-17T18:59:42-07:00",
+    "inScopeFiles": 103,
+    "pinnedStart": null,
+    "priorFloor": null,
+    "qualifyingCommits": 26,
+    "qualifyingMinimum": 30,
+    "revisions": 5,
+    "shared": 10,
+    "sharedFloorUsed": 3,
+    "since": "2026-03-22T01:59:42.000Z",
+    "sourceExtensions": [
+      ".js",
+      ".mjs",
+      ".cjs",
+      ".jsx",
+      ".ts",
+      ".tsx",
+      ".mts",
+      ".cts",
+      ".py",
+      ".rs",
+      ".gd"
+    ],
+    "sourceFileReach": 20,
+    "sourceFileRise": 25,
+    "sourceFilesReachingStrongFloor": 0,
+    "strength": 0.5,
+    "windowDays": 180
+  },
+  "strengthDefinition": "strength is the shared qualifying commits divided by either. either is the number of qualifying commits that touch either file."
+}
