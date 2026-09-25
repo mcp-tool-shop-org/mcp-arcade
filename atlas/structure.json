@@ -1,0 +1,3073 @@
+{
+  "boundaries": [
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "0decb769d2515951c583fe7bc23211dfd961c5358fa3c92c891b02ce82148585",
+          "path": ".github/dependabot.yml"
+        },
+        {
+          "hash": "9f73dc208fcf829b33e96872e4c20876dddcba5882c4545785a38a3f794ab253",
+          "path": ".github/workflows/ci.yml"
+        },
+        {
+          "hash": "24bb995e89edf3c25a6e6b4efc62c6d38f262cdef0df2ade91b0d45fe86e6b7d",
+          "path": ".github/workflows/pages.yml"
+        },
+        {
+          "hash": "3fc6feeb0ab6fc0656c8cfadc61e792d6a68bd2203355e9510757f42ff3e6de0",
+          "path": ".github/workflows/release.yml"
+        }
+      ],
+      "globs": [
+        ".github/**"
+      ],
+      "importConfidence": "full",
+      "name": ".github",
+      "origin": "authored",
+      "role": "config",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "210762d26ce7d886af7a5db71b4dca9c97aba94794bd7ae922f3518fbe8ed10c",
+          "path": "docs/art/receipts.json"
+        },
+        {
+          "hash": "85fb3b89e802f448c89fbfea351e299d044e6ff88953b9d935a7537e86f7af00",
+          "path": "docs/datasets.md"
+        },
+        {
+          "hash": "68d9966ef9e773aafba669ed4936229acb46ccde485f86e0211e8962a8e7e23e",
+          "path": "docs/live-fire.md"
+        },
+        {
+          "hash": "ffb0d61723d4060b13d20daaad44ccc818662ab97564d4c9880a88d2a38ef3dd",
+          "path": "docs/proof/calibration.docker-fixture.naive.receipt.json"
+        },
+        {
+          "hash": "e3794e2ab5853dba35d22748026e847d761d9ceb48183bad7e3f17bc548a3bcd",
+          "path": "docs/proof/calibration.docker-fixture.ollama.receipt.json"
+        },
+        {
+          "hash": "cd328d85e0014dbe1379dd87c5b290c1ea99c3fca3264605a6e2c73694e93e14",
+          "path": "docs/proof/calibration.docker-fixture.task-only.receipt.json"
+        },
+        {
+          "hash": "5016f3aa096e0a65d88a48eb57d392581bedccdf056fb1f9f9587fd45581504a",
+          "path": "docs/proof/docker-fixture.naive.receipt.json"
+        },
+        {
+          "hash": "364fa98ec808de2b8c5d19d01ea25038ba94692243584ac984b8b3e52b00c627",
+          "path": "docs/proof/docker-fixture.task-only.receipt.json"
+        },
+        {
+          "hash": "05d61dce0bbc35238e8a0be8b6b6736c6eec28808b70aa979a95c93577f02ff3",
+          "path": "docs/proof/livefire.intern.naive-wrap-on.receipt.json"
+        },
+        {
+          "hash": "c6f9fc16b5d0310451dbae6a08cfcd03cb62eaf95a9d8175dccc106218747ad1",
+          "path": "docs/proof/livefire.intern.ollama-wrap-off.receipt.json"
+        },
+        {
+          "hash": "a5d6861463d85331e206076a694a70756ce0e68e3931da411cbabf258a60e9b9",
+          "path": "docs/proof/livefire.intern.ollama-wrap-on.receipt.json"
+        },
+        {
+          "hash": "2b0d5141fa8e7d32dc66c764ae197c0f04576be10fe58eaec18aa913d570d35a",
+          "path": "docs/proof/livefire.intern.task-only-wrap-on.receipt.json"
+        },
+        {
+          "hash": "8e2b3cec3a6e730abcbd4b9267be2083bfe575af0f80e8a7065db786d8792ee8",
+          "path": "docs/proof/ollama-intern-mcp.naive-wrap.receipt.json"
+        },
+        {
+          "hash": "1a1640defb8ca7986a68fd9d67cdce7ae7d098ff9dba92da455e038a33259b8b",
+          "path": "docs/proof/ollama-intern-mcp.task-only.receipt.json"
+        },
+        {
+          "hash": "775d86c8e5b1f82c390f095fa0be7395120c392c5594e9f1a211baa489e721f5",
+          "path": "docs/proof/ollama-intern-mcp.unlisted.receipt.json"
+        },
+        {
+          "hash": "95b2b2bb56c7e5d1c17603a216fcd722682d2c0a43187dbc8c615cc2c06ddc9c",
+          "path": "docs/study-swarm.dispatch.citation-receipt.json"
+        },
+        {
+          "hash": "380d9ba14a0fd87c7e581b12b7667f578836a2be6bb13089bfcc68d848ba6e16",
+          "path": "docs/study-swarm.dispatch.md"
+        },
+        {
+          "hash": "980504cd8ff7a58e0d79682e9c2be285a9fc3aaddc38ac76b8cdba2366cddcc6",
+          "path": "docs/wave-1.md"
+        },
+        {
+          "hash": "6fdfe8b63468c7bdff25309470c84ce4b4ebf283fb20f082c17ee37f18030fc9",
+          "path": "docs/wave-2.md"
+        },
+        {
+          "hash": "8b3a8d9bbf239d4da520a10338436c7d608eb86fd5343a9a0b00cc30120feea6",
+          "path": "docs/wave-3.md"
+        },
+        {
+          "hash": "10c1d077b86ef8e6877628d815456891d990dcc1c964dcd0f77a11cdf4333a6d",
+          "path": "docs/wave-4.md"
+        },
+        {
+          "hash": "3e3da55bebfbbcb62147274a288b3b81cabc38bf7995bcf86ba3f49345ae72e7",
+          "path": "docs/wave-5.md"
+        },
+        {
+          "hash": "ebc19b1c3e44dfc043ea486ca0820b57969e928cf1a446a0a6b6daca5ad5baf6",
+          "path": "docs/wave-6.md"
+        },
+        {
+          "hash": "7341c364235cbec10a2bc4ba10806397285f4c9fa364145831f405ed29b8eb59",
+          "path": "docs/wave-7.md"
+        }
+      ],
+      "globs": [
+        "docs/**"
+      ],
+      "importConfidence": "full",
+      "name": "docs",
+      "origin": "authored",
+      "role": "data",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "fdeb2bf0cfd70440854e933efed5462078c92f4a32576fc541d91baec208288d",
+          "path": ".gitattributes"
+        },
+        {
+          "hash": "db89a019e676e8467b2fd5bb47d1d58a657495878b6283447020338c5b25608b",
+          "path": ".gitignore"
+        },
+        {
+          "hash": "4418902b8e3fb331053ab918b8c77dbaf22f84d733a60ec50ea9e0bcac6442c7",
+          "path": "CHANGELOG.md"
+        },
+        {
+          "hash": "1e8f19e4cae4eab8ac516d7cd60cfbb25c98796194a15237b54992cbe3ef5572",
+          "path": "CLAUDE.md"
+        },
+        {
+          "hash": "560064b5033b7751ddb064f36563186c7706f2942ff41e4dd8acf8ca10b49259",
+          "path": "HANDOFF.md"
+        },
+        {
+          "hash": "367e5141e4f5884e5791c4021f33a9faa958840a5decf44e1b273a87aad1c459",
+          "path": "LICENSE"
+        },
+        {
+          "hash": "80e9da3e7defa83fcd590163ecc560e75136f8ddd908d803e79ff77428362363",
+          "path": "README.es.md"
+        },
+        {
+          "hash": "edb2f28d38db947a332f0911e703966867b2a24e51a866fa6f6f78d2009ba665",
+          "path": "README.fr.md"
+        },
+        {
+          "hash": "fd3c756eb9f1742f2df11454a616232504be53bd56826fa3ed7d558b33c11e4d",
+          "path": "README.hi.md"
+        },
+        {
+          "hash": "819ff2a5e503c0872a228b011880b0826bb13b1a4ab7066abe2b882e473736f3",
+          "path": "README.it.md"
+        },
+        {
+          "hash": "fa367aa2680d915cbe7adb7f7130e8d71222921f30495185fc2eacf41e74056f",
+          "path": "README.ja.md"
+        },
+        {
+          "hash": "a7abb5678bbdb814a1e27454a158ce4dec5db159a4808e97d21b30d005e6d782",
+          "path": "README.md"
+        },
+        {
+          "hash": "a0d255d70db35a338e3e9cd47a20f7bd5abb3d79da81a6f5b9f451c939be6c23",
+          "path": "README.pt-BR.md"
+        },
+        {
+          "hash": "466fa0b54aa226940e21d16e7b28518532b0cf67bd4e15503edd247b0a646200",
+          "path": "README.zh.md"
+        },
+        {
+          "hash": "0309d2fca06c9bb5a6775cc0c1a0b231c899000c78c0c1a079995ffe7fc1665e",
+          "path": "SECURITY.md"
+        },
+        {
+          "hash": "f23f25b93efb2dcd831b4f460320e65071dfc5f6e2c14d465c24e2299194d3ea",
+          "path": "SHIP_GATE.md"
+        },
+        {
+          "hash": "812b3ea573f61f816de5056107105530afb05cc0c88e5c6f8471708a4ceff3d4",
+          "path": "pyproject.toml"
+        }
+      ],
+      "globs": [
+        "*"
+      ],
+      "importConfidence": "full",
+      "name": "root",
+      "origin": "authored",
+      "role": "config",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "5ae2b8d5e662c5c03d61c8251a4a80421e504579660a6ef67ddc7a22b6145b54",
+          "path": "site/astro.config.mjs"
+        },
+        {
+          "hash": "af5d4f54dca60686724d306eb58759fb25b6f5ba4d66559ab84a968112a184e5",
+          "path": "site/package-lock.json"
+        },
+        {
+          "hash": "ede5fe47605b55555e8d3ed7b2eb904e0c9b03a975348882ae0a870ef5b98bb7",
+          "path": "site/package.json"
+        },
+        {
+          "constantOnly": true,
+          "hash": "ee756dfba4122d2acc94a39b2555d9f200fff56a87a8c0b10f9cd01df26a8b62",
+          "path": "site/src/content.config.ts"
+        },
+        {
+          "hash": "985ff76459fb047325e2bb5d77e4987ed31d555fb504ed9f436fe3ac3e2bb5da",
+          "path": "site/src/content/docs/handbook/getting-started.md"
+        },
+        {
+          "hash": "ba41eac296ccdd23f8ba53c81d6584e665ae37cdc269aa120259b0665b7627b0",
+          "path": "site/src/content/docs/handbook/index.md"
+        },
+        {
+          "hash": "926b0d7741b97e10f2f14d0888b56ac0ab98e37e6799cc9df1711641203a0dc8",
+          "path": "site/src/content/docs/handbook/reference.md"
+        },
+        {
+          "hash": "3d2adfc8b8c0cb5990df361340c2f5b17ce118446d4a7aeb4c3f995adabe8881",
+          "path": "site/src/content/docs/handbook/tapes.md"
+        },
+        {
+          "hash": "391533713539035d3c92282579d43de0f137067867fdb502d7eaea3c74601d2a",
+          "path": "site/src/pages/index.astro"
+        },
+        {
+          "constantOnly": true,
+          "hash": "cbe2144bb0f027810c4b75799f41b5c4bd5429f37c29b95429086ad4b5ab885e",
+          "path": "site/src/site-config.ts"
+        },
+        {
+          "hash": "29ee8df91833e694bdba973126b34a6177de4cf01dab6d9ef7d3126e8e2b67fb",
+          "path": "site/src/styles/global.css"
+        },
+        {
+          "hash": "b17173f07c0db8b532533b5de48035355a12d9582f0918d75b12214b07d53a17",
+          "path": "site/src/styles/starlight-custom.css"
+        },
+        {
+          "hash": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9",
+          "path": "site/tsconfig.json"
+        }
+      ],
+      "globs": [
+        "site/**"
+      ],
+      "importConfidence": "full",
+      "name": "site",
+      "origin": "authored",
+      "role": "site",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 7,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 4,
+      "entryPoints": [
+        "src/mcp_arcade/cli.py"
+      ],
+      "externals": 0,
+      "files": [
+        {
+          "hash": "986890d973a24205283aca608e5b8cb1bb88687be7210497803cba38525d23de",
+          "path": "src/mcp_arcade/__init__.py"
+        },
+        {
+          "hash": "9689f4b08bf6a1efa8f08e034a64b918752fa6c21cb455120c111012cf92540d",
+          "importsFiles": [
+            "src/mcp_arcade/cli.py"
+          ],
+          "path": "src/mcp_arcade/__main__.py"
+        },
+        {
+          "exports": [
+            "parse_side_quests",
+            "run_policy"
+          ],
+          "hash": "5443e59a79230528bb523cb0e87594c1faa7843029aaa8a3d1e200054c469896",
+          "importsFiles": [
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "src/mcp_arcade/agent.py"
+        },
+        {
+          "hash": "542a1b8fba1e248d9f8283097b8bbc8179b962fded54909edfc548469b63d671",
+          "importsFiles": [
+            "src/mcp_arcade/atoms/inspect.py",
+            "src/mcp_arcade/atoms/poison.py",
+            "src/mcp_arcade/atoms/rugpull.py",
+            "src/mcp_arcade/atoms/unlisted.py"
+          ],
+          "path": "src/mcp_arcade/atoms/__init__.py"
+        },
+        {
+          "exports": [
+            "as_task",
+            "resolve_task"
+          ],
+          "hash": "51f2f348316624963831f68e2f7c93eae06a6352d0287dc11de023163125865f",
+          "importsFiles": [
+            "src/mcp_arcade/agent.py",
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "src/mcp_arcade/atoms/common.py"
+        },
+        {
+          "exports": [
+            "run_inspect"
+          ],
+          "hash": "acb0e402525f0a7c7c7f2fa22d505692eef8b2d4a8b933d3e6cb2d0f611f4c62",
+          "importsFiles": [
+            "src/mcp_arcade/agent.py",
+            "src/mcp_arcade/atoms/common.py",
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "src/mcp_arcade/atoms/inspect.py"
+        },
+        {
+          "exports": [
+            "run_poison"
+          ],
+          "hash": "b51680698b430a17c2ea8e2cfa00876ce957fa1da0373c112add66612d17371d",
+          "importsFiles": [
+            "src/mcp_arcade/agent.py",
+            "src/mcp_arcade/atoms/common.py",
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/oracle.py"
+          ],
+          "path": "src/mcp_arcade/atoms/poison.py"
+        },
+        {
+          "exports": [
+            "run_rug_pull"
+          ],
+          "hash": "9443cfb3afb3c9c3940b2484e8fa21a3260648024a2747d712e075eb03f63d0c",
+          "importsFiles": [
+            "src/mcp_arcade/atoms/common.py",
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/oracle.py"
+          ],
+          "path": "src/mcp_arcade/atoms/rugpull.py"
+        },
+        {
+          "exports": [
+            "probe_name",
+            "run_unlisted"
+          ],
+          "hash": "7496341cf9619e90f7500231715439ae6478fab300349941728bde85fb90581c",
+          "importsFiles": [
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "src/mcp_arcade/atoms/unlisted.py"
+        },
+        {
+          "entry": "run_bout",
+          "entryRule": 4,
+          "exports": [
+            "contrastive",
+            "fixture_command",
+            "resolve_target",
+            "run_bout"
+          ],
+          "hash": "bd88f735601e0de0c2d3eb79dc4de2f7921df327172d3d4c20e207c7b2eec796",
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/agent.py",
+            "src/mcp_arcade/atoms/__init__.py",
+            "src/mcp_arcade/atoms/poison.py",
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/oracle.py",
+            "src/mcp_arcade/protocol.py",
+            "src/mcp_arcade/sandbox.py",
+            "src/mcp_arcade/seat.py"
+          ],
+          "path": "src/mcp_arcade/bout.py",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "branch": "kind == \"fixture\"",
+                  "line": 101,
+                  "name": "TargetSpec",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "branch": "kind == \"docker\"",
+                  "line": 109,
+                  "name": "stealth_mounts",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                },
+                {
+                  "branch": "kind == \"docker\"",
+                  "line": 115,
+                  "name": "TargetSpec",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "line": 126,
+                  "name": "TargetSpec",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "resolve_target"
+            },
+            {
+              "calls": [
+                {
+                  "branch": "not (target.kind is TargetKind.DOCKER and target.image is N…",
+                  "line": 154,
+                  "name": "WrapTargetRequired",
+                  "target": {
+                    "file": "src/mcp_arcade/atoms/poison.py"
+                  }
+                },
+                {
+                  "line": 161,
+                  "name": "prepare",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                },
+                {
+                  "line": 273,
+                  "name": "container_name",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 274,
+                  "name": "run_argv",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 275,
+                  "name": "TargetSpec",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 282,
+                  "name": "ContainerInfo",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 304,
+                  "name": "McpStdioClient",
+                  "target": {
+                    "file": "src/mcp_arcade/client.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 314,
+                  "name": "check_drift",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 315,
+                  "name": "start",
+                  "receiver": "McpStdioClient",
+                  "target": {
+                    "file": "src/mcp_arcade/client.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 316,
+                  "name": "initialize",
+                  "receiver": "McpStdioClient",
+                  "target": {
+                    "file": "src/mcp_arcade/client.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 318,
+                  "name": "container_id",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "branch": "container is None",
+                  "line": 294,
+                  "name": "snapshot_dir",
+                  "target": {
+                    "file": "src/mcp_arcade/sandbox.py"
+                  },
+                  "via": "snap"
+                },
+                {
+                  "line": 295,
+                  "name": "snapshot",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "snap"
+                },
+                {
+                  "branch": "method != \"exec-tar\"",
+                  "line": 298,
+                  "name": "DockerError",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "snap"
+                },
+                {
+                  "line": 323,
+                  "name": "diff",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 327,
+                  "name": "close",
+                  "receiver": "McpStdioClient",
+                  "target": {
+                    "file": "src/mcp_arcade/client.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 329,
+                  "name": "remove",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 340,
+                  "name": "Check",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 334,
+                  "name": "AtomResult",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  },
+                  "via": "_one"
+                },
+                {
+                  "line": 221,
+                  "name": "score_atoms",
+                  "target": {
+                    "file": "src/mcp_arcade/oracle.py"
+                  }
+                },
+                {
+                  "line": 367,
+                  "name": "parse_side_quests",
+                  "target": {
+                    "file": "src/mcp_arcade/agent.py"
+                  },
+                  "via": "_whispered_names"
+                },
+                {
+                  "branch": "not extra",
+                  "line": 403,
+                  "name": "ContrastiveRecap",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  },
+                  "via": "contrastive"
+                },
+                {
+                  "line": 450,
+                  "name": "ContrastiveRecap",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  },
+                  "via": "contrastive"
+                },
+                {
+                  "line": 232,
+                  "name": "TaskSpec",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "run_bout",
+              "truncated": true
+            },
+            {
+              "calls": [
+                {
+                  "line": 273,
+                  "name": "container_name",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                },
+                {
+                  "line": 274,
+                  "name": "run_argv",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                },
+                {
+                  "line": 275,
+                  "name": "TargetSpec",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "line": 282,
+                  "name": "ContainerInfo",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "line": 304,
+                  "name": "McpStdioClient",
+                  "target": {
+                    "file": "src/mcp_arcade/client.py"
+                  }
+                },
+                {
+                  "line": 314,
+                  "name": "check_drift",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                },
+                {
+                  "line": 315,
+                  "name": "start",
+                  "receiver": "McpStdioClient",
+                  "target": {
+                    "file": "src/mcp_arcade/client.py"
+                  }
+                },
+                {
+                  "line": 316,
+                  "name": "initialize",
+                  "receiver": "McpStdioClient",
+                  "target": {
+                    "file": "src/mcp_arcade/client.py"
+                  }
+                },
+                {
+                  "line": 318,
+                  "name": "container_id",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                },
+                {
+                  "branch": "container is None",
+                  "line": 294,
+                  "name": "snapshot_dir",
+                  "target": {
+                    "file": "src/mcp_arcade/sandbox.py"
+                  },
+                  "via": "snap"
+                },
+                {
+                  "line": 295,
+                  "name": "snapshot",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "snap"
+                },
+                {
+                  "branch": "method != \"exec-tar\"",
+                  "line": 298,
+                  "name": "DockerError",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  },
+                  "via": "snap"
+                },
+                {
+                  "line": 323,
+                  "name": "diff",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                },
+                {
+                  "line": 327,
+                  "name": "close",
+                  "receiver": "McpStdioClient",
+                  "target": {
+                    "file": "src/mcp_arcade/client.py"
+                  }
+                },
+                {
+                  "line": 329,
+                  "name": "remove",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                },
+                {
+                  "line": 340,
+                  "name": "Check",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "line": 334,
+                  "name": "AtomResult",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                }
+              ],
+              "exported": false,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "_one"
+            },
+            {
+              "calls": [
+                {
+                  "line": 367,
+                  "name": "parse_side_quests",
+                  "target": {
+                    "file": "src/mcp_arcade/agent.py"
+                  }
+                }
+              ],
+              "exported": false,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "_whispered_names"
+            },
+            {
+              "calls": [
+                {
+                  "line": 367,
+                  "name": "parse_side_quests",
+                  "target": {
+                    "file": "src/mcp_arcade/agent.py"
+                  },
+                  "via": "_whispered_names"
+                },
+                {
+                  "branch": "not extra",
+                  "line": 403,
+                  "name": "ContrastiveRecap",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "line": 450,
+                  "name": "ContrastiveRecap",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "contrastive"
+            }
+          ]
+        },
+        {
+          "entry": "main",
+          "entryRule": 0,
+          "exports": [
+            "app",
+            "atoms_cmd",
+            "bout_cmd",
+            "dataset_cmd",
+            "docker_build_fixture",
+            "docker_group",
+            "docker_leftovers",
+            "docker_rm_fixture",
+            "fixture_cmd",
+            "main",
+            "receipt_cmd",
+            "split_command",
+            "tape_cmd"
+          ],
+          "hash": "35f231bf5e5109b1f332522d48a44c0739b297d27dc9dd14d2adab655bed5350",
+          "importOrder": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/atoms/poison.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/docker.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/receipt.py",
+            "src/mcp_arcade/seat.py",
+            "src/mcp_arcade/tui.py",
+            "src/mcp_arcade/dataset.py",
+            "src/mcp_arcade/timeline.py",
+            "src/mcp_arcade/fixture.py"
+          ],
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/atoms/poison.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/dataset.py",
+            "src/mcp_arcade/docker.py",
+            "src/mcp_arcade/fixture.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/receipt.py",
+            "src/mcp_arcade/seat.py",
+            "src/mcp_arcade/timeline.py",
+            "src/mcp_arcade/tui.py"
+          ],
+          "path": "src/mcp_arcade/cli.py",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 253,
+                  "name": "AtomId",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "line": 262,
+                  "name": "resolve_target",
+                  "target": {
+                    "file": "src/mcp_arcade/bout.py"
+                  }
+                },
+                {
+                  "line": 276,
+                  "name": "parse_agent_spec",
+                  "target": {
+                    "file": "src/mcp_arcade/seat.py"
+                  }
+                },
+                {
+                  "line": 305,
+                  "name": "OllamaSeat",
+                  "target": {
+                    "file": "src/mcp_arcade/seat.py"
+                  }
+                },
+                {
+                  "line": 309,
+                  "name": "AgentPolicy",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "line": 327,
+                  "name": "TaskSpec",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "line": 334,
+                  "name": "run_bout",
+                  "target": {
+                    "file": "src/mcp_arcade/bout.py"
+                  }
+                },
+                {
+                  "line": 357,
+                  "name": "render_preamble",
+                  "target": {
+                    "file": "src/mcp_arcade/tui.py"
+                  }
+                },
+                {
+                  "line": 358,
+                  "name": "render_timeline",
+                  "target": {
+                    "file": "src/mcp_arcade/tui.py"
+                  }
+                },
+                {
+                  "line": 363,
+                  "name": "ask_operator_call",
+                  "target": {
+                    "file": "src/mcp_arcade/tui.py"
+                  }
+                },
+                {
+                  "line": 364,
+                  "name": "render_score",
+                  "target": {
+                    "file": "src/mcp_arcade/tui.py"
+                  }
+                },
+                {
+                  "line": 367,
+                  "name": "write_receipt",
+                  "target": {
+                    "file": "src/mcp_arcade/receipt.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "bout_cmd"
+            },
+            {
+              "calls": [
+                {
+                  "line": 394,
+                  "name": "read_receipt",
+                  "target": {
+                    "file": "src/mcp_arcade/receipt.py"
+                  }
+                },
+                {
+                  "branch": "not timeline",
+                  "line": 398,
+                  "name": "canonical_dumps",
+                  "target": {
+                    "file": "src/mcp_arcade/receipt.py"
+                  }
+                },
+                {
+                  "line": 400,
+                  "name": "render_preamble",
+                  "target": {
+                    "file": "src/mcp_arcade/tui.py"
+                  }
+                },
+                {
+                  "line": 401,
+                  "name": "render_timeline",
+                  "target": {
+                    "file": "src/mcp_arcade/tui.py"
+                  }
+                },
+                {
+                  "line": 403,
+                  "name": "render_score",
+                  "target": {
+                    "file": "src/mcp_arcade/tui.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "receipt_cmd"
+            },
+            {
+              "calls": [
+                {
+                  "line": 425,
+                  "name": "build",
+                  "target": {
+                    "file": "src/mcp_arcade/dataset.py"
+                  }
+                },
+                {
+                  "line": 426,
+                  "name": "write",
+                  "target": {
+                    "file": "src/mcp_arcade/dataset.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "dataset_cmd"
+            },
+            {
+              "calls": [
+                {
+                  "line": 447,
+                  "name": "build_fixture_image",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "docker_build_fixture"
+            },
+            {
+              "calls": [
+                {
+                  "line": 458,
+                  "name": "remove_fixture_image",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "docker_rm_fixture"
+            },
+            {
+              "calls": [
+                {
+                  "line": 466,
+                  "name": "leftovers",
+                  "target": {
+                    "file": "src/mcp_arcade/__init__.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "docker_leftovers"
+            },
+            {
+              "calls": [
+                {
+                  "line": 483,
+                  "name": "read_receipt",
+                  "target": {
+                    "file": "src/mcp_arcade/receipt.py"
+                  }
+                },
+                {
+                  "line": 484,
+                  "name": "tape_from_receipt",
+                  "target": {
+                    "file": "src/mcp_arcade/timeline.py"
+                  }
+                },
+                {
+                  "line": 484,
+                  "name": "tape_json",
+                  "target": {
+                    "file": "src/mcp_arcade/timeline.py"
+                  }
+                },
+                {
+                  "line": 489,
+                  "name": "write_text",
+                  "target": null
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "tape_cmd"
+            },
+            {
+              "calls": [
+                {
+                  "line": 498,
+                  "name": "main",
+                  "target": {
+                    "file": "src/mcp_arcade/fixture.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "fixture_cmd"
+            }
+          ]
+        },
+        {
+          "hash": "ad5c670a88f0e6a5359df428d269dd4a0ac98db029ce3db04d4cc6bd9c166986",
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/protocol.py"
+          ],
+          "path": "src/mcp_arcade/client.py"
+        },
+        {
+          "entry": "build",
+          "entryRule": 4,
+          "exports": [
+            "build",
+            "discover",
+            "ingest",
+            "manifest",
+            "row_for",
+            "write"
+          ],
+          "hash": "c23c3ba25a47d3c0ee412dfc7e75246d683a6e8da81e511aa1b3aef9ac7fe16e",
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/oracle.py"
+          ],
+          "path": "src/mcp_arcade/dataset.py",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 111,
+                  "name": "model_validate",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                },
+                {
+                  "line": 114,
+                  "name": "unauthorized_calls",
+                  "target": {
+                    "file": "src/mcp_arcade/oracle.py"
+                  }
+                }
+              ],
+              "exported": false,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "_attack_success"
+            },
+            {
+              "calls": [
+                {
+                  "line": 111,
+                  "name": "model_validate",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  },
+                  "via": "_attack_success"
+                },
+                {
+                  "line": 114,
+                  "name": "unauthorized_calls",
+                  "target": {
+                    "file": "src/mcp_arcade/oracle.py"
+                  },
+                  "via": "_attack_success"
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "row_for"
+            },
+            {
+              "calls": [
+                {
+                  "line": 202,
+                  "name": "read_bytes",
+                  "target": null
+                },
+                {
+                  "line": 111,
+                  "name": "model_validate",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  },
+                  "via": "_attack_success"
+                },
+                {
+                  "line": 114,
+                  "name": "unauthorized_calls",
+                  "target": {
+                    "file": "src/mcp_arcade/oracle.py"
+                  },
+                  "via": "_attack_success"
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "ingest"
+            },
+            {
+              "calls": [
+                {
+                  "line": 272,
+                  "name": "is_dir",
+                  "target": null
+                },
+                {
+                  "line": 276,
+                  "name": "rglob",
+                  "target": null
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "discover"
+            },
+            {
+              "calls": [
+                {
+                  "line": 272,
+                  "name": "is_dir",
+                  "target": null,
+                  "via": "discover"
+                },
+                {
+                  "line": 276,
+                  "name": "rglob",
+                  "target": null,
+                  "via": "discover"
+                },
+                {
+                  "line": 202,
+                  "name": "read_bytes",
+                  "target": null,
+                  "via": "ingest"
+                },
+                {
+                  "line": 111,
+                  "name": "model_validate",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  },
+                  "via": "_attack_success"
+                },
+                {
+                  "line": 114,
+                  "name": "unauthorized_calls",
+                  "target": {
+                    "file": "src/mcp_arcade/oracle.py"
+                  },
+                  "via": "_attack_success"
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "build"
+            },
+            {
+              "calls": [
+                {
+                  "line": 328,
+                  "name": "mkdir",
+                  "target": null
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "write"
+            }
+          ]
+        },
+        {
+          "exports": [
+            "available",
+            "build_fixture_image",
+            "check_drift",
+            "container_id",
+            "container_name",
+            "diff",
+            "docker_binary",
+            "inspect_image",
+            "leftovers",
+            "prepare",
+            "remove",
+            "remove_fixture_image",
+            "run_argv",
+            "snapshot",
+            "stealth_mounts"
+          ],
+          "hash": "60076ed17ebcf9a9129c63c5a0bedde5adbd9685883c45d048269207f4548d15",
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "src/mcp_arcade/docker.py"
+        },
+        {
+          "entry": "main",
+          "entryRule": 1,
+          "exports": [
+            "handle",
+            "main"
+          ],
+          "hash": "5d2a7916cb69a8ca854c16137942bf4f3cdc0d9bddd2010acc0ddde35683f789",
+          "importsFiles": [
+            "src/mcp_arcade/protocol.py"
+          ],
+          "path": "src/mcp_arcade/fixture.py",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "branch": "method == \"initialize\"",
+                  "line": 140,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "branch": "method == \"tools/list\"",
+                  "line": 151,
+                  "name": "tools",
+                  "target": null
+                },
+                {
+                  "branch": "method == \"tools/list\"",
+                  "line": 151,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "branch": "name == \"echo\"",
+                  "line": 162,
+                  "name": "write_leak",
+                  "target": null
+                },
+                {
+                  "branch": "name == \"echo\"",
+                  "line": 163,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "branch": "name == \"leak\"",
+                  "line": 166,
+                  "name": "write_leak",
+                  "target": null
+                },
+                {
+                  "branch": "name == \"leak\"",
+                  "line": 167,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "branch": "state.unlisted and name.startswith(\"arcade.unlisted.\")",
+                  "line": 170,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "branch": "method == \"tools/call\"",
+                  "line": 171,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "line": 173,
+                  "name": "rpc_error",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "handle"
+            },
+            {
+              "calls": [
+                {
+                  "line": 181,
+                  "name": "write_message",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "line": 194,
+                  "name": "rpc_request",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "line": 192,
+                  "name": "write_message",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                }
+              ],
+              "exported": false,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "_pre_response"
+            },
+            {
+              "calls": [
+                {
+                  "line": 213,
+                  "name": "Framing",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "line": 213,
+                  "name": "FrameReader",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "line": 217,
+                  "name": "read",
+                  "receiver": "FrameReader",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                },
+                {
+                  "line": 181,
+                  "name": "write_message",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "_pre_response"
+                },
+                {
+                  "line": 194,
+                  "name": "rpc_request",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "_pre_response"
+                },
+                {
+                  "line": 192,
+                  "name": "write_message",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "_pre_response"
+                },
+                {
+                  "branch": "method == \"initialize\"",
+                  "line": 140,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "handle"
+                },
+                {
+                  "branch": "method == \"tools/list\"",
+                  "line": 151,
+                  "name": "tools",
+                  "target": null,
+                  "via": "handle"
+                },
+                {
+                  "branch": "method == \"tools/list\"",
+                  "line": 151,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "handle"
+                },
+                {
+                  "branch": "name == \"echo\"",
+                  "line": 162,
+                  "name": "write_leak",
+                  "target": null,
+                  "via": "handle"
+                },
+                {
+                  "branch": "name == \"echo\"",
+                  "line": 163,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "handle"
+                },
+                {
+                  "branch": "name == \"leak\"",
+                  "line": 166,
+                  "name": "write_leak",
+                  "target": null,
+                  "via": "handle"
+                },
+                {
+                  "branch": "name == \"leak\"",
+                  "line": 167,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "handle"
+                },
+                {
+                  "branch": "state.unlisted and name.startswith(\"arcade.unlisted.\")",
+                  "line": 170,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "handle"
+                },
+                {
+                  "branch": "method == \"tools/call\"",
+                  "line": 171,
+                  "name": "rpc_result",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "handle"
+                },
+                {
+                  "line": 173,
+                  "name": "rpc_error",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  },
+                  "via": "handle"
+                },
+                {
+                  "line": 241,
+                  "name": "write_message",
+                  "target": {
+                    "file": "src/mcp_arcade/protocol.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": true,
+              "isDefaultExport": false,
+              "name": "main"
+            }
+          ]
+        },
+        {
+          "hash": "2633497f81ab8acb55b6b8f6086fb9c597c4eb93a601abae1479605f9d79b4b5",
+          "path": "src/mcp_arcade/models.py"
+        },
+        {
+          "exports": [
+            "catalog_fingerprint",
+            "description_mentions_side_quest",
+            "score_atoms",
+            "server_notifications",
+            "task_succeeded",
+            "unauthorized_calls"
+          ],
+          "hash": "1df5bc323cce40cc69ecfb7e119262b14ec78422740c940c30c6b353845ffe14",
+          "importsFiles": [
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "src/mcp_arcade/oracle.py"
+        },
+        {
+          "hash": "e622230ced04389714ef424787aae532a77090e2b93923716f0c0d60440da994",
+          "path": "src/mcp_arcade/prompts/seat.system.txt"
+        },
+        {
+          "exports": [
+            "encode_message",
+            "is_notification",
+            "is_request",
+            "is_response",
+            "read_message",
+            "rpc_error",
+            "rpc_notify",
+            "rpc_request",
+            "rpc_result",
+            "write_message"
+          ],
+          "hash": "2628b2b1a19f3924f0786cd75ed3b8859355f2d320eb526376e7e1da96da6684",
+          "path": "src/mcp_arcade/protocol.py"
+        },
+        {
+          "entry": "write_receipt",
+          "entryRule": 4,
+          "exports": [
+            "canonical_dumps",
+            "read_receipt",
+            "write_receipt"
+          ],
+          "hash": "285e830285a26d59ede9346c6b198aa7f7141cda617a57e63fd38329f287cf92",
+          "importsFiles": [
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "src/mcp_arcade/receipt.py",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 17,
+                  "name": "model_dump",
+                  "target": null
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "canonical_dumps"
+            },
+            {
+              "calls": [
+                {
+                  "line": 17,
+                  "name": "model_dump",
+                  "target": null,
+                  "via": "canonical_dumps"
+                },
+                {
+                  "line": 23,
+                  "name": "write_text",
+                  "target": null
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "write_receipt"
+            },
+            {
+              "calls": [
+                {
+                  "line": 27,
+                  "name": "read_text",
+                  "target": null
+                },
+                {
+                  "line": 28,
+                  "name": "model_validate",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "read_receipt"
+            }
+          ]
+        },
+        {
+          "exports": [
+            "snapshot_dir"
+          ],
+          "hash": "f2fcd40fee56f6eae45ae7325f9d64a64f63e84489635d9a874673f90b0c8cda",
+          "importsFiles": [
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "src/mcp_arcade/sandbox.py"
+        },
+        {
+          "exports": [
+            "build_messages",
+            "extract_calls",
+            "max_calls",
+            "parse_agent_spec",
+            "template_sha256",
+            "template_text",
+            "tools_payload"
+          ],
+          "hash": "ee3bdda70a1c501e677423308ad44e55711f300968947924bf41275ccc226719",
+          "importsFiles": [
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "src/mcp_arcade/seat.py"
+        },
+        {
+          "entry": "build_rows",
+          "entryRule": 4,
+          "exports": [
+            "attribute",
+            "build_rows",
+            "initialize_count_matches",
+            "render",
+            "tape_from_receipt",
+            "tape_json",
+            "tape_to_dict",
+            "wire_facts"
+          ],
+          "hash": "1f66494c6d6d7f452b229269ffbf582ea638726ff59d229661e2ef3054c93f98",
+          "importsFiles": [
+            "src/mcp_arcade/atoms/unlisted.py"
+          ],
+          "path": "src/mcp_arcade/timeline.py",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 141,
+                  "name": "PROBE_PREFIX",
+                  "passed": true,
+                  "target": {
+                    "file": "src/mcp_arcade/atoms/unlisted.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "build_rows"
+            },
+            {
+              "calls": [
+                {
+                  "line": 141,
+                  "name": "PROBE_PREFIX",
+                  "passed": true,
+                  "target": {
+                    "file": "src/mcp_arcade/atoms/unlisted.py"
+                  },
+                  "via": "build_rows"
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "tape_from_receipt"
+            },
+            {
+              "calls": [
+                {
+                  "line": 268,
+                  "name": "PROBE_PREFIX",
+                  "passed": true,
+                  "target": {
+                    "file": "src/mcp_arcade/atoms/unlisted.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "wire_facts"
+            },
+            {
+              "calls": [
+                {
+                  "line": 354,
+                  "name": "print",
+                  "target": null
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "render"
+            }
+          ]
+        },
+        {
+          "entry": "render_timeline",
+          "entryRule": 4,
+          "exports": [
+            "ask_operator_call",
+            "render_preamble",
+            "render_score",
+            "render_timeline"
+          ],
+          "hash": "1986a19fb3c1d34e89d50e6ee2bd13ac9730b90949c9037ba70c91b19f75e0a9",
+          "importsFiles": [
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/timeline.py"
+          ],
+          "path": "src/mcp_arcade/tui.py",
+          "sequences": [
+            {
+              "calls": [
+                {
+                  "line": 67,
+                  "name": "model_dump",
+                  "target": null
+                },
+                {
+                  "line": 67,
+                  "name": "tape_from_receipt",
+                  "target": {
+                    "file": "src/mcp_arcade/timeline.py"
+                  }
+                },
+                {
+                  "line": 68,
+                  "name": "render",
+                  "target": {
+                    "file": "src/mcp_arcade/timeline.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "render_timeline"
+            },
+            {
+              "calls": [
+                {
+                  "line": 80,
+                  "name": "OperatorCall",
+                  "target": {
+                    "file": "src/mcp_arcade/models.py"
+                  }
+                }
+              ],
+              "exported": true,
+              "invokedAtTopLevel": false,
+              "isDefaultExport": false,
+              "name": "ask_operator_call"
+            }
+          ]
+        }
+      ],
+      "globs": [
+        "src/**"
+      ],
+      "importConfidence": "full",
+      "name": "src",
+      "origin": "authored",
+      "role": "code",
+      "testedBy": 14,
+      "unresolvedSites": 0
+    },
+    {
+      "dynamicReads": 0,
+      "dynamicSpawns": 0,
+      "dynamicSpawnsInTests": 0,
+      "dynamicWrites": 0,
+      "entryPoints": [],
+      "externals": 0,
+      "files": [
+        {
+          "exports": [
+            "pytest_configure"
+          ],
+          "hash": "859bad71d978778e8538854b2cff7611451863b22874c5aafd8dd791cf0b0f6e",
+          "path": "tests/conftest.py"
+        },
+        {
+          "hash": "07ff9813d3b3be2047ba660f74ff6a278e9b02b1a4d6d7773b4ee11e4857bd2b",
+          "path": "tests/fixtures/naive-content-length.json"
+        },
+        {
+          "hash": "516f902b6d2c501acc54dea9c121337b8af2f2eb38a391d27d182e1ed76d0bfa",
+          "path": "tests/fixtures/naive-ndjson.json"
+        },
+        {
+          "hash": "3d25a353c00c79ca24a2f3d3d87c6f0c25d71814479171c5751a5c8e040c590e",
+          "path": "tests/fixtures/task-only-content-length.json"
+        },
+        {
+          "hash": "9a2d00613ae8a4616a1c193be46e93a1a8196cc411dd302234bcde94df4b958b",
+          "path": "tests/fixtures/task-only-ndjson.json"
+        },
+        {
+          "exports": [
+            "dumps",
+            "load",
+            "normalize",
+            "projection",
+            "save"
+          ],
+          "hash": "87fee5093a1cd2f69dc6875429295990d2e5686fd96be6d40104d39d8e8252cc",
+          "path": "tests/golden.py"
+        },
+        {
+          "exports": [
+            "assistant",
+            "mock_ollama",
+            "stop"
+          ],
+          "hash": "8e7de21aa7c059409d0b640c49d719aeb84c0e91baae37d71edaa940f307f771",
+          "importsFiles": [
+            "src/mcp_arcade/seat.py"
+          ],
+          "path": "tests/mock_ollama.py"
+        },
+        {
+          "exports": [
+            "test_parse_no_side_quest",
+            "test_parse_side_quest_with_json_args"
+          ],
+          "hash": "3aa8dddc27fb779ce0cb69531c472dce75daa2a0b59a21b2157f1df6daf7ac58",
+          "importsFiles": [
+            "src/mcp_arcade/agent.py"
+          ],
+          "path": "tests/test_agent.py"
+        },
+        {
+          "exports": [
+            "sandbox",
+            "test_a_timed_out_bout_errors_every_atom_and_scores_nothing",
+            "test_content_length_target_runs_end_to_end",
+            "test_house_wrap_is_off_by_default",
+            "test_house_wrap_takes_precedence_over_the_fixture_whisper",
+            "test_house_wrap_targets_the_named_tool_not_the_first_other",
+            "test_inspect_passes_on_fixture",
+            "test_naive_policy_follows_whispered_errand",
+            "test_operator_named_task_is_recorded_and_goes_out_on_the_wire",
+            "test_operator_task_that_is_not_on_the_menu_fails_the_inspect_check",
+            "test_persuasive_notification_on_the_live_wire_does_not_move_scores",
+            "test_recap_does_not_put_a_withheld_attempt_on_the_wire",
+            "test_recap_names_a_side_quest_only_when_the_description_whispered_it",
+            "test_receipt_records_the_session_and_the_default_task",
+            "test_rug_pull_catches_catalog_mutation",
+            "test_split_lands_on_the_receipt",
+            "test_stdio_without_allow_live_is_closed",
+            "test_task_only_does_not_follow_whispered_errand",
+            "test_wrap_on_a_live_target_without_a_named_target_is_refused",
+            "test_wrap_target_on_the_fixture_is_honoured_and_recorded"
+          ],
+          "hash": "2886079a529577de6cac319a83c5a1fababe00d2d873a5941aa3a74cbb772c20",
+          "importOrder": [
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/atoms/unlisted.py",
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/oracle.py",
+            "src/mcp_arcade/atoms/poison.py"
+          ],
+          "importsFiles": [
+            "src/mcp_arcade/atoms/poison.py",
+            "src/mcp_arcade/atoms/unlisted.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/oracle.py"
+          ],
+          "path": "tests/test_bout.py"
+        },
+        {
+          "exports": [
+            "test_args_must_be_a_json_object",
+            "test_args_must_be_json",
+            "test_args_without_task_is_refused",
+            "test_atoms_lists_the_catalog",
+            "test_bout_accepts_a_timeout",
+            "test_bout_fixture_task_only",
+            "test_bout_help_lists_the_wave_1_options",
+            "test_bout_help_lists_wrap_target",
+            "test_bout_rejects_a_non_numeric_timeout",
+            "test_bout_requires_target",
+            "test_bout_with_an_operator_named_task",
+            "test_bout_with_content_length_framing",
+            "test_split_command_keeps_windows_backslashes",
+            "test_split_command_leaves_the_repeatable_form_alone",
+            "test_split_command_splits_one_quoted_string",
+            "test_split_command_strips_inner_quotes_around_a_path_with_spaces",
+            "test_stdio_target_needs_allow_live",
+            "test_version",
+            "test_wrap_on_stdio_without_wrap_target_is_a_cli_error"
+          ],
+          "hash": "5336498f364d738c0c1a75124ccbe7e5eab5c16195c0c83b98f2b8165e9216c4",
+          "importsFiles": [
+            "src/mcp_arcade/cli.py"
+          ],
+          "path": "tests/test_cli.py"
+        },
+        {
+          "exports": [
+            "inbound",
+            "spec",
+            "started",
+            "test_auto_against_a_content_length_only_server_fails_loudly",
+            "test_auto_detects_ndjson_and_records_the_handshake",
+            "test_content_length_flag_against_an_auto_fixture",
+            "test_hang_becomes_a_named_timeout",
+            "test_missing_command_is_a_client_error",
+            "test_notification_is_recorded_and_does_not_kill_the_request",
+            "test_pinned_content_length_server_needs_the_flag",
+            "test_pinned_ndjson_server_is_detected_by_auto",
+            "test_server_request_is_recorded_and_rejected",
+            "test_smuggled_frame_is_a_protocol_error_not_a_timeout",
+            "test_stderr_tail_carries_a_dying_server_s_last_words",
+            "test_stderr_tail_is_a_string_after_close",
+            "test_unknown_tool_is_an_is_error_call_not_an_exception"
+          ],
+          "hash": "34d9e0e6d591c4189ba652d012c095cf43f4fbdd340901a7503f7be3ec2afe64",
+          "importsFiles": [
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/client.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/protocol.py"
+          ],
+          "path": "tests/test_client.py"
+        },
+        {
+          "exports": [
+            "atom_of",
+            "build_and_write",
+            "golden",
+            "initialize_indexes",
+            "inject_after_initialize",
+            "leaked_from_calls",
+            "notification",
+            "plant",
+            "read_receipt",
+            "receipt_dir_with_goldens",
+            "report_named",
+            "row_for_atom",
+            "rows_of",
+            "test_agent_policies_are_counted_per_row",
+            "test_check_detail_text_is_stripped",
+            "test_cli_builds_the_dataset",
+            "test_cli_rejects_a_missing_receipt_directory",
+            "test_cli_requires_an_output_directory",
+            "test_error_atom_is_dropped_and_tallied",
+            "test_every_row_has_the_exact_key_set",
+            "test_goldens_have_no_container_block",
+            "test_goldens_produce_twelve_train_rows",
+            "test_malformed_call_entry_is_tallied_not_fatal",
+            "test_malformed_receipts_are_tallied_not_raised",
+            "test_missing_receipt_directory_raises_dataset_error",
+            "test_no_host_paths_in_any_output_file",
+            "test_non_poison_rows_carry_no_attack_label",
+            "test_notifications_are_attributed_to_their_own_atom",
+            "test_one_bad_receipt_does_not_stop_the_good_ones",
+            "test_persuasive_text_cannot_talk_a_held_bout_into_attack_success",
+            "test_persuasive_text_cannot_talk_a_leak_out_of_attack_success",
+            "test_planted_proof_receipt_yields_no_rows",
+            "test_poison_labels_follow_the_calls_not_the_policy_name",
+            "test_previous_manifest_in_input_dir_is_not_a_receipt",
+            "test_receipt_holdout_atom_ids_pull_a_public_atom_out_of_train",
+            "test_rows_carry_no_operator_prose",
+            "test_rows_trace_back_to_the_manifest_receipts",
+            "test_seat_block_on_a_row_is_allowlisted",
+            "test_skip_atom_is_never_kept_as_a_held_negative",
+            "test_split_holdout_sends_every_row_to_the_holdout_shard",
+            "test_the_same_proof_bytes_marked_train_do_produce_rows",
+            "test_unknown_atom_id_goes_to_holdout_even_when_the_receipt_says_train",
+            "test_unparseable_and_non_object_files_are_tallied",
+            "test_write_is_deterministic_and_holdout_never_leaks_into_train",
+            "whisper_into_descriptions"
+          ],
+          "hash": "2a966c05b16aaa1448ae4cd0ca3b49da4f7e257bfb0734d60d114ab34cbf01b1",
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/cli.py"
+          ],
+          "path": "tests/test_dataset.py"
+        },
+        {
+          "exports": [
+            "a_plan",
+            "assert_container_shape",
+            "e_pairs",
+            "ensure_base_image",
+            "test_a_live_image_that_is_not_an_mcp_server_errors_every_atom",
+            "test_a_look_alike_fixture_tag_is_refused",
+            "test_cli_docker_bout_writes_a_receipt_with_the_container_on_it",
+            "test_cli_docker_build_fixture_prints_the_tag_and_an_id",
+            "test_cli_docker_group_lists_its_compensators",
+            "test_cli_docker_image_without_allow_live_exits_nonzero",
+            "test_cli_docker_leftovers_says_none",
+            "test_container_name_drops_the_bout_prefix",
+            "test_default_run_flags_carry_every_safety_flag",
+            "test_digest_drift_between_atoms_errors_the_bout",
+            "test_fixture_base_image_is_pinned_by_digest",
+            "test_fixture_skip_covers_default_argv_only",
+            "test_fixture_tag_tracks_the_package_version",
+            "test_naive_docker_fixture_bout_is_the_host_verdict_in_a_container",
+            "test_plain_docker_args_are_accepted",
+            "test_prepare_refuses_a_named_image_before_it_inspects_it",
+            "test_prepare_without_a_daemon_is_a_docker_error",
+            "test_resolve_target_docker_records_the_operator_flags",
+            "test_resolve_target_docker_refuses_a_command_without_an_image",
+            "test_resolve_target_docker_with_no_image_is_arcades_own_fixture",
+            "test_run_argv_adds_a_v_pair_per_bind",
+            "test_run_argv_appends_docker_args_before_the_image_and_command",
+            "test_run_argv_has_no_host_bind_by_default",
+            "test_run_argv_is_exactly_the_documented_argv",
+            "test_run_argv_is_pure",
+            "test_run_argv_leaves_the_command_empty_for_an_entrypoint_image",
+            "test_run_argv_pins_the_leak_path_inside_the_container",
+            "test_run_argv_records_docker_not_an_absolute_path",
+            "test_stealth_mounts_in_docker_arg_are_rejected",
+            "test_task_only_docker_bout_matches_the_host_task_only_bout",
+            "test_unavailable_sandbox_snapshot_is_an_atom_error"
+          ],
+          "hash": "433235925e079becb047a69de30060f4f2e69208df642b0847c6e30a4019763e",
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "tests/test_docker.py"
+        },
+        {
+          "exports": [
+            "generate",
+            "test_golden_receipt",
+            "test_goldens_are_deterministic_within_a_run",
+            "test_normalize_erases_the_volatile_fields",
+            "test_the_labelled_pair_disagrees_on_follow_through",
+            "test_the_two_dialects_differ_only_in_the_session"
+          ],
+          "hash": "138f4165a5927f53135dd8c3cc9d3a4c52ef76d9044c2b2e50d7309252e4b556",
+          "importOrder": [
+            "tests/golden.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/models.py"
+          ],
+          "importsFiles": [
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/models.py",
+            "tests/golden.py"
+          ],
+          "path": "tests/test_golden.py"
+        },
+        {
+          "exports": [
+            "test_agent_policy_enum_frozen",
+            "test_an_errored_atom_pins_nrp_to_zero",
+            "test_description_poison_is_not_attack_success",
+            "test_fail_beats_error_for_integrity",
+            "test_follow_through_on_the_wire_is_attack_success",
+            "test_never_call_tools_is_not_a_perfect_score",
+            "test_no_runnable_atoms_is_all_skip",
+            "test_notification_text_cannot_move_the_score",
+            "test_rejected_server_request_does_not_move_the_score",
+            "test_score_atoms_has_no_wire_parameter",
+            "test_server_notifications_are_surfaced_as_observations",
+            "test_skipped_smoke_invoke_no_longer_defaults_to_pass",
+            "test_unauthorized_calls_ignore_descriptions",
+            "test_utility_is_skip_when_the_named_task_never_ran"
+          ],
+          "hash": "a4d48f8ee33b215952e9722852f0cc019bb5eaf9d2bd5d3d32771573d8cada58",
+          "importsFiles": [
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/oracle.py"
+          ],
+          "path": "tests/test_oracle.py"
+        },
+        {
+          "exports": [
+            "test_proof_receipt_has_no_host_home_path",
+            "test_proofs_exist"
+          ],
+          "hash": "cf472699678966b42caf6368837a44e36eaeda6bd6d29831067b2d43f1913ac9",
+          "path": "tests/test_proofs.py"
+        },
+        {
+          "exports": [
+            "async_reader",
+            "sync_reader",
+            "test_async_auto_detects_content_length",
+            "test_async_auto_detects_ndjson",
+            "test_async_blank_lines_are_skipped",
+            "test_async_content_length_header_errors",
+            "test_async_header_under_ndjson_lock_is_an_error",
+            "test_async_json_under_content_length_lock_is_an_error",
+            "test_async_non_object_body_is_an_error",
+            "test_async_roundtrip",
+            "test_async_truncated_body_is_eof_not_error",
+            "test_async_undetectable_first_line",
+            "test_classification",
+            "test_content_length_encode_has_the_header",
+            "test_encode_refuses_auto",
+            "test_ndjson_is_the_default_and_ends_with_one_newline",
+            "test_ndjson_never_emits_a_raw_newline_from_a_string_field",
+            "test_protocol_versions_latest_first",
+            "test_read_message_one_shot",
+            "test_sync_auto_detects_content_length",
+            "test_sync_auto_detects_ndjson",
+            "test_sync_auto_starts_unsourced",
+            "test_sync_bad_content_length",
+            "test_sync_blank_lines_are_skipped",
+            "test_sync_header_under_ndjson_lock_is_an_error",
+            "test_sync_json_under_content_length_lock_is_an_error",
+            "test_sync_missing_content_length",
+            "test_sync_negative_content_length",
+            "test_sync_non_object_body_is_an_error",
+            "test_sync_oversized_content_length",
+            "test_sync_roundtrip",
+            "test_sync_truncated_content_length_body_is_eof_not_error",
+            "test_sync_undetectable_first_line",
+            "test_write_message_writes_encode_message"
+          ],
+          "hash": "80adcc367a4229e17e7aacff698a864abaea1107956c346a1e1f8d5149409d1a",
+          "importsFiles": [
+            "src/mcp_arcade/protocol.py"
+          ],
+          "path": "tests/test_protocol.py"
+        },
+        {
+          "exports": [
+            "bout_with",
+            "mock",
+            "poison_atom",
+            "receipt_json",
+            "rows_for",
+            "sandbox",
+            "test_a_closed_port_is_a_seat_error_not_a_crash",
+            "test_a_live_fixture_notification_reaches_the_seat",
+            "test_a_model_that_calls_nothing_scores_skip_not_a_pass",
+            "test_a_no_call_poison_atom_is_never_a_training_row",
+            "test_a_notification_reaches_the_seat_verbatim_and_unlabelled",
+            "test_a_scripted_policy_leaves_the_seat_block_empty",
+            "test_a_slow_endpoint_is_a_timeout_not_a_hang",
+            "test_agent_ollama_without_a_model_is_rejected_at_parse_time",
+            "test_agent_spec_parsing",
+            "test_an_endpoint_that_does_not_resolve_is_unreachable_not_a_crash",
+            "test_an_http_500_errors_the_atom_it_seated",
+            "test_an_unlisted_tool_name_still_goes_out_on_the_wire",
+            "test_build_messages_is_exactly_a_system_and_a_user_turn",
+            "test_chain_of_thought_denial_does_not_survive_the_leak",
+            "test_cli_help_shows_the_local_endpoint_as_the_only_default",
+            "test_cli_live_seat_bout_without_task_or_allow_is_refused",
+            "test_cli_rejects_a_seat_without_a_model",
+            "test_cli_rejects_an_unknown_agent",
+            "test_cli_seat_options_land_on_the_receipt",
+            "test_cli_seats_a_mock_endpoint",
+            "test_every_atom_carries_the_seats_replay_facts",
+            "test_extract_calls_on_a_response_with_no_message",
+            "test_extract_calls_reads_dict_and_string_arguments",
+            "test_extract_calls_skips_malformed_entries",
+            "test_max_calls_is_capped_at_eight",
+            "test_non_json_from_the_endpoint_is_a_seat_error",
+            "test_seat_allowlist_records_but_does_not_send",
+            "test_seat_config_allow_defaults_to_none_on_the_fixture",
+            "test_template_coaches_nothing",
+            "test_template_sha256_is_the_hash_of_the_shipped_file",
+            "test_the_call_cap_holds_against_a_flood",
+            "test_the_context_builder_takes_nothing_but_the_task",
+            "test_the_ollama_policy_without_a_seat_is_refused",
+            "test_the_receipt_records_the_wire_call_the_model_denied",
+            "test_the_seat_is_sent_the_menu_it_was_shown",
+            "test_tools_payload_gives_a_schemaless_tool_an_empty_object",
+            "test_tools_payload_passes_descriptions_verbatim",
+            "test_two_identical_bouts_send_byte_identical_first_turns"
+          ],
+          "hash": "36a2e21f8f62bdd45561b32e2c197825e79a7a875410829f2a50bb21cfc4fcab",
+          "importOrder": [
+            "tests/mock_ollama.py",
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/fixture.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/receipt.py",
+            "src/mcp_arcade/seat.py"
+          ],
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/fixture.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/receipt.py",
+            "src/mcp_arcade/seat.py",
+            "tests/mock_ollama.py"
+          ],
+          "path": "tests/test_seat.py"
+        },
+        {
+          "exports": [
+            "test_a_refused_ghost_is_a_refusal_fact",
+            "test_a_withheld_attempt_is_not_a_wire_fact",
+            "test_atoms_carry_task_and_holdout_flags",
+            "test_facts_are_empty_when_the_wire_cannot_be_attributed",
+            "test_facts_come_from_the_wire_and_match_the_controls",
+            "test_tape_export_is_deterministic_and_cli_writes_it",
+            "test_tape_json_carries_no_verdict"
+          ],
+          "hash": "82796d2de320629b3df920190058e95fdaf2c6e8c06847d8d3a0dc1135934534",
+          "importsFiles": [
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/timeline.py"
+          ],
+          "path": "tests/test_tape_export.py"
+        },
+        {
+          "exports": [
+            "call_ev",
+            "cli",
+            "ev",
+            "fixture_bout",
+            "note_of",
+            "render_text",
+            "resp_ev",
+            "table_cells",
+            "test_a_call_with_no_response_says_so",
+            "test_a_ghost_probe_call_is_tagged_and_held_out",
+            "test_a_live_bout_and_the_golden_render_the_same_rows",
+            "test_a_long_notification_is_truncated_on_one_line",
+            "test_a_missing_response_reaches_the_rendered_tape",
+            "test_a_mutated_scoreboard_cannot_change_the_render",
+            "test_a_notification_is_a_quoted_untrusted_sut_string",
+            "test_a_notification_without_data_prints_json",
+            "test_a_plain_call_is_named_and_not_tagged",
+            "test_a_request_with_no_response_says_so",
+            "test_a_server_request_and_its_reply_are_two_rows",
+            "test_a_server_request_is_rejected_or_merely_seen",
+            "test_an_unattributable_wire_still_prints_every_row",
+            "test_attribute_refuses_to_guess_when_the_counts_disagree",
+            "test_attribute_walks_the_initialize_boundaries",
+            "test_attribution_ok_is_not_decided_by_the_first_event_alone",
+            "test_no_module_imports_a_3d_library",
+            "test_receipt_still_dumps_canonical_json",
+            "test_score_after_the_tape_prints_the_house_call",
+            "test_score_without_timeline_is_refused",
+            "test_tape_fields_are_exactly_the_allowlist",
+            "test_the_bout_shows_the_tape_before_the_house_call",
+            "test_the_cli_renders_the_same_table_as_the_library",
+            "test_the_container_and_seat_facts_are_header_lines",
+            "test_the_ghost_tag_reaches_the_rendered_tape",
+            "test_the_list_and_the_ghost_probe_are_two_rows",
+            "test_the_sut_notification_is_quoted_and_never_a_label",
+            "test_the_tape_carries_no_scoreboard",
+            "test_the_tape_never_holds_the_hidden_receipt_fields",
+            "test_the_wave_adds_no_web_files",
+            "test_verbose_adds_run_args_the_diff_and_the_seat_options"
+          ],
+          "hash": "f71c505e8f520f7d8687dc8cee8d7b1d19ecea61b0e87c049a5a06249366b989",
+          "importOrder": [
+            "tests/golden.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/fixture.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/timeline.py"
+          ],
+          "importsFiles": [
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/fixture.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/timeline.py",
+            "tests/golden.py"
+          ],
+          "path": "tests/test_timeline.py"
+        },
+        {
+          "exports": [
+            "check",
+            "fixture_bout",
+            "ghost",
+            "outbound_calls",
+            "sandbox",
+            "test_a_fixture_that_answers_the_ghost_fails_the_atom",
+            "test_a_probe_name_that_is_on_the_menu_skips_with_zero_calls",
+            "test_a_server_that_refuses_the_ghost_passes_the_atom",
+            "test_attack_success_is_still_only_poison_follow_through",
+            "test_cli_atoms_command_lists_four_and_marks_the_held_one",
+            "test_cli_atoms_selection_runs_exactly_what_was_named",
+            "test_cli_rejects_an_unknown_atom_id",
+            "test_probe_name_takes_twelve_hex_from_the_bout_id",
+            "test_the_ghost_alone_fails_integrity_without_touching_attack_success",
+            "test_the_ghost_atom_also_fails_inside_the_container",
+            "test_the_ghost_atom_runs_last_in_the_default_catalog",
+            "test_the_ghost_row_lands_in_holdout_never_in_train",
+            "test_the_other_three_atoms_are_unchanged_by_the_flag",
+            "test_the_public_train_tuple_is_still_the_three",
+            "test_the_receipt_names_the_held_atom_only_when_it_ran",
+            "test_two_bouts_do_not_share_a_probe_name"
+          ],
+          "hash": "c6fa40d2157c9001a13ca6ce84f3d62f786ab086839ec59cd62ff5eee9a7705f",
+          "importOrder": [
+            "tests/golden.py",
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/atoms/__init__.py",
+            "src/mcp_arcade/atoms/unlisted.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/receipt.py"
+          ],
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/atoms/__init__.py",
+            "src/mcp_arcade/atoms/unlisted.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/models.py",
+            "src/mcp_arcade/receipt.py",
+            "tests/golden.py"
+          ],
+          "path": "tests/test_unlisted.py"
+        }
+      ],
+      "globs": [
+        "tests/**"
+      ],
+      "importConfidence": "full",
+      "name": "tests",
+      "origin": "authored",
+      "role": "test",
+      "testedBy": 0,
+      "unresolvedSites": 0
+    }
+  ],
+  "doors": [
+    {
+      "checksCount": 1,
+      "commands": [
+        {
+          "job": "lint",
+          "step": "2",
+          "text": "pip install ruff==0.16.6"
+        },
+        {
+          "job": "lint",
+          "step": "Atlas check",
+          "text": "npx --yes @dogfood-lab/atlas@1.21.0 check"
+        },
+        {
+          "job": "lint",
+          "step": "5",
+          "text": "ruff format --check ."
+        },
+        {
+          "job": "lint",
+          "step": "6",
+          "text": "ruff check . --output-format=github"
+        },
+        {
+          "job": "test",
+          "step": "2",
+          "text": "pip install --upgrade pip\npip install -e \".[dev]\"\n"
+        },
+        {
+          "job": "test",
+          "step": "3",
+          "text": "pytest tests/ -v --tb=short"
+        },
+        {
+          "job": "test",
+          "step": "4",
+          "text": "mcp-arcade --version\nmcp-arcade atoms\nmcp-arcade bout --target fixture --agent task-only --no-prompt\n"
+        }
+      ],
+      "elsewhere": [],
+      "file": ".github/workflows/ci.yml",
+      "landings": [],
+      "mentions": [],
+      "name": "CI",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "src",
+          "depth": 0,
+          "files": 23
+        },
+        {
+          "boundary": "tests",
+          "depth": 0,
+          "files": 17
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "directory": true,
+          "job": "lint",
+          "matched": true,
+          "path": "src/",
+          "runKind": "checks",
+          "via": "ruff"
+        },
+        {
+          "job": "test",
+          "path": "src/mcp_arcade/cli.py",
+          "runKind": "executes"
+        },
+        {
+          "directory": true,
+          "job": "lint",
+          "matched": true,
+          "path": "tests/",
+          "runKind": "checks",
+          "via": "ruff"
+        },
+        {
+          "directory": true,
+          "job": "test",
+          "path": "tests/",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 3,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [
+        {
+          "branches": [
+            "main"
+          ],
+          "event": "pull_request",
+          "paths": [
+            ".github/workflows/**",
+            "atlas/**",
+            "pyproject.toml",
+            "site/astro.config.mjs",
+            "site/package-lock.json",
+            "site/package.json",
+            "src/**",
+            "tests/**"
+          ]
+        },
+        {
+          "branches": [
+            "main"
+          ],
+          "event": "push",
+          "paths": [
+            ".github/workflows/**",
+            "atlas/**",
+            "pyproject.toml",
+            "site/astro.config.mjs",
+            "site/package-lock.json",
+            "site/package.json",
+            "src/**",
+            "tests/**"
+          ]
+        },
+        {
+          "event": "workflow_dispatch"
+        }
+      ],
+      "uses": [
+        "actions/checkout",
+        "actions/setup-node",
+        "actions/setup-python"
+      ],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 0,
+      "commands": [
+        {
+          "job": "build",
+          "step": "Install site dependencies",
+          "text": "npm ci"
+        },
+        {
+          "job": "build",
+          "step": "Build site",
+          "text": "npm run build"
+        }
+      ],
+      "elsewhere": [],
+      "file": ".github/workflows/pages.yml",
+      "landings": [],
+      "mentions": [],
+      "name": "Deploy site to GitHub Pages",
+      "permissions": [
+        "contents:read",
+        "id-token:write",
+        "pages:write"
+      ],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "site",
+          "depth": 0,
+          "files": 3
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "job": "build",
+          "matched": true,
+          "path": "site/astro.config.mjs",
+          "runKind": "executes",
+          "via": "astro build"
+        },
+        {
+          "directory": true,
+          "job": "build",
+          "matched": true,
+          "path": "site/src/",
+          "runKind": "executes",
+          "via": "astro build"
+        }
+      ],
+      "runsCount": 2,
+      "secrets": [],
+      "sends": {
+        "deploysPages": true,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [
+        {
+          "branches": [
+            "main"
+          ],
+          "event": "push",
+          "paths": [
+            ".github/workflows/pages.yml",
+            "site/**"
+          ]
+        },
+        {
+          "event": "workflow_dispatch"
+        }
+      ],
+      "uses": [
+        "actions/checkout",
+        "actions/deploy-pages",
+        "actions/setup-node",
+        "actions/upload-pages-artifact"
+      ],
+      "usesWorkflowToken": false
+    },
+    {
+      "checksCount": 2,
+      "commands": [
+        {
+          "job": "pypi",
+          "step": "Install",
+          "text": "python -m pip install --upgrade pip\npip install -e \".[dev]\" build\npip install ruff==0.16.6\n"
+        },
+        {
+          "job": "pypi",
+          "step": "Verify",
+          "text": "ruff format --check .\nruff check .\npytest tests/ -v --tb=short\n"
+        },
+        {
+          "job": "pypi",
+          "step": "Build",
+          "text": "python -m build"
+        },
+        {
+          "job": "pypi",
+          "step": "Attach dist to GitHub release",
+          "text": "gh release upload \"${{ github.event.release.tag_name }}\" dist/* --clobber"
+        }
+      ],
+      "elsewhere": [],
+      "file": ".github/workflows/release.yml",
+      "gated": [
+        {
+          "jobs": [
+            "pypi"
+          ],
+          "pushes": false,
+          "sends": [
+            "assets:file:dist/*"
+          ],
+          "stages": [],
+          "when": {
+            "event": "release"
+          }
+        }
+      ],
+      "landings": [],
+      "mentions": [],
+      "name": "Release",
+      "permissions": [
+        "contents:write",
+        "id-token:write"
+      ],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "src",
+          "depth": 0,
+          "files": 23
+        },
+        {
+          "boundary": "tests",
+          "depth": 0,
+          "files": 17
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "directory": true,
+          "job": "pypi",
+          "matched": true,
+          "path": "src/",
+          "runKind": "checks",
+          "via": "ruff"
+        },
+        {
+          "directory": true,
+          "job": "pypi",
+          "path": "src/mcp_arcade/",
+          "runKind": "checks",
+          "via": "build pyproject.toml"
+        },
+        {
+          "directory": true,
+          "job": "pypi",
+          "path": "tests/",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 3,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": true,
+        "publishesTo": [
+          "pypi"
+        ],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [
+        {
+          "event": "release",
+          "types": [
+            "published"
+          ]
+        },
+        {
+          "event": "workflow_dispatch"
+        }
+      ],
+      "uses": [
+        "actions/checkout",
+        "actions/setup-python",
+        "pypa/gh-action-pypi-publish"
+      ],
+      "usesWorkflowToken": true
+    },
+    {
+      "checksCount": 0,
+      "commands": [],
+      "elsewhere": [],
+      "file": "pyproject.toml",
+      "kind": "command",
+      "landings": [],
+      "mentions": [],
+      "name": "mcp-arcade",
+      "permissions": [],
+      "pushes": false,
+      "reach": [
+        {
+          "boundary": "src",
+          "depth": 0,
+          "files": 22
+        }
+      ],
+      "readers": [],
+      "runs": [
+        {
+          "path": "src/mcp_arcade/cli.py",
+          "runKind": "executes"
+        }
+      ],
+      "runsCount": 1,
+      "secrets": [],
+      "sends": {
+        "deploysPages": false,
+        "dispatchesTo": [],
+        "opensIssues": false,
+        "opensIssuesOnFailure": false,
+        "opensPullRequests": false,
+        "publishes": false,
+        "publishesTo": [],
+        "releases": false
+      },
+      "stages": [],
+      "triggers": [],
+      "uses": [],
+      "usesWorkflowToken": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "tests",
+      "fromTests": true,
+      "kind": "file",
+      "to": "src"
+    }
+  ],
+  "generatedFrom": {
+    "commit": "0c17273e798aa56857b9805de6bc7009f19f7dfa",
+    "tracked": 103
+  },
+  "landings": [
+    {
+      "readers": [
+        {
+          "by": "pyproject.toml",
+          "call": "configuration",
+          "confidence": "config"
+        }
+      ],
+      "target": "README.md",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/test_proofs.py",
+          "call": "glob",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "docs/proof",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/test_tape_export.py",
+          "call": "read_text",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "docs/proof/livefire.intern.ollama-wrap-on.receipt.json",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/test_tape_export.py",
+          "call": "read_text",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "docs/proof/ollama-intern-mcp.unlisted.receipt.json",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "docs/study-swarm.dispatch.citation-receipt.json",
+          "call": "literal",
+          "confidence": "text"
+        }
+      ],
+      "target": "docs/study-swarm.dispatch.md",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "site/astro.config.mjs",
+          "call": "content-collection",
+          "confidence": "ast"
+        }
+      ],
+      "target": "site/src/content/docs",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "site/astro.config.mjs",
+          "call": "autogenerate",
+          "confidence": "ast"
+        }
+      ],
+      "target": "site/src/content/docs/handbook",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "pyproject.toml",
+          "call": "configuration",
+          "confidence": "config"
+        },
+        {
+          "by": "src/mcp_arcade/docker.py",
+          "call": "rglob",
+          "confidence": "ast"
+        }
+      ],
+      "target": "src/mcp_arcade",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "src/mcp_arcade/seat.py",
+          "call": "read_text",
+          "confidence": "ast"
+        }
+      ],
+      "target": "src/mcp_arcade/prompts/seat.system.txt",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/test_dataset.py",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "tests/fixtures",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/test_dataset.py",
+          "call": "read_text",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/test_tape_export.py",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "tests/fixtures/naive-ndjson.json",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "tests/test_dataset.py",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/test_tape_export.py",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        },
+        {
+          "by": "tests/test_timeline.py",
+          "call": "literal",
+          "confidence": "ast",
+          "fromTests": true
+        }
+      ],
+      "target": "tests/fixtures/task-only-ndjson.json",
+      "writers": []
+    }
+  ],
+  "overlaps": [],
+  "submodules": [],
+  "symlinks": [],
+  "testFiles": 21,
+  "unassigned": []
+}
