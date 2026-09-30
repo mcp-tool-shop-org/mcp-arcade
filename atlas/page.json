@@ -26,13 +26,45 @@
     }
   ],
   "changes": {
-    "first": true
+    "fileCounts": {
+      "added": 1,
+      "changed": 2,
+      "moved": 0,
+      "parts": 2,
+      "removed": 0
+    },
+    "items": [
+      {
+        "kind": "door",
+        "sentence": "CI's pull request trigger now also names `codecov.yml`.",
+        "subjects": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "kind": "door",
+        "sentence": "CI's push trigger now also names `codecov.yml`.",
+        "subjects": [
+          ".github/workflows/ci.yml"
+        ]
+      },
+      {
+        "kind": "counts",
+        "sentence": "1 file added and 2 changed content, across 2 parts.",
+        "subjects": []
+      }
+    ],
+    "since": {
+      "commit": "0c17273e798aa56857b9805de6bc7009f19f7dfa",
+      "generatedAt": "2026-09-25T09:40:35.834Z"
+    },
+    "unchanged": false
   },
   "changesTogether": [
     {
       "a": "src/mcp_arcade/atoms/poison.py",
       "b": "src/mcp_arcade/bout.py",
-      "either": 8,
+      "either": 9,
       "partLabels": [
         "src",
         "src"
@@ -47,13 +79,13 @@
   ],
   "changesTogetherNote": [
     "1 file changed together with its own test, as expected.",
-    "Confidence is low: fewer than 30 qualifying commits in the window, and fewer than 20 source files reach 10 revisions.",
-    "Window: 180 days; a pair counts from 3 shared commits, since the window holds fewer than 30 qualifying commits."
+    "Confidence is low: fewer than 25 source files reach 10 revisions in the window.",
+    "Window: 180 days; a pair counts from 3 shared commits, since 0 source files reach 10 revisions; the floor rises to 10 when 25 do."
   ],
   "changesTogetherWithTests": 1,
-  "commit": "0c17273e798aa56857b9805de6bc7009f19f7dfa",
+  "commit": "7c8960e5ca2bcb39a96a1c211e13b19052d4ce51",
   "defaultBranch": "main",
-  "derived": "6 parts, mostly Python (40 files), TypeScript (2) and JavaScript (1). Work enters through 4 doors; CI and Release each reach 2 parts, and CI is followed because a pull request goes through it. It publishes to PyPI. People run mcp-arcade.",
+  "derived": "6 parts, mostly Python (40 files), CSS (2), TypeScript (2), Astro (1) and JavaScript (1). Work enters through 4 doors; CI and Release each reach 2 parts, and CI is followed because a pull request goes through it. It publishes to PyPI. It deploys a site to GitHub Pages. People run mcp-arcade.",
   "doors": [
     {
       "checks": [
@@ -84,20 +116,21 @@
       ],
       "runsCount": 2,
       "runsMore": 0,
-      "sends": [],
+      "sends": [
+        "uploads coverage to Codecov"
+      ],
       "stages": [],
       "triggers": [
-        "on a pull request to main touching 8 paths",
-        "on a push to main touching 8 paths",
+        "on a pull request to main touching 9 paths",
+        "on a push to main touching 9 paths",
         "or by hand"
       ]
     },
     {
       "checks": [
-        "src/mcp_arcade/",
         "src/"
       ],
-      "checksCount": 2,
+      "checksCount": 1,
       "checksMore": 0,
       "file": ".github/workflows/release.yml",
       "id": ".github/workflows/release.yml",
@@ -144,7 +177,7 @@
         {
           "boundary": "site",
           "depth": 0,
-          "files": 3
+          "files": 5
         }
       ],
       "runs": [
@@ -199,11 +232,13 @@
       "to": "src"
     }
   ],
+  "engine": "1.24.0",
   "generated": [],
-  "generatedAt": "2026-09-25T09:40:35.834Z",
+  "generatedAt": "2026-09-30T20:10:02.490Z",
   "limits": [
-    "4 writes and 7 reads use paths built at run time and are not named here.",
-    "Statistics confidence is low: fewer than 30 qualifying commits in the window, and fewer than 20 source files reach 10 revisions."
+    "2 writes and 2 reads use paths built at run time and are not named here.",
+    "5 writes and 6 reads go to a path their caller passes, not to this repository.",
+    "Statistics confidence is low: fewer than 25 source files reach 10 revisions in the window."
   ],
   "mainDoor": ".github/workflows/ci.yml",
   "partLabels": {
@@ -222,12 +257,10 @@
   "startHere": [
     ".github/workflows/ci.yml",
     "src/mcp_arcade/cli.py",
-    "src/mcp_arcade/__init__.py",
     "src/mcp_arcade/atoms/poison.py",
-    "src/mcp_arcade/bout.py",
-    "src/mcp_arcade/docker.py",
-    "src/mcp_arcade/models.py",
-    "src/mcp_arcade/receipt.py"
+    "src/mcp_arcade/agent.py",
+    "src/mcp_arcade/client.py",
+    "src/mcp_arcade/models.py"
   ],
   "summary": null,
   "summaryFrom": null,
@@ -235,7 +268,7 @@
   "testedBy": {
     "src": 14
   },
-  "unnamedWrites": 4,
+  "unnamedWrites": 2,
   "unread": [],
   "unreadFiles": 0,
   "unreadNote": [],

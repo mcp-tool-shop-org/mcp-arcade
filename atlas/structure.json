@@ -13,7 +13,7 @@
           "path": ".github/dependabot.yml"
         },
         {
-          "hash": "9f73dc208fcf829b33e96872e4c20876dddcba5882c4545785a38a3f794ab253",
+          "hash": "d6b9db2049ae379ee389b8a59628172c774995ab729cf443a3f3c4159e8a69b3",
           "path": ".github/workflows/ci.yml"
         },
         {
@@ -223,7 +223,11 @@
           "path": "SHIP_GATE.md"
         },
         {
-          "hash": "812b3ea573f61f816de5056107105530afb05cc0c88e5c6f8471708a4ceff3d4",
+          "hash": "59ca3f6a5be96b80fee73bebf2b778211208d17cd3fb82e2134608dff0729c76",
+          "path": "codecov.yml"
+        },
+        {
+          "hash": "967cb1a2d2d79631d578475bc92d6c1617979d59fb0e5b6e74e207c6c49aa1c2",
           "path": "pyproject.toml"
         }
       ],
@@ -280,6 +284,14 @@
         },
         {
           "hash": "391533713539035d3c92282579d43de0f137067867fdb502d7eaea3c74601d2a",
+          "importOrder": [
+            "site/src/styles/global.css",
+            "site/src/site-config.ts"
+          ],
+          "importsFiles": [
+            "site/src/site-config.ts",
+            "site/src/styles/global.css"
+          ],
           "path": "site/src/pages/index.astro"
         },
         {
@@ -311,16 +323,17 @@
       "unresolvedSites": 0
     },
     {
-      "dynamicReads": 7,
+      "dynamicReads": 2,
       "dynamicSpawns": 0,
       "dynamicSpawnsInTests": 0,
-      "dynamicWrites": 4,
+      "dynamicWrites": 2,
       "entryPoints": [
         "src/mcp_arcade/cli.py"
       ],
       "externals": 0,
       "files": [
         {
+          "constantOnly": true,
           "hash": "986890d973a24205283aca608e5b8cb1bb88687be7210497803cba38525d23de",
           "path": "src/mcp_arcade/__init__.py"
         },
@@ -335,6 +348,18 @@
           "exports": [
             "parse_side_quests",
             "run_policy"
+          ],
+          "failurePaths": [
+            {
+              "in": "parse_side_quests",
+              "kind": "except",
+              "line": 49
+            },
+            {
+              "in": "run_policy",
+              "kind": "raise",
+              "line": 66
+            }
           ],
           "hash": "5443e59a79230528bb523cb0e87594c1faa7843029aaa8a3d1e200054c469896",
           "importsFiles": [
@@ -382,6 +407,13 @@
           "exports": [
             "run_poison"
           ],
+          "failurePaths": [
+            {
+              "in": "run_poison",
+              "kind": "raise",
+              "line": 110
+            }
+          ],
           "hash": "b51680698b430a17c2ea8e2cfa00876ce957fa1da0373c112add66612d17371d",
           "importsFiles": [
             "src/mcp_arcade/agent.py",
@@ -426,6 +458,48 @@
             "resolve_target",
             "run_bout"
           ],
+          "failurePaths": [
+            {
+              "in": "resolve_target",
+              "kind": "raise",
+              "line": 106
+            },
+            {
+              "in": "resolve_target",
+              "kind": "raise",
+              "line": 111
+            },
+            {
+              "in": "resolve_target",
+              "kind": "raise",
+              "line": 125
+            },
+            {
+              "in": "run_bout",
+              "kind": "raise",
+              "line": 149
+            },
+            {
+              "in": "run_bout",
+              "kind": "raise",
+              "line": 154
+            },
+            {
+              "in": "run_bout",
+              "kind": "raise",
+              "line": 163
+            },
+            {
+              "in": "snap",
+              "kind": "raise",
+              "line": 298
+            },
+            {
+              "in": "_one",
+              "kind": "except",
+              "line": 324
+            }
+          ],
           "hash": "bd88f735601e0de0c2d3eb79dc4de2f7921df327172d3d4c20e207c7b2eec796",
           "importsFiles": [
             "src/mcp_arcade/__init__.py",
@@ -433,6 +507,7 @@
             "src/mcp_arcade/atoms/__init__.py",
             "src/mcp_arcade/atoms/poison.py",
             "src/mcp_arcade/client.py",
+            "src/mcp_arcade/docker.py",
             "src/mcp_arcade/models.py",
             "src/mcp_arcade/oracle.py",
             "src/mcp_arcade/protocol.py",
@@ -885,6 +960,148 @@
             "split_command",
             "tape_cmd"
           ],
+          "failurePaths": [
+            {
+              "in": "bout_cmd",
+              "kind": "except",
+              "line": 254
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 255
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 259
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "except",
+              "line": 271
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 272
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "except",
+              "line": 277
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 278
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 291
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "except",
+              "line": 310
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 311
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 317
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "except",
+              "line": 323
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 324
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 326
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "except",
+              "line": 348
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 349
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "except",
+              "line": 350
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 351
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "except",
+              "line": 352
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 353
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "except",
+              "line": 354
+            },
+            {
+              "in": "bout_cmd",
+              "kind": "raise",
+              "line": 355
+            },
+            {
+              "in": "receipt_cmd",
+              "kind": "raise",
+              "line": 397
+            },
+            {
+              "in": "dataset_cmd",
+              "kind": "except",
+              "line": 427
+            },
+            {
+              "in": "dataset_cmd",
+              "kind": "raise",
+              "line": 428
+            },
+            {
+              "in": "docker_build_fixture",
+              "kind": "except",
+              "line": 448
+            },
+            {
+              "in": "docker_build_fixture",
+              "kind": "raise",
+              "line": 449
+            },
+            {
+              "in": "main",
+              "kind": "except",
+              "line": 506
+            }
+          ],
           "hash": "35f231bf5e5109b1f332522d48a44c0739b297d27dc9dd14d2adab655bed5350",
           "importOrder": [
             "src/mcp_arcade/__init__.py",
@@ -1169,6 +1386,163 @@
           ]
         },
         {
+          "failurePaths": [
+            {
+              "in": "start",
+              "kind": "raise",
+              "line": 126
+            },
+            {
+              "in": "start",
+              "kind": "raise",
+              "line": 133
+            },
+            {
+              "in": "start",
+              "kind": "except",
+              "line": 148
+            },
+            {
+              "in": "start",
+              "kind": "raise",
+              "line": 149
+            },
+            {
+              "in": "start",
+              "kind": "raise",
+              "line": 151
+            },
+            {
+              "in": "close",
+              "kind": "except",
+              "line": 169
+            },
+            {
+              "in": "close",
+              "kind": "except",
+              "line": 174
+            },
+            {
+              "in": "close",
+              "kind": "except",
+              "line": 178
+            },
+            {
+              "in": "close",
+              "kind": "except",
+              "line": 186
+            },
+            {
+              "in": "initialize",
+              "kind": "except",
+              "line": 210
+            },
+            {
+              "in": "initialize",
+              "kind": "raise",
+              "line": 215
+            },
+            {
+              "in": "initialize",
+              "kind": "raise",
+              "line": 219
+            },
+            {
+              "in": "initialize",
+              "kind": "raise",
+              "line": 227
+            },
+            {
+              "in": "list_tools",
+              "kind": "raise",
+              "line": 238
+            },
+            {
+              "in": "call_tool",
+              "kind": "except",
+              "line": 261
+            },
+            {
+              "in": "request",
+              "kind": "raise",
+              "line": 277
+            },
+            {
+              "in": "request",
+              "kind": "except",
+              "line": 287
+            },
+            {
+              "in": "request",
+              "kind": "raise",
+              "line": 288
+            },
+            {
+              "in": "request",
+              "kind": "raise",
+              "line": 295
+            },
+            {
+              "in": "_write",
+              "kind": "raise",
+              "line": 307
+            },
+            {
+              "in": "_write",
+              "kind": "except",
+              "line": 312
+            },
+            {
+              "in": "_write",
+              "kind": "raise",
+              "line": 313
+            },
+            {
+              "in": "_read_loop",
+              "kind": "raise",
+              "line": 341
+            },
+            {
+              "in": "_read_loop",
+              "kind": "except",
+              "line": 342
+            },
+            {
+              "in": "_read_loop",
+              "kind": "raise",
+              "line": 343
+            },
+            {
+              "in": "_read_loop",
+              "kind": "except",
+              "line": 344
+            },
+            {
+              "in": "_read_loop",
+              "kind": "except",
+              "line": 347
+            },
+            {
+              "in": "_reject_server_request",
+              "kind": "except",
+              "line": 369
+            },
+            {
+              "in": "_stderr_loop",
+              "kind": "except",
+              "line": 381
+            },
+            {
+              "in": "_stderr_loop",
+              "kind": "raise",
+              "line": 382
+            },
+            {
+              "in": "_stderr_loop",
+              "kind": "except",
+              "line": 383
+            }
+          ],
           "hash": "ad5c670a88f0e6a5359df428d269dd4a0ac98db029ce3db04d4cc6bd9c166986",
           "importsFiles": [
             "src/mcp_arcade/__init__.py",
@@ -1187,6 +1561,33 @@
             "manifest",
             "row_for",
             "write"
+          ],
+          "failurePaths": [
+            {
+              "in": "_attack_success",
+              "kind": "except",
+              "line": 112
+            },
+            {
+              "in": "_attack_success",
+              "kind": "raise",
+              "line": 113
+            },
+            {
+              "in": "ingest",
+              "kind": "except",
+              "line": 205
+            },
+            {
+              "in": "ingest",
+              "kind": "except",
+              "line": 251
+            },
+            {
+              "in": "discover",
+              "kind": "raise",
+              "line": 273
+            }
           ],
           "hash": "c23c3ba25a47d3c0ee412dfc7e75246d683a6e8da81e511aa1b3aef9ac7fe16e",
           "importsFiles": [
@@ -1364,6 +1765,123 @@
             "snapshot",
             "stealth_mounts"
           ],
+          "failurePaths": [
+            {
+              "in": "available",
+              "kind": "except",
+              "line": 114
+            },
+            {
+              "in": "_run",
+              "kind": "raise",
+              "line": 122
+            },
+            {
+              "in": "_run",
+              "kind": "except",
+              "line": 130
+            },
+            {
+              "in": "_run",
+              "kind": "raise",
+              "line": 131
+            },
+            {
+              "in": "_run",
+              "kind": "except",
+              "line": 132
+            },
+            {
+              "in": "_run",
+              "kind": "raise",
+              "line": 133
+            },
+            {
+              "in": "_run",
+              "kind": "raise",
+              "line": 136
+            },
+            {
+              "in": "inspect_image",
+              "kind": "except",
+              "line": 148
+            },
+            {
+              "in": "inspect_image",
+              "kind": "raise",
+              "line": 149
+            },
+            {
+              "in": "inspect_image",
+              "kind": "except",
+              "line": 157
+            },
+            {
+              "in": "inspect_image",
+              "kind": "raise",
+              "line": 163
+            },
+            {
+              "in": "remove_fixture_image",
+              "kind": "except",
+              "line": 216
+            },
+            {
+              "in": "prepare",
+              "kind": "raise",
+              "line": 229
+            },
+            {
+              "in": "prepare",
+              "kind": "raise",
+              "line": 233
+            },
+            {
+              "in": "prepare",
+              "kind": "raise",
+              "line": 241
+            },
+            {
+              "in": "prepare",
+              "kind": "raise",
+              "line": 249
+            },
+            {
+              "in": "check_drift",
+              "kind": "raise",
+              "line": 268
+            },
+            {
+              "in": "_snap",
+              "kind": "except",
+              "line": 311
+            },
+            {
+              "in": "_snap",
+              "kind": "except",
+              "line": 324
+            },
+            {
+              "in": "_diff",
+              "kind": "except",
+              "line": 339
+            },
+            {
+              "in": "_id",
+              "kind": "except",
+              "line": 352
+            },
+            {
+              "in": "_rm",
+              "kind": "except",
+              "line": 367
+            },
+            {
+              "in": "leftovers",
+              "kind": "except",
+              "line": 381
+            }
+          ],
           "hash": "60076ed17ebcf9a9129c63c5a0bedde5adbd9685883c45d048269207f4548d15",
           "importsFiles": [
             "src/mcp_arcade/__init__.py",
@@ -1377,6 +1895,18 @@
           "exports": [
             "handle",
             "main"
+          ],
+          "failurePaths": [
+            {
+              "in": "main",
+              "kind": "except",
+              "line": 218
+            },
+            {
+              "in": "main",
+              "kind": "except",
+              "line": 232
+            }
           ],
           "hash": "5d2a7916cb69a8ca854c16137942bf4f3cdc0d9bddd2010acc0ddde35683f789",
           "importsFiles": [
@@ -1676,6 +2206,78 @@
             "rpc_result",
             "write_message"
           ],
+          "failurePaths": [
+            {
+              "in": "encode_message",
+              "kind": "raise",
+              "line": 56
+            },
+            {
+              "in": "_parse_body",
+              "kind": "except",
+              "line": 67
+            },
+            {
+              "in": "_parse_body",
+              "kind": "raise",
+              "line": 68
+            },
+            {
+              "in": "_parse_body",
+              "kind": "raise",
+              "line": 70
+            },
+            {
+              "in": "_parse_header_line",
+              "kind": "raise",
+              "line": 80
+            },
+            {
+              "in": "_parse_header_line",
+              "kind": "raise",
+              "line": 86
+            },
+            {
+              "in": "_content_length",
+              "kind": "raise",
+              "line": 93
+            },
+            {
+              "in": "_content_length",
+              "kind": "except",
+              "line": 96
+            },
+            {
+              "in": "_content_length",
+              "kind": "raise",
+              "line": 97
+            },
+            {
+              "in": "_content_length",
+              "kind": "raise",
+              "line": 99
+            },
+            {
+              "in": "_classify_first_line",
+              "kind": "raise",
+              "line": 109
+            },
+            {
+              "in": "read",
+              "kind": "except",
+              "line": 169
+            },
+            {
+              "in": "read",
+              "kind": "raise",
+              "line": 170
+            },
+            {
+              "in": "_read_content_length",
+              "kind": "except",
+              "line": 196
+            }
+          ],
           "hash": "2628b2b1a19f3924f0786cd75ed3b8859355f2d320eb526376e7e1da96da6684",
           "path": "src/mcp_arcade/protocol.py"
         },
@@ -1766,6 +2368,68 @@
             "template_sha256",
             "template_text",
             "tools_payload"
+          ],
+          "failurePaths": [
+            {
+              "in": "parse_agent_spec",
+              "kind": "raise",
+              "line": 89
+            },
+            {
+              "in": "extract_calls",
+              "kind": "except",
+              "line": 142
+            },
+            {
+              "in": "_post_chat",
+              "kind": "except",
+              "line": 161
+            },
+            {
+              "in": "_post_chat",
+              "kind": "raise",
+              "line": 162
+            },
+            {
+              "in": "_post_chat",
+              "kind": "except",
+              "line": 163
+            },
+            {
+              "in": "_post_chat",
+              "kind": "raise",
+              "line": 165
+            },
+            {
+              "in": "_post_chat",
+              "kind": "except",
+              "line": 166
+            },
+            {
+              "in": "_post_chat",
+              "kind": "raise",
+              "line": 168
+            },
+            {
+              "in": "_post_chat",
+              "kind": "raise",
+              "line": 169
+            },
+            {
+              "in": "_post_chat",
+              "kind": "except",
+              "line": 172
+            },
+            {
+              "in": "_post_chat",
+              "kind": "raise",
+              "line": 173
+            },
+            {
+              "in": "_post_chat",
+              "kind": "raise",
+              "line": 175
+            }
           ],
           "hash": "ee3bdda70a1c501e677423308ad44e55711f300968947924bf41275ccc226719",
           "importsFiles": [
@@ -1924,7 +2588,21 @@
       "importConfidence": "full",
       "name": "src",
       "origin": "authored",
+      "outsidePlaces": [
+        {
+          "reads": 6,
+          "where": [
+            "caller"
+          ],
+          "writes": 5
+        }
+      ],
+      "outsideReads": 6,
+      "outsideWrites": 5,
       "role": "code",
+      "testRunners": [
+        "pytest"
+      ],
       "testedBy": 14,
       "unresolvedSites": 0
     },
@@ -1941,7 +2619,8 @@
             "pytest_configure"
           ],
           "hash": "859bad71d978778e8538854b2cff7611451863b22874c5aafd8dd791cf0b0f6e",
-          "path": "tests/conftest.py"
+          "path": "tests/conftest.py",
+          "testFramework": "pytest"
         },
         {
           "hash": "07ff9813d3b3be2047ba660f74ff6a278e9b02b1a4d6d7773b4ee11e4857bd2b",
@@ -2033,7 +2712,8 @@
             "src/mcp_arcade/models.py",
             "src/mcp_arcade/oracle.py"
           ],
-          "path": "tests/test_bout.py"
+          "path": "tests/test_bout.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2061,7 +2741,8 @@
           "importsFiles": [
             "src/mcp_arcade/cli.py"
           ],
-          "path": "tests/test_cli.py"
+          "path": "tests/test_cli.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2089,7 +2770,8 @@
             "src/mcp_arcade/models.py",
             "src/mcp_arcade/protocol.py"
           ],
-          "path": "tests/test_client.py"
+          "path": "tests/test_client.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2140,11 +2822,18 @@
             "whisper_into_descriptions"
           ],
           "hash": "2a966c05b16aaa1448ae4cd0ca3b49da4f7e257bfb0734d60d114ab34cbf01b1",
-          "importsFiles": [
+          "importOrder": [
             "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/dataset.py",
             "src/mcp_arcade/cli.py"
           ],
-          "path": "tests/test_dataset.py"
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/dataset.py"
+          ],
+          "path": "tests/test_dataset.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2185,13 +2874,22 @@
             "test_unavailable_sandbox_snapshot_is_an_atom_error"
           ],
           "hash": "433235925e079becb047a69de30060f4f2e69208df642b0847c6e30a4019763e",
-          "importsFiles": [
+          "importOrder": [
             "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/docker.py",
             "src/mcp_arcade/bout.py",
             "src/mcp_arcade/cli.py",
             "src/mcp_arcade/models.py"
           ],
-          "path": "tests/test_docker.py"
+          "importsFiles": [
+            "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/bout.py",
+            "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/docker.py",
+            "src/mcp_arcade/models.py"
+          ],
+          "path": "tests/test_docker.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2213,7 +2911,8 @@
             "src/mcp_arcade/models.py",
             "tests/golden.py"
           ],
-          "path": "tests/test_golden.py"
+          "path": "tests/test_golden.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2245,7 +2944,8 @@
             "test_proofs_exist"
           ],
           "hash": "cf472699678966b42caf6368837a44e36eaeda6bd6d29831067b2d43f1913ac9",
-          "path": "tests/test_proofs.py"
+          "path": "tests/test_proofs.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2288,7 +2988,8 @@
           "importsFiles": [
             "src/mcp_arcade/protocol.py"
           ],
-          "path": "tests/test_protocol.py"
+          "path": "tests/test_protocol.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2341,24 +3042,27 @@
           "importOrder": [
             "tests/mock_ollama.py",
             "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/dataset.py",
+            "src/mcp_arcade/seat.py",
             "src/mcp_arcade/bout.py",
             "src/mcp_arcade/cli.py",
             "src/mcp_arcade/fixture.py",
             "src/mcp_arcade/models.py",
-            "src/mcp_arcade/receipt.py",
-            "src/mcp_arcade/seat.py"
+            "src/mcp_arcade/receipt.py"
           ],
           "importsFiles": [
             "src/mcp_arcade/__init__.py",
             "src/mcp_arcade/bout.py",
             "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/dataset.py",
             "src/mcp_arcade/fixture.py",
             "src/mcp_arcade/models.py",
             "src/mcp_arcade/receipt.py",
             "src/mcp_arcade/seat.py",
             "tests/mock_ollama.py"
           ],
-          "path": "tests/test_seat.py"
+          "path": "tests/test_seat.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2375,7 +3079,8 @@
             "src/mcp_arcade/cli.py",
             "src/mcp_arcade/timeline.py"
           ],
-          "path": "tests/test_tape_export.py"
+          "path": "tests/test_tape_export.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2436,7 +3141,8 @@
             "src/mcp_arcade/timeline.py",
             "tests/golden.py"
           ],
-          "path": "tests/test_timeline.py"
+          "path": "tests/test_timeline.py",
+          "testFramework": "pytest"
         },
         {
           "exports": [
@@ -2466,6 +3172,9 @@
           "importOrder": [
             "tests/golden.py",
             "src/mcp_arcade/__init__.py",
+            "src/mcp_arcade/dataset.py",
+            "src/mcp_arcade/docker.py",
+            "src/mcp_arcade/oracle.py",
             "src/mcp_arcade/atoms/__init__.py",
             "src/mcp_arcade/atoms/unlisted.py",
             "src/mcp_arcade/bout.py",
@@ -2479,11 +3188,15 @@
             "src/mcp_arcade/atoms/unlisted.py",
             "src/mcp_arcade/bout.py",
             "src/mcp_arcade/cli.py",
+            "src/mcp_arcade/dataset.py",
+            "src/mcp_arcade/docker.py",
             "src/mcp_arcade/models.py",
+            "src/mcp_arcade/oracle.py",
             "src/mcp_arcade/receipt.py",
             "tests/golden.py"
           ],
-          "path": "tests/test_unlisted.py"
+          "path": "tests/test_unlisted.py",
+          "testFramework": "pytest"
         }
       ],
       "globs": [
@@ -2493,6 +3206,9 @@
       "name": "tests",
       "origin": "authored",
       "role": "test",
+      "testRunners": [
+        "pytest"
+      ],
       "testedBy": 0,
       "unresolvedSites": 0
     }
@@ -2502,47 +3218,162 @@
       "checksCount": 1,
       "commands": [
         {
+          "dir": "",
           "job": "lint",
-          "step": "2",
-          "text": "pip install ruff==0.16.6"
+          "programs": [
+            "pip"
+          ],
+          "step": "2"
         },
         {
+          "dir": "",
           "job": "lint",
-          "step": "Atlas check",
-          "text": "npx --yes @dogfood-lab/atlas@1.21.0 check"
+          "programs": [
+            "npx"
+          ],
+          "step": "Atlas check"
         },
         {
+          "dir": "",
           "job": "lint",
-          "step": "5",
-          "text": "ruff format --check ."
+          "programs": [
+            "ruff"
+          ],
+          "step": "5"
         },
         {
+          "dir": "",
           "job": "lint",
-          "step": "6",
-          "text": "ruff check . --output-format=github"
+          "programs": [
+            "ruff"
+          ],
+          "step": "6"
         },
         {
+          "dir": "",
           "job": "test",
-          "step": "2",
-          "text": "pip install --upgrade pip\npip install -e \".[dev]\"\n"
+          "programs": [
+            "pip"
+          ],
+          "step": "2"
         },
         {
+          "dir": "",
           "job": "test",
-          "step": "3",
-          "text": "pytest tests/ -v --tb=short"
+          "programs": [
+            "pytest"
+          ],
+          "step": "3"
         },
         {
+          "dir": "",
           "job": "test",
-          "step": "4",
-          "text": "mcp-arcade --version\nmcp-arcade atoms\nmcp-arcade bout --target fixture --agent task-only --no-prompt\n"
+          "programs": [
+            "mcp-arcade"
+          ],
+          "step": "6"
         }
       ],
       "elsewhere": [],
       "file": ".github/workflows/ci.yml",
+      "jobs": [
+        {
+          "basis": "declared",
+          "name": "lint",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ],
+          "setup": [
+            {
+              "ranges": [
+                {
+                  "from": "3.12",
+                  "range": ">=3.12.0 <3.13.0-0"
+                }
+              ],
+              "step": "1",
+              "uses": "actions/setup-python",
+              "version": "3.12"
+            },
+            {
+              "ranges": [
+                {
+                  "from": "22",
+                  "range": ">=22.0.0 <23.0.0-0"
+                }
+              ],
+              "step": "Set up Node for Atlas",
+              "uses": "actions/setup-node",
+              "version": "22"
+            }
+          ]
+        },
+        {
+          "basis": "declared",
+          "name": "test",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ],
+          "setup": [
+            {
+              "ranges": [
+                {
+                  "from": "3.11",
+                  "range": ">=3.11.0 <3.12.0-0"
+                },
+                {
+                  "from": "3.12",
+                  "range": ">=3.12.0 <3.13.0-0"
+                }
+              ],
+              "step": "1",
+              "uses": "actions/setup-python",
+              "version": "${{ matrix.python-version }}"
+            }
+          ]
+        },
+        {
+          "basis": "declared",
+          "name": "codecov",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ]
+        }
+      ],
       "landings": [],
       "mentions": [],
       "name": "CI",
-      "permissions": [],
+      "permissions": [
+        "contents:read",
+        "id-token:write"
+      ],
       "pushes": false,
       "reach": [
         {
@@ -2599,6 +3430,16 @@
         "releases": false
       },
       "stages": [],
+      "tests": [
+        {
+          "config": "pyproject.toml",
+          "files": 17,
+          "job": "test",
+          "junit": true,
+          "runner": "pytest",
+          "step": "3"
+        }
+      ],
       "triggers": [
         {
           "branches": [
@@ -2608,6 +3449,7 @@
           "paths": [
             ".github/workflows/**",
             "atlas/**",
+            "codecov.yml",
             "pyproject.toml",
             "site/astro.config.mjs",
             "site/package-lock.json",
@@ -2624,6 +3466,7 @@
           "paths": [
             ".github/workflows/**",
             "atlas/**",
+            "codecov.yml",
             "pyproject.toml",
             "site/astro.config.mjs",
             "site/package-lock.json",
@@ -2638,8 +3481,11 @@
       ],
       "uses": [
         "actions/checkout",
+        "actions/download-artifact",
         "actions/setup-node",
-        "actions/setup-python"
+        "actions/setup-python",
+        "actions/upload-artifact",
+        "codecov/codecov-action"
       ],
       "usesWorkflowToken": false
     },
@@ -2647,18 +3493,74 @@
       "checksCount": 0,
       "commands": [
         {
+          "dir": "site",
           "job": "build",
-          "step": "Install site dependencies",
-          "text": "npm ci"
+          "programs": [
+            "npm"
+          ],
+          "step": "Install site dependencies"
         },
         {
+          "dir": "site",
           "job": "build",
-          "step": "Build site",
-          "text": "npm run build"
+          "programs": [
+            "npm"
+          ],
+          "step": "Build site"
         }
       ],
       "elsewhere": [],
       "file": ".github/workflows/pages.yml",
+      "jobs": [
+        {
+          "basis": "declared",
+          "name": "build",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ],
+          "setup": [
+            {
+              "ranges": [
+                {
+                  "from": "22",
+                  "range": ">=22.0.0 <23.0.0-0"
+                }
+              ],
+              "step": "1",
+              "uses": "actions/setup-node",
+              "version": "22"
+            }
+          ]
+        },
+        {
+          "basis": "declared",
+          "environment": {
+            "name": "github-pages"
+          },
+          "name": "deploy",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ]
+        }
+      ],
       "landings": [],
       "mentions": [],
       "name": "Deploy site to GitHub Pages",
@@ -2672,7 +3574,7 @@
         {
           "boundary": "site",
           "depth": 0,
-          "files": 3
+          "files": 5
         }
       ],
       "readers": [],
@@ -2733,24 +3635,38 @@
       "checksCount": 2,
       "commands": [
         {
+          "dir": "",
           "job": "pypi",
-          "step": "Install",
-          "text": "python -m pip install --upgrade pip\npip install -e \".[dev]\" build\npip install ruff==0.16.6\n"
+          "programs": [
+            "pip",
+            "python"
+          ],
+          "step": "Install"
         },
         {
+          "dir": "",
           "job": "pypi",
-          "step": "Verify",
-          "text": "ruff format --check .\nruff check .\npytest tests/ -v --tb=short\n"
+          "programs": [
+            "pytest",
+            "ruff"
+          ],
+          "step": "Verify"
         },
         {
+          "dir": "",
           "job": "pypi",
-          "step": "Build",
-          "text": "python -m build"
+          "programs": [
+            "python"
+          ],
+          "step": "Build"
         },
         {
+          "dir": "",
           "job": "pypi",
-          "step": "Attach dist to GitHub release",
-          "text": "gh release upload \"${{ github.event.release.tag_name }}\" dist/* --clobber"
+          "programs": [
+            "gh"
+          ],
+          "step": "Attach dist to GitHub release"
         }
       ],
       "elsewhere": [],
@@ -2768,6 +3684,40 @@
           "when": {
             "event": "release"
           }
+        }
+      ],
+      "jobs": [
+        {
+          "basis": "declared",
+          "environment": {
+            "name": "release"
+          },
+          "name": "pypi",
+          "runsOn": [
+            {
+              "labels": [
+                "ubuntu-latest"
+              ],
+              "platform": {
+                "cpu": "x64",
+                "libc": "glibc",
+                "os": "linux"
+              }
+            }
+          ],
+          "setup": [
+            {
+              "ranges": [
+                {
+                  "from": "3.12",
+                  "range": ">=3.12.0 <3.13.0-0"
+                }
+              ],
+              "step": "1",
+              "uses": "actions/setup-python",
+              "version": "3.12"
+            }
+          ]
         }
       ],
       "landings": [],
@@ -2829,6 +3779,15 @@
         "releases": false
       },
       "stages": [],
+      "tests": [
+        {
+          "config": "pyproject.toml",
+          "files": 17,
+          "job": "pypi",
+          "runner": "pytest",
+          "step": "Verify"
+        }
+      ],
       "triggers": [
         {
           "event": "release",
@@ -2898,9 +3857,10 @@
       "to": "src"
     }
   ],
+  "engine": "1.24.0",
   "generatedFrom": {
-    "commit": "0c17273e798aa56857b9805de6bc7009f19f7dfa",
-    "tracked": 103
+    "commit": "7c8960e5ca2bcb39a96a1c211e13b19052d4ce51",
+    "tracked": 104
   },
   "landings": [
     {

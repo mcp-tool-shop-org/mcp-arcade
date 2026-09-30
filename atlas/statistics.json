@@ -78,12 +78,12 @@
         ],
         "importsOnly": []
       },
-      "cohesion": 0.5,
+      "cohesion": 0.454546,
       "cohesionDropped": false,
       "confidence": "low",
       "highWater": null,
       "name": "src",
-      "qualifyingSourceCommits": 14,
+      "qualifyingSourceCommits": 15,
       "rebaseline": null
     },
     {
@@ -101,7 +101,7 @@
       "confidence": "low",
       "highWater": null,
       "name": "tests",
-      "qualifyingSourceCommits": 15,
+      "qualifyingSourceCommits": 16,
       "rebaseline": null
     }
   ],
@@ -119,8 +119,8 @@
         "path": ".github/dependabot.yml"
       },
       {
-        "commits": 3,
-        "lines": 72,
+        "commits": 6,
+        "lines": 268,
         "path": ".github/workflows/ci.yml"
       },
       {
@@ -207,6 +207,36 @@
         "commits": 6,
         "lines": 60,
         "path": "SHIP_GATE.md"
+      },
+      {
+        "commits": 1,
+        "lines": 82,
+        "path": "atlas/README.md"
+      },
+      {
+        "commits": 1,
+        "lines": 26,
+        "path": "atlas/boundaries.yaml"
+      },
+      {
+        "commits": 1,
+        "lines": 245,
+        "path": "atlas/page.json"
+      },
+      {
+        "commits": 1,
+        "lines": 755,
+        "path": "atlas/statistics.json"
+      },
+      {
+        "commits": 1,
+        "lines": 3073,
+        "path": "atlas/structure.json"
+      },
+      {
+        "commits": 2,
+        "lines": 36,
+        "path": "codecov.yml"
       },
       {
         "commits": 1,
@@ -329,8 +359,8 @@
         "path": "docs/wave-7.md"
       },
       {
-        "commits": 4,
-        "lines": 71,
+        "commits": 6,
+        "lines": 73,
         "path": "pyproject.toml"
       },
       {
@@ -627,93 +657,114 @@
   },
   "confidence": {
     "level": "low",
-    "reason": "fewer than 30 qualifying commits in the window, and fewer than 20 source files reach 10 revisions"
+    "reason": "fewer than 25 source files reach 10 revisions in the window"
   },
-  "generatedAt": "2026-09-25T09:40:35.834Z",
+  "generatedAt": "2026-09-30T20:10:02.490Z",
   "generatedFrom": {
-    "commit": "0c17273e798aa56857b9805de6bc7009f19f7dfa"
+    "commit": "7c8960e5ca2bcb39a96a1c211e13b19052d4ce51"
   },
   "pairs": [
     {
       "a": "CHANGELOG.md",
       "b": "CLAUDE.md",
+      "either": 15,
+      "shared": 8,
+      "strength": 0.533333
+    },
+    {
+      "a": "CHANGELOG.md",
+      "b": "README.md",
+      "either": 16,
+      "shared": 10,
+      "strength": 0.625
+    },
+    {
+      "a": "CHANGELOG.md",
+      "b": "site/src/content/docs/handbook/reference.md",
+      "either": 15,
+      "shared": 11,
+      "strength": 0.733333
+    },
+    {
+      "a": "CLAUDE.md",
+      "b": "HANDOFF.md",
+      "either": 10,
+      "shared": 8,
+      "strength": 0.8
+    },
+    {
+      "a": "CLAUDE.md",
+      "b": "README.md",
       "either": 14,
       "shared": 7,
       "strength": 0.5
     },
     {
-      "a": "CHANGELOG.md",
-      "b": "README.md",
-      "either": 15,
-      "shared": 9,
-      "strength": 0.6
-    },
-    {
-      "a": "CHANGELOG.md",
-      "b": "site/src/content/docs/handbook/reference.md",
-      "either": 14,
-      "shared": 10,
-      "strength": 0.714286
-    },
-    {
-      "a": "CLAUDE.md",
-      "b": "HANDOFF.md",
-      "either": 9,
-      "shared": 7,
-      "strength": 0.777778
-    },
-    {
       "a": "CLAUDE.md",
       "b": "site/src/content/docs/handbook/reference.md",
-      "either": 12,
-      "shared": 7,
-      "strength": 0.583333
+      "either": 13,
+      "shared": 8,
+      "strength": 0.615385
     },
     {
       "a": "CLAUDE.md",
       "b": "src/mcp_arcade/cli.py",
-      "either": 9,
-      "shared": 6,
-      "strength": 0.666667
+      "either": 10,
+      "shared": 7,
+      "strength": 0.7
+    },
+    {
+      "a": "HANDOFF.md",
+      "b": "site/src/content/docs/handbook/reference.md",
+      "either": 14,
+      "shared": 7,
+      "strength": 0.5
     },
     {
       "a": "HANDOFF.md",
       "b": "src/mcp_arcade/cli.py",
-      "either": 10,
-      "shared": 5,
+      "either": 11,
+      "shared": 6,
+      "strength": 0.545455
+    },
+    {
+      "a": "README.md",
+      "b": "site/src/content/docs/handbook/reference.md",
+      "either": 16,
+      "shared": 8,
       "strength": 0.5
     },
     {
       "a": "README.md",
       "b": "src/mcp_arcade/cli.py",
-      "either": 12,
-      "shared": 6,
-      "strength": 0.5
+      "either": 13,
+      "shared": 7,
+      "strength": 0.538462
     },
     {
       "a": "site/src/content/docs/handbook/reference.md",
       "b": "src/mcp_arcade/cli.py",
-      "either": 12,
-      "shared": 6,
-      "strength": 0.5
+      "either": 13,
+      "shared": 7,
+      "strength": 0.538462
     },
     {
       "a": "src/mcp_arcade/atoms/poison.py",
       "b": "src/mcp_arcade/bout.py",
-      "either": 8,
+      "either": 9,
       "shared": 5,
-      "strength": 0.625
+      "strength": 0.555556
     },
     {
       "a": "src/mcp_arcade/bout.py",
       "b": "tests/test_bout.py",
-      "either": 8,
-      "shared": 5,
-      "strength": 0.625
+      "either": 9,
+      "shared": 6,
+      "strength": 0.666667
     }
   ],
   "parameters": {
-    "appliedChangesetLimit": 25.75,
+    "appliedChangesetLimit": 27.25,
     "changeset": 50,
     "changesetFraction": 0.25,
     "cohesionDrop": 0.2,
@@ -721,17 +772,17 @@
     "fallenShared": 3,
     "floor": "fallen",
     "floorHeld": false,
-    "floorTrigger": "both",
-    "headDate": "2026-09-17T18:59:42-07:00",
-    "inScopeFiles": 103,
+    "floorTrigger": "revision-depth",
+    "headDate": "2026-09-29T16:47:38-07:00",
+    "inScopeFiles": 109,
     "pinnedStart": null,
-    "priorFloor": null,
-    "qualifyingCommits": 26,
+    "priorFloor": "fallen",
+    "qualifyingCommits": 30,
     "qualifyingMinimum": 30,
     "revisions": 5,
     "shared": 10,
     "sharedFloorUsed": 3,
-    "since": "2026-03-22T01:59:42.000Z",
+    "since": "2026-04-02T23:47:38.000Z",
     "sourceExtensions": [
       ".js",
       ".mjs",
