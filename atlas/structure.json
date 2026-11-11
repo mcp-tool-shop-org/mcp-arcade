@@ -13,7 +13,7 @@
           "path": ".github/dependabot.yml"
         },
         {
-          "hash": "d6b9db2049ae379ee389b8a59628172c774995ab729cf443a3f3c4159e8a69b3",
+          "hash": "a894d1b170f7b2d9f0556285f9357eff76f78fddd7d19b235ccba45221eceece",
           "path": ".github/workflows/ci.yml"
         },
         {
@@ -21,7 +21,7 @@
           "path": ".github/workflows/pages.yml"
         },
         {
-          "hash": "3fc6feeb0ab6fc0656c8cfadc61e792d6a68bd2203355e9510757f42ff3e6de0",
+          "hash": "a771db1e3442509d3b94694fdab295ee379d9a57c2ce10a28e0ba13e09eed875",
           "path": ".github/workflows/release.yml"
         }
       ],
@@ -254,7 +254,7 @@
           "path": "site/astro.config.mjs"
         },
         {
-          "hash": "af5d4f54dca60686724d306eb58759fb25b6f5ba4d66559ab84a968112a184e5",
+          "hash": "0607a19c4f60b635244a906c7ad2424359b50e20c4a83bc140f202abce4a941e",
           "path": "site/package-lock.json"
         },
         {
@@ -323,7 +323,7 @@
       "unresolvedSites": 0
     },
     {
-      "dynamicReads": 2,
+      "dynamicReads": 0,
       "dynamicSpawns": 0,
       "dynamicSpawnsInTests": 0,
       "dynamicWrites": 2,
@@ -2590,14 +2590,14 @@
       "origin": "authored",
       "outsidePlaces": [
         {
-          "reads": 6,
+          "reads": 7,
           "where": [
             "caller"
           ],
           "writes": 5
         }
       ],
-      "outsideReads": 6,
+      "outsideReads": 7,
       "outsideWrites": 5,
       "role": "code",
       "testRunners": [
@@ -3479,6 +3479,13 @@
           "event": "workflow_dispatch"
         }
       ],
+      "unresolvedExpressions": [
+        {
+          "adds": "flags",
+          "job": "test",
+          "step": "3"
+        }
+      ],
       "uses": [
         "actions/checkout",
         "actions/download-artifact",
@@ -3857,9 +3864,9 @@
       "to": "src"
     }
   ],
-  "engine": "1.24.0",
+  "engine": "1.26.0",
   "generatedFrom": {
-    "commit": "7c8960e5ca2bcb39a96a1c211e13b19052d4ce51",
+    "commit": "3d3891fcfd6ff7ccc7bcb99531d087b20679853e",
     "tracked": 104
   },
   "landings": [
@@ -3957,6 +3964,17 @@
         }
       ],
       "target": "src/mcp_arcade",
+      "writers": []
+    },
+    {
+      "readers": [
+        {
+          "by": "src/mcp_arcade/docker.py",
+          "call": "open",
+          "confidence": "ast"
+        }
+      ],
+      "target": "src/mcp_arcade/**/*",
       "writers": []
     },
     {

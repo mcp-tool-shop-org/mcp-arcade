@@ -27,36 +27,30 @@
   ],
   "changes": {
     "fileCounts": {
-      "added": 1,
-      "changed": 2,
+      "added": 0,
+      "changed": 3,
       "moved": 0,
       "parts": 2,
       "removed": 0
     },
     "items": [
       {
-        "kind": "door",
-        "sentence": "CI's pull request trigger now also names `codecov.yml`.",
+        "kind": "landing",
+        "sentence": "src/mcp_arcade/**/* is now read by src/mcp_arcade/docker.py.",
         "subjects": [
-          ".github/workflows/ci.yml"
-        ]
-      },
-      {
-        "kind": "door",
-        "sentence": "CI's push trigger now also names `codecov.yml`.",
-        "subjects": [
-          ".github/workflows/ci.yml"
+          "src/mcp_arcade/**/*",
+          "src/mcp_arcade/docker.py"
         ]
       },
       {
         "kind": "counts",
-        "sentence": "1 file added and 2 changed content, across 2 parts.",
+        "sentence": "3 files changed content, across 2 parts.",
         "subjects": []
       }
     ],
     "since": {
-      "commit": "0c17273e798aa56857b9805de6bc7009f19f7dfa",
-      "generatedAt": "2026-09-25T09:40:35.834Z"
+      "commit": "7c8960e5ca2bcb39a96a1c211e13b19052d4ce51",
+      "generatedAt": "2026-09-30T20:10:02.490Z"
     },
     "unchanged": false
   },
@@ -83,7 +77,7 @@
     "Window: 180 days; a pair counts from 3 shared commits, since 0 source files reach 10 revisions; the floor rises to 10 when 25 do."
   ],
   "changesTogetherWithTests": 1,
-  "commit": "7c8960e5ca2bcb39a96a1c211e13b19052d4ce51",
+  "commit": "3d3891fcfd6ff7ccc7bcb99531d087b20679853e",
   "defaultBranch": "main",
   "derived": "6 parts, mostly Python (40 files), CSS (2), TypeScript (2), Astro (1) and JavaScript (1). Work enters through 4 doors; CI and Release each reach 2 parts, and CI is followed because a pull request goes through it. It publishes to PyPI. It deploys a site to GitHub Pages. People run mcp-arcade.",
   "doors": [
@@ -232,12 +226,12 @@
       "to": "src"
     }
   ],
-  "engine": "1.24.0",
+  "engine": "1.26.0",
   "generated": [],
-  "generatedAt": "2026-09-30T20:10:02.490Z",
+  "generatedAt": "2026-11-11T22:22:00.973Z",
   "limits": [
-    "2 writes and 2 reads use paths built at run time and are not named here.",
-    "5 writes and 6 reads go to a path their caller passes, not to this repository.",
+    "2 writes use paths built at run time and are not named here.",
+    "5 writes and 7 reads go to a path their caller passes, not to this repository.",
     "Statistics confidence is low: fewer than 25 source files reach 10 revisions in the window."
   ],
   "mainDoor": ".github/workflows/ci.yml",
@@ -268,6 +262,7 @@
   "testedBy": {
     "src": 14
   },
+  "testedCodeParts": 1,
   "unnamedWrites": 2,
   "unread": [],
   "unreadFiles": 0,
