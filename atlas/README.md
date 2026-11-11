@@ -1,16 +1,15 @@
 # mcp-arcade: how it works
 
-Mapped at 2026-09-30 from commit 7c8960e by Atlas 1.24.0.
+Mapped at 2026-11-11 from commit 3d3891f by Atlas 1.26.0.
 
 ## What this is
 
 6 parts, mostly Python (40 files), CSS (2), TypeScript (2), Astro (1) and JavaScript (1). Work enters through 4 doors; CI and Release each reach 2 parts, and CI is followed because a pull request goes through it. It publishes to PyPI. It deploys a site to GitHub Pages. People run mcp-arcade.
 
-## What changed since 2026-09-25 (0c17273)
+## What changed since 2026-09-30 (7c8960e)
 
-- CI's pull request trigger now also names `codecov.yml`.
-- CI's push trigger now also names `codecov.yml`.
-- 1 file added and 2 changed content, across 2 parts.
+- src/mcp_arcade/**/* is now read by src/mcp_arcade/docker.py.
+- 3 files changed content, across 2 parts.
 
 ## What comes in
 
@@ -79,8 +78,8 @@ Read those in order to follow one pull request end to end.
 
 ## What this map cannot see
 
-- 2 writes and 2 reads use paths built at run time and are not named here.
-- 5 writes and 6 reads go to a path their caller passes, not to this repository.
+- 2 writes use paths built at run time and are not named here.
+- 5 writes and 7 reads go to a path their caller passes, not to this repository.
 - Statistics confidence is low: fewer than 25 source files reach 10 revisions in the window.
 
 Regenerate with `npx --yes @dogfood-lab/atlas map`.
